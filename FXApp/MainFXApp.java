@@ -3,10 +3,12 @@ package FXApp;
 import java.io.IOException;
 import java.util.logging.Level;
 
+import Controller.LoginScreenController;
 import Controller.WelcomeScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,6 +31,8 @@ public class MainFXApp extends Application {
 		
 	}
 	
+	public Stage getMaindScreen() { return mainScreen; }
+	
 	private void initLayout(Stage mainScreen) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -43,6 +47,23 @@ public class MainFXApp extends Application {
 			mainScreen.show();
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for WelcomeScreen");
+			e.printStackTrace();
+		}
+	}
+	
+	public void showLoginDialog() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainFXApp.class.getResource("../View/LoginScreen.fxml"));
+			
+			Pane pane = loader.load();
+			
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
+			
+			LoginScreenController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
