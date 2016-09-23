@@ -13,11 +13,11 @@ public class WelcomeScreenController {
 	}
 	
 	public void loginPressed() {
-		mainApp.showLoginDialog();
+		mainApp.showLogin();
 	}
 	
 	public void registerPressed() {
-		mainApp.showRegistrationDialog();
+		mainApp.showRegistration();
 	}
 	
 	@FXML
