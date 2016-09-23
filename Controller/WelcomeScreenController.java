@@ -8,12 +8,7 @@ public class WelcomeScreenController {
 	
 	private MainFXApp mainApp;
 
-	@FXML
-	private void initialize() {
-		
-	}
 	public void setMainApp(MainFXApp main) {
-		System.out.println("ASDF");
 		mainApp = main;
 	}
 	
@@ -21,5 +16,24 @@ public class WelcomeScreenController {
 		mainApp.showLoginDialog();
 	}
 	
+	public void registerPressed() {
+		mainApp.showRegistrationDialog();
+	}
+	
+	@FXML
+    private void handleCloseMenu() {
+        System.exit(0);
 
+    }
+	
+	@FXML
+	private void handleAboutMenu() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("M4 Project");
+        alert.setHeaderText("About");
+        alert.setContentText("Simple Implementation of User login and register");
+
+        alert.showAndWait();
+
+    }
 }

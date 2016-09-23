@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 import Controller.LoginScreenController;
+import Controller.RegistrationScreenController;
 import Controller.WelcomeScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainFXApp extends Application {
@@ -52,6 +52,10 @@ public class MainFXApp extends Application {
 		}
 	}
 	
+	public void showMainScreen() {
+		initLayout(mainScreen);
+	}
+	
 	public void showLoginDialog() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -65,6 +69,25 @@ public class MainFXApp extends Application {
 			LoginScreenController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for LoginScreen");
+			e.printStackTrace();
+		}
+	}
+	
+	public void showRegistrationDialog() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainFXApp.class.getResource("../View/RegistrationScreen.fxml"));
+			
+			AnchorPane pane = loader.load();
+			
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
+			
+			RegistrationScreenController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for RegistrationScreen");
 			e.printStackTrace();
 		}
 	}
