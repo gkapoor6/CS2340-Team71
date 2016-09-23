@@ -18,9 +18,7 @@ public class WelcomeScreenController {
 	}
 	
 	public void loginPressed() {
-		Alert alert = new Alert(Alert.AlertType.ERROR);
-		alert.initOwner(mainApp.getMaindScreen());
-		
+		mainApp.showLoginDialog();
 	}
 	
 

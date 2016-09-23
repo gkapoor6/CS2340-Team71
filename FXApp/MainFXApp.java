@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import Controller.LoginScreenController;
 import Controller.WelcomeScreenController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -67,6 +68,12 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+    private void handleCloseMenu() {
+        System.exit(0);
+
+    }
 	
 	public static void main(String[] args) {
 		launch(args);
