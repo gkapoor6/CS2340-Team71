@@ -20,16 +20,35 @@ import javafx.stage.Stage;
 
 import java.util.logging.Logger;
 
+/**
+ * Main application class
+ * Handles all scene switching to reuse main stage 
+ *
+ */
 public class MainFXApp extends Application {
-	
+	/**
+	 * Holder of Users
+	 */
 	private HashMap<String, User> users = new HashMap<>();
 	
+	/**
+	 * java logger for this class
+	 */
 	private static final Logger LOGGER = Logger.getLogger("MainFXApp");
 	
+	/**
+	 * main container for the app window
+	 */
 	private Stage mainScreen;
 	
+	/**
+	 * layout for the welcome screen
+	 */
 	private VBox layout;
 	
+	/*
+	 * Getter of Users
+	 */
 	public HashMap<String, User> getUsers() {
 		return users;
 	}
@@ -45,8 +64,16 @@ public class MainFXApp extends Application {
 		
 	}
 	
+	/**
+	 * Getter of reference to main window stage
+	 * @return reference to main stage
+	 */
 	public Stage getMaindScreen() { return mainScreen; }
 	
+	/**
+	 * Initialize first and welcome screen
+	 * @param mainScreen main Stage window
+	 */
 	private void initLayout(Stage mainScreen) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -65,10 +92,16 @@ public class MainFXApp extends Application {
 		}
 	}
 	
+	/**
+	 * For use to return to main window
+	 */
 	public void showMainScreen() {
 		initLayout(mainScreen);
 	}
 	
+	/**
+	 * Switches to login view
+	 */
 	public void showLogin() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -87,6 +120,9 @@ public class MainFXApp extends Application {
 		}
 	}
 	
+	/**
+	 * Switches to registration view
+	 */
 	public void showRegistration() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -105,6 +141,9 @@ public class MainFXApp extends Application {
 		}
 	}
 	
+	/**
+	 * Proceeds to the application view once logged in successfully
+	 */
 	public void showApplication() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -122,12 +161,6 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	@FXML
-    private void handleCloseMenu() {
-        System.exit(0);
-
-    }
 	
 	public static void main(String[] args) {
 		launch(args);
