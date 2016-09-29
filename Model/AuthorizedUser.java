@@ -6,6 +6,7 @@ public abstract class AuthorizedUser {
 	 */
 	private String name;
 	private String password;
+	private Profile profile;
 	
 	/**
 	 * Returns name
@@ -19,15 +20,20 @@ public abstract class AuthorizedUser {
 	 */
 	public String getPassword() { return password; }
 	
+	public Profile getProfile() { return profile; }
+	
 	/**
 	 * Constructor
 	 * @param name name
 	 * @param pwd password
 	 */
-	public AuthorizedUser(String name, String pwd) {
+	
+	public AuthorizedUser(String name, String password) {
 		this.name = name ;
-		password = pwd;
+		this.password = password;
+		profile = new Profile();
 	}
+	
 	
 	@Override
 	public String toString() {

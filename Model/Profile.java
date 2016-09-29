@@ -19,4 +19,14 @@ public class Profile {
         _title.set(title);
         _home.set(home);
     }
+
+    public Profile() {
+    	this("", "", "", "");
+    }
+
+    public void setName(String name) { _name.set(name); }
+    public void setEmail(String email) { _email.set(email); }
+    public void setTitle(String title) { _title.set(title); }
+    public void setHome(String home) { _home.set(home); }
+    
 }
