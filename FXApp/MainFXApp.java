@@ -162,6 +162,24 @@ public class MainFXApp extends Application {
 		}
 	}
 	
+	public void showProfile() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainFXApp.class.getResource("../View/ProfileScreen.fxml"));
+			
+			AnchorPane pane = loader.load();
+			
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
+			
+			ProfileScreenController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for ProfileScreen");
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
