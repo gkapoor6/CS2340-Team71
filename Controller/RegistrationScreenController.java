@@ -16,7 +16,7 @@ import java.awt.TextField;
 public class RegistrationScreenController {
 
 	/**
-	 * reference to main application
+	 * reference to main application 1
 	 */
 	private MainFXApp mainApp;
     private TextField textField_UserName;
