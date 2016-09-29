@@ -41,9 +41,8 @@ public class RegistrationScreenController {
 	private void handleRegisterPressed() {
 	    String userName = textField_UserName.getText();
         String pass = textField_Pass.getText();
-	    // check which option selected from drop down list
-        // accordingly instantiate class - user, Manager, Admin
-        
+
+
 
     }
 }
