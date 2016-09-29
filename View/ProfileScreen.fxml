@@ -63,10 +63,10 @@
             <Label layoutX="71.0" layoutY="108.0" text="Title" />
             <Label layoutX="71.0" layoutY="169.0" text="Email" />
             <Label fx:id="textField_Home" layoutX="71.0" layoutY="232.0" text="Home Address" />
-            <TextField fx:id="textField_Name" layoutX="200.0" layoutY="45.0" />
-            <ComboBox fx:id="comboBox_Title" layoutX="200.0" layoutY="104.0" prefWidth="150.0" />
-            <TextField fx:id="textField_Email" layoutX="200.0" layoutY="165.0" />
-            <TextField layoutX="201.0" layoutY="228.0" />
+            <TextField fx:id="nameField" layoutX="200.0" layoutY="45.0" />
+            <ComboBox fx:id="titleComboBox" layoutX="200.0" layoutY="104.0" prefWidth="150.0" />
+            <TextField fx:id="emailField" layoutX="200.0" layoutY="165.0" />
+            <TextField fx:id="addressField" layoutX="201.0" layoutY="228.0" />
       </children>
     </AnchorPane>
   </children>
