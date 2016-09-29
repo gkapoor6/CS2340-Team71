@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegistrationScreenController">
    <children>
       <GridPane layoutX="31.0" layoutY="26.0" prefHeight="241.0" prefWidth="535.0">
@@ -26,17 +25,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Username:">
+            <Label text="Name:">
                <GridPane.margin>
                   <Insets left="33.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Password:" GridPane.rowIndex="1">
+            <Label text="User ID:" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="33.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Confirm Password:" GridPane.rowIndex="2">
+            <Label text="Password:" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="33.0" />
                </GridPane.margin>
@@ -52,5 +51,6 @@
             <Button mnemonicParsing="false" text="OK" />
         </buttons>
       </ButtonBar>
+      <Label layoutX="10.0" layoutY="10.0" text="Username:" />
    </children>
 </AnchorPane>
