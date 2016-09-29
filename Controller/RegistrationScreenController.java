@@ -66,13 +66,13 @@ public class RegistrationScreenController {
         String type = comboBox_Type.getValue();
         AuthorizedUser user;
 
-        if (type == "User") {
+        if (type.equals("User")) {
             user = new User(userName, pass);
-        } else if (type == "Worker") {
+        } else if (type.equals("Worker")) {
             user = new Worker(userName, pass);
-        } else if (type == "Manager") {
+        } else if (type.equals("Manager")) {
             user = new Manager(userName, pass);
-        } else if (type == "Admin") {
+        } else if (type.equals("Admin")) {
             user = new Admin(userName, pass);
         }
 
