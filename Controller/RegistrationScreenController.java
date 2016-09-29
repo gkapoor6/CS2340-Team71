@@ -3,6 +3,7 @@ package Controller;
 import FXApp.MainFXApp;
 import Model.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,7 +21,7 @@ public class RegistrationScreenController {
 	private MainFXApp mainApp;
     private TextField textField_UserName;
     private TextField textField_Pass;
-	
+	private ComboBox<String> comboBox_Type;
 	/**
 	 * Setup the main application link so we can call methods there
 	 * @param main reference to main application
@@ -41,8 +42,7 @@ public class RegistrationScreenController {
 	private void handleRegisterPressed() {
 	    String userName = textField_UserName.getText();
         String pass = textField_Pass.getText();
-
-
+        // check account type and then instantiate
 
     }
 }
