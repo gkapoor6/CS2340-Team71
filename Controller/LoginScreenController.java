@@ -50,7 +50,7 @@ public class LoginScreenController {
 	private void handleLoginPressed() {
 		User user = mainApp.getUsers().get(userField.getText());
 		if (user != null) {
-			if (user.getPwd().equals(passwordField.getText())) {
+			if (user.getPassword().equals(passwordField.getText())) {
 				mainApp.showApplication();
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
