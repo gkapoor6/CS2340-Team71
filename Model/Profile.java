@@ -9,6 +9,7 @@ import javafx.beans.property.StringProperty;
 public class Profile {
     private StringProperty _name = new SimpleStringProperty();
     private StringProperty _email = new SimpleStringProperty();
+    // title or type
     private StringProperty _title = new SimpleStringProperty();
     private StringProperty _home = new SimpleStringProperty();
 
