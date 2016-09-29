@@ -29,4 +29,9 @@ public class ApplicationScreenController {
 	public void handleLogoutPressed() {
 		mainApp.showMainScreen();
 	}
+	
+	@FXML
+	public void handleEditProfilePressed() {
+		mainApp.showProfile();
+	}
 }
