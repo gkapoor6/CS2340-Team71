@@ -26,6 +26,7 @@ public class WelcomeScreenController {
 	/**
 	 * Event handler for login button
 	 */
+	@FXML
 	public void loginPressed() {
 		mainApp.showLogin();
 	}
@@ -33,6 +34,7 @@ public class WelcomeScreenController {
 	/**
 	 * Event handler for register button
 	 */
+	@FXML
 	public void registerPressed() {
 		mainApp.showRegistration();
 	}

@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import Controller.ApplicationScreenController;
 import Controller.LoginScreenController;
+import Controller.ProfileScreenController;
 import Controller.RegistrationScreenController;
 import Controller.WelcomeScreenController;
 import Model.User;
@@ -167,7 +168,7 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ProfileScreen.fxml"));
 			
-			AnchorPane pane = loader.load();
+			VBox pane = loader.load();
 			
 			Scene scene = new Scene(pane);
 			mainScreen.setScene(scene);
