@@ -34,7 +34,7 @@ public class ProfileScreenController {
 	private Stage dialogStage;
 
 	/** the student whose data is being manipulated */
-	private Profile profile = user.getProfile();
+	private Profile profile;
 
 	/** flag to signal whether dialog was closed normally */
 	private boolean updateClicked = false;
@@ -61,6 +61,7 @@ public class ProfileScreenController {
 	 */
 	public void setUser(AuthorizedUser user) {
 		this.user = user;
+		profile = user.getProfile();
 	}
 
 	/**
