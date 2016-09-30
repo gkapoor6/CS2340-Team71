@@ -52,7 +52,7 @@ public class LoginScreenController {
 		AuthorizedUser user = Model.getUser(userField.getText());
 		if (user != null) {
 			if (user.getPassword().equals(passwordField.getText())) {
-				mainApp.showApplication();
+				mainApp.showApplication(user);
 			} else {
 				
 				Alert alert = new Alert(Alert.AlertType.ERROR);

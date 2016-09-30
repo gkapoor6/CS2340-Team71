@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import FXApp.MainFXApp;
+import Model.AuthorizedUser;
 import Model.Profile;
 
 public class ProfileScreenController {
@@ -27,11 +28,13 @@ public class ProfileScreenController {
 	@FXML
 	private TextField addressField;
 
+	private AuthorizedUser user;
+	
 	/** the window for this dialog */
 	private Stage dialogStage;
 
 	/** the student whose data is being manipulated */
-	private Profile profile;
+	private Profile profile = user.getProfile();
 
 	/** flag to signal whether dialog was closed normally */
 	private boolean updateClicked = false;
@@ -52,7 +55,13 @@ public class ProfileScreenController {
 	}
 	
 	
-	
+	/**
+	 * Setup a certain user's interface of application
+	 * @param user
+	 */
+	public void setUser(AuthorizedUser user) {
+		this.user = user;
+	}
 
 	/**
 	 * Returns true if the update button is clicked.
@@ -73,13 +82,13 @@ public class ProfileScreenController {
 
 			// Signal success and close the profile dialog window.
 			updateClicked = true;
-			mainApp.showApplication();
+			mainApp.showApplication(user);
 		}
 	}
 
 	@FXML
 	private void handleCancelPressed() {
-		mainApp.showApplication();
+		mainApp.showApplication(user);
 	}
 
 	/**

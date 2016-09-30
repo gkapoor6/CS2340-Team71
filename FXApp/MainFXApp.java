@@ -146,7 +146,7 @@ public class MainFXApp extends Application {
 	/**
 	 * Proceeds to the application view once logged in successfully
 	 */
-	public void showApplication() {
+	public void showApplication(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ApplicationScreen.fxml"));
@@ -157,6 +157,7 @@ public class MainFXApp extends Application {
 			mainScreen.setScene(scene);
 			
 			ApplicationScreenController controller = loader.getController();
+			controller.setUser(user);
 			controller.setMainApp(this);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for RegistrationScreen");
@@ -164,7 +165,7 @@ public class MainFXApp extends Application {
 		}
 	}
 	
-	public void showProfile() {
+	public void showProfile(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ProfileScreen.fxml"));
@@ -175,6 +176,7 @@ public class MainFXApp extends Application {
 			mainScreen.setScene(scene);
 			
 			ProfileScreenController controller = loader.getController();
+			controller.setUser(user);
 			controller.setMainApp(this);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for ProfileScreen");

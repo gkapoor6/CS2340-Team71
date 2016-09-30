@@ -1,6 +1,7 @@
 package Controller;
 
 import FXApp.MainFXApp;
+import Model.AuthorizedUser;
 import javafx.fxml.FXML;
 
 /**
@@ -14,12 +15,21 @@ public class ApplicationScreenController {
 	 */
 	private MainFXApp mainApp;
 	
+	private AuthorizedUser user;
 	/**
 	 * Setup the main application link so we can call methods there
 	 * @param main	reference to the FXApp instance
 	 */
 	public void setMainApp(MainFXApp main) {
 		mainApp = main;
+	}
+	
+	/**
+	 * Setup a certain user's interface of application
+	 * @param user
+	 */
+	public void setUser(AuthorizedUser user) {
+		this.user = user;
 	}
 	
 	/**
@@ -35,6 +45,6 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleEditProfilePressed() {
-		mainApp.showProfile();
+		mainApp.showProfile(user);
 	}
 }
