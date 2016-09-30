@@ -55,6 +55,25 @@ public class Profile {
 		_home.set(home);
 	}
 
+	/**
+	 * Getters for the instance data
+	 */
+	public StringProperty getName() {
+		return _name;
+	}
+
+	public StringProperty getEmail() {
+		return _email;
+	}
+
+	public StringProperty getTitle() {
+		return _title;
+	}
+
+	public StringProperty getHome() {
+		return _home;
+	}
+
 	@Override
 	public String toString() {
 		return "Profile [_name=" + _name + ", _email=" + _email + ", _title="

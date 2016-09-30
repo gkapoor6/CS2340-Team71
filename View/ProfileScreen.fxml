@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProfileScreenController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProfileScreenController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -62,7 +62,7 @@
             <ComboBox fx:id="titleComboBox" layoutX="200.0" layoutY="104.0" prefWidth="150.0" />
             <TextField fx:id="emailField" layoutX="200.0" layoutY="165.0" />
             <TextField fx:id="addressField" layoutX="201.0" layoutY="228.0" />
-            <Button layoutX="171.0" layoutY="305.0" mnemonicParsing="false" onAction="#isUpdateClicked" text="Update" />
+            <Button layoutX="171.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleUpdatePressed" text="Update" />
             <Button layoutX="308.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
       </children>
     </AnchorPane>

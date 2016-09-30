@@ -29,10 +29,9 @@ public class ProfileScreenController {
 	private TextField addressField;
 
 	private AuthorizedUser user;
-	
-	/** the window for this dialog */
-	private Stage dialogStage;
 
+	private ObservableList<String> list;
+	
 	/** the student whose data is being manipulated */
 	private Profile profile;
 
@@ -41,11 +40,12 @@ public class ProfileScreenController {
 	
 	@FXML
     private void initialize() {
+
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Mr.");
         arrayList.add("Mrs.");
         arrayList.add("Ms.");
-        ObservableList<String> list = FXCollections.observableArrayList(arrayList);
+        list = FXCollections.observableArrayList(arrayList);
         titleComboBox.setItems(list);
     }
 
@@ -60,8 +60,13 @@ public class ProfileScreenController {
 	 * @param user
 	 */
 	public void setUser(AuthorizedUser user) {
+		
 		this.user = user;
 		profile = user.getProfile();
+        titleComboBox.setValue(profile.getTitle().get());
+		nameField.setText(profile.getName().get());
+        emailField.setText(profile.getEmail().get());
+        addressField.setText(profile.getHome().get());
 	}
 
 	/**
@@ -80,7 +85,7 @@ public class ProfileScreenController {
 			profile.setEmail(emailField.getText());
 			profile.setName(nameField.getText());
 			profile.setHome(addressField.getText());
-
+			profile.setTitle(titleComboBox.getValue());
 			// Signal success and close the profile dialog window.
 			updateClicked = true;
 			mainApp.showApplication(user);
@@ -117,7 +122,6 @@ public class ProfileScreenController {
 		} else {
 			// Show the error message if bad data
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.initOwner(dialogStage);
 			alert.setTitle("Invalid Fields");
 			alert.setHeaderText("Please correct invalid fields");
 			alert.setContentText(errorMessage);
