@@ -41,6 +41,7 @@ public class ProfileScreenController {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Mr.");
         arrayList.add("Mrs.");
+        arrayList.add("Ms.");
         ObservableList<String> list = FXCollections.observableArrayList(arrayList);
         titleComboBox.setItems(list);
     }
