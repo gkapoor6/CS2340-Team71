@@ -13,9 +13,19 @@ import FXApp.MainFXApp;
 import Model.AuthorizedUser;
 import Model.Profile;
 
+/**
+ * Controller for profile edit window
+ */
 public class ProfileScreenController {
+	/**
+	 * reference to mainApp
+	 */
 	private MainFXApp mainApp;
 
+
+	/**
+	 * references to widgets in the fxml file
+	 */
 	@FXML
 	private TextField nameField;
 
@@ -28,19 +38,23 @@ public class ProfileScreenController {
 	@FXML
 	private TextField addressField;
 
+	/**
+	 * instance data needed for updating the profile
+	 */
 	private AuthorizedUser user;
 
 	private ObservableList<String> list;
 	
-	/** the student whose data is being manipulated */
 	private Profile profile;
 
 	/** flag to signal whether dialog was closed normally */
 	private boolean updateClicked = false;
 	
+	/**
+	 * called automatically after load
+	 */
 	@FXML
     private void initialize() {
-
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Mr.");
         arrayList.add("Mrs.");
@@ -49,7 +63,10 @@ public class ProfileScreenController {
         titleComboBox.setItems(list);
     }
 
-
+	/**
+	 * Setup the main application link so we can call methods there
+	 * @param main reference to the FXApp instance
+	 */
 	public void setMainApp(MainFXApp main) {
 		mainApp = main;
 	}
@@ -78,6 +95,9 @@ public class ProfileScreenController {
 		return updateClicked;
 	}
 
+	/**
+	 * Update button event handler
+	 */
 	@FXML
 	private void handleUpdatePressed() {
 		// validate the profile info
@@ -92,6 +112,9 @@ public class ProfileScreenController {
 		}
 	}
 
+	/**
+	 * Cancel button event handler
+	 */
 	@FXML
 	private void handleCancelPressed() {
 		mainApp.showApplication(user);
