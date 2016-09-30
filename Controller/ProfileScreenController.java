@@ -1,5 +1,9 @@
 package Controller;
 
+import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -30,19 +34,32 @@ public class ProfileScreenController {
 	private Profile profile;
 
 	/** flag to signal whether dialog was closed normally */
-	private boolean uodateClicked = false;
+	private boolean updateClicked = false;
+	
+	@FXML
+    private void initialize() {
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Mr.");
+        arrayList.add("Mrs.");
+        ObservableList<String> list = FXCollections.observableArrayList(arrayList);
+        titleComboBox.setItems(list);
+    }
+
 
 	public void setMainApp(MainFXApp main) {
 		mainApp = main;
 	}
+	
+	
+	
 
 	/**
 	 * Returns true if the update button is clicked.
 	 *
 	 * @return true if the update button clicked.
 	 */
-	public boolean isOkClicked() {
-		return uodateClicked;
+	public boolean isUpdateClicked() {
+		return updateClicked;
 	}
 
 	@FXML
@@ -54,7 +71,7 @@ public class ProfileScreenController {
 			profile.setHome(addressField.getText());
 
 			// Signal success and close the profile dialog window.
-			uodateClicked = true;
+			updateClicked = true;
 			mainApp.showApplication();
 		}
 	}
