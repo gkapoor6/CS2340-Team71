@@ -88,7 +88,6 @@ public class RegistrationScreenController {
 		        } else {
 		            user = new Admin(userName, pass);
 		        }
-		        System.out.println(user);
 		        Model.addAuthorizedUser(user);
 		        mainApp.showMainScreen();
 	        } else {

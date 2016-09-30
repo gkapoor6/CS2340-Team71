@@ -50,7 +50,6 @@ public class LoginScreenController {
 	@FXML
 	private void handleLoginPressed() {
 		AuthorizedUser user = Model.getUser(userField.getText());
-		System.out.println(user);
 		if (user != null) {
 			if (user.getPassword().equals(passwordField.getText())) {
 				mainApp.showApplication();
