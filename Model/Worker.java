@@ -5,4 +5,7 @@ public class Worker extends User{
 		super(name, password);
 	}
 	
+	public AuthorizedUser copy() {
+		return new Worker(this.getName(), this.getPassword());
+	}
 }

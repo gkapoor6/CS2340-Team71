@@ -9,6 +9,7 @@ import Controller.LoginScreenController;
 import Controller.ProfileScreenController;
 import Controller.RegistrationScreenController;
 import Controller.WelcomeScreenController;
+import Model.AuthorizedUser;
 import Model.User;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class MainFXApp extends Application {
 	/**
 	 * Holder of Users
 	 */
-	private HashMap<String, User> users = new HashMap<>();
+	private HashMap<String, AuthorizedUser> users = new HashMap<>();
 	
 	/**
 	 * java logger for this class
@@ -50,7 +51,7 @@ public class MainFXApp extends Application {
 	/*
 	 * Getter of Users
 	 */
-	public HashMap<String, User> getUsers() {
+	public HashMap<String, AuthorizedUser> getUsers() {
 		return users;
 	}
 	

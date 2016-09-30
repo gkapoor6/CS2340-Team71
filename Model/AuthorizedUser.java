@@ -34,9 +34,11 @@ public abstract class AuthorizedUser {
 		profile = new Profile();
 	}
 	
+	public abstract AuthorizedUser copy();
+	
 	
 	@Override
 	public String toString() {
-		return name;
+		return name + " " + password;
 	}
 }

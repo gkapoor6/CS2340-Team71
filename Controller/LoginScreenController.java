@@ -1,7 +1,8 @@
 package Controller;
 
 import FXApp.MainFXApp;
-import Model.User;
+import Model.AuthorizedUser;
+import Model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -48,11 +49,13 @@ public class LoginScreenController {
 	 */
 	@FXML
 	private void handleLoginPressed() {
-		User user = mainApp.getUsers().get(userField.getText());
+		AuthorizedUser user = Model.getUser(userField.getText());
+		System.out.println(user);
 		if (user != null) {
 			if (user.getPassword().equals(passwordField.getText())) {
 				mainApp.showApplication();
 			} else {
+				
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 	            alert.setTitle("Login Attempt");
 	            alert.setHeaderText("Attempt Failed");
@@ -63,7 +66,7 @@ public class LoginScreenController {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Attempt");
-            alert.setHeaderText("Wrong");
+            alert.setHeaderText("No Such user exists");
             alert.setContentText("Combination of username and password not found");
 
             alert.showAndWait();
