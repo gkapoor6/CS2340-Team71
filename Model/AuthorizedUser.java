@@ -1,5 +1,10 @@
 package Model;
 
+/**
+ * AuthorizedUser Class which is an ancestor class of User, Manager,
+ * Worker and Admin
+ * @author DongSon
+ */
 public abstract class AuthorizedUser {
 	/**
 	 * Instance data of an Authorized User
@@ -20,10 +25,14 @@ public abstract class AuthorizedUser {
 	 */
 	public String getPassword() { return password; }
 	
+	/**
+	 * Return user's profile object
+	 * @return profile object
+	 */
 	public Profile getProfile() { return profile; }
 	
 	/**
-	 * Constructor
+	 * Constructor for an Authorized User
 	 * @param name name
 	 * @param pwd password
 	 */
@@ -34,6 +43,10 @@ public abstract class AuthorizedUser {
 		profile = new Profile();
 	}
 	
+	/**
+	 * Copies the current object
+	 * @return a copy of {@code this}
+	 */
 	public abstract AuthorizedUser copy();
 	
 	

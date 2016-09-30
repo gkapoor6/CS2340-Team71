@@ -30,6 +30,9 @@ public class ApplicationScreenController {
 		mainApp.showMainScreen();
 	}
 	
+	/**
+	 * Edit Profile button event handler
+	 */
 	@FXML
 	public void handleEditProfilePressed() {
 		mainApp.showProfile();

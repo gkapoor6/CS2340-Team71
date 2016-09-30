@@ -22,6 +22,9 @@ public class RegistrationScreenController {
 	 */
 	private MainFXApp mainApp;
 
+	/**
+	 * references to widgets in the fxml file
+	 */
     @FXML
     private TextField userNameField;
 
@@ -35,7 +38,9 @@ public class RegistrationScreenController {
 	private ComboBox<String> accountType;
 
 
-
+    /**
+     * called automatically after load
+     */
     @FXML
     private void initialize() {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -64,6 +69,9 @@ public class RegistrationScreenController {
 		mainApp.showMainScreen();
 	}
 
+	/**
+	 * Event handler for registration button
+	 */
 	@FXML
 	private void handleRegisterPressed() {
 	    String userName = userNameField.getText();

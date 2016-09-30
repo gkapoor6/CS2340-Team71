@@ -20,7 +20,7 @@ public class LoginScreenController {
 	private MainFXApp mainApp;
 	
 	/**
-	 * references to windgets in the fxml file
+	 * references to widgets in the fxml file
 	 */
 	@FXML
 	private TextField userField;
