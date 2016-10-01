@@ -14,8 +14,4 @@ public class Manager extends Worker{
 		super(name, password);
 	}
 	
-	@Override
-	public AuthorizedUser copy() {
-		return new Manager(this.getName(), this.getPassword());
-	}
 }

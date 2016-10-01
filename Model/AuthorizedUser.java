@@ -43,13 +43,6 @@ public abstract class AuthorizedUser {
 		profile = new Profile();
 	}
 	
-	/**
-	 * Copies the current object
-	 * @return a copy of {@code this}
-	 */
-	public abstract AuthorizedUser copy();
-	
-	
 	@Override
 	public String toString() {
 		return name + " " + password;

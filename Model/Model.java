@@ -24,17 +24,12 @@ public class Model {
 	private static HashMap<String, AuthorizedUser> users = new HashMap<>();
 	
 	/**
-	 * Return a copy of the user stored in the database
+	 * Return a user stored in the database
 	 * @param name name of user to search
-	 * @return copy of the user object
+	 * @return user object
 	 */
-	public static AuthorizedUser getUser(String name) {
-		AuthorizedUser user = users.get(name);
-		if (user == null) {
-			return null;
-		} else {
-			return user.copy();
-		}
+	public AuthorizedUser getUser(String name) {
+		return users.get(name);
 	}
 	
 	/**
