@@ -58,10 +58,6 @@ public class MainFXApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		mainScreen = primaryStage;
-		User u = new User("Irtiza", "relaxyo");
-		User u2 = new User("user", "pass");
-		users.put(u.getName(), u);
-		users.put(u2.getName(), u2);
 		initLayout(mainScreen);
 		
 	}
