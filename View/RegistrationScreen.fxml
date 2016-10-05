@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegistrationScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegistrationScreenController">
    <children>
       <GridPane layoutX="31.0" layoutY="26.0" prefHeight="241.0" prefWidth="535.0">
         <columnConstraints>
@@ -46,13 +46,13 @@
             <PasswordField fx:id="confirmPasswordField" prefHeight="24.0" prefWidth="297.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <ComboBox fx:id="accountType" layoutX="300.0" layoutY="276.0" prefWidth="268.0" />
       <ButtonBar layoutX="385.0" layoutY="341.0" prefHeight="39.0" prefWidth="201.0">
         <buttons>
           <Button mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
             <Button mnemonicParsing="false" onAction="#handleRegisterPressed" text="Register" />
         </buttons>
       </ButtonBar>
-      <ComboBox fx:id="accountType" layoutX="300.0" layoutY="276.0" prefWidth="268.0" />
       <Label layoutX="65.0" layoutY="280.0" text="Account Type:" />
    </children>
 </AnchorPane>
