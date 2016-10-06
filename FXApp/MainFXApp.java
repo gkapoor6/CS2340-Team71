@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 import Controller.ApplicationScreenController;
-import Controller.GoogleMapController;
+//import Controller.GoogleMapController;
 import Controller.InitialStageController;
 import Controller.LoginScreenController;
 import Controller.ProfileScreenController;
@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 import java.util.logging.Logger;
 
-import com.lynden.gmapsfx.GoogleMapView;
+//import com.lynden.gmapsfx.GoogleMapView;
 
 /**
  * Main application class
@@ -220,7 +220,7 @@ public class MainFXApp extends Application {
 		}
 	}
 	
-	public void showMap() {
+	/*public void showMap() {
 		try {
             // Load course overview.
             FXMLLoader loader = new FXMLLoader();
@@ -229,7 +229,7 @@ public class MainFXApp extends Application {
 
             layout.setCenter(mapScreen);
 
-            GoogleMapController controller = loader.getController();
+            Google controller = loader.getController();
             controller.setMain(this);
 
         } catch (IOException e) {
@@ -237,7 +237,7 @@ public class MainFXApp extends Application {
             LOGGER.log(Level.SEVERE, "Failed to find the fxml file for Google Map");
             e.printStackTrace();
         }
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		launch(args);

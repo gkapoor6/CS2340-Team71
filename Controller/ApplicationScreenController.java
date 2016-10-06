@@ -48,8 +48,8 @@ public class ApplicationScreenController {
 		mainApp.showProfile(user);
 	}
 	
-	@FXML
+	/*@FXML
 	public void handleReportsPressed() {
 		mainApp.showMap();
-	}
+	}*/
 }
