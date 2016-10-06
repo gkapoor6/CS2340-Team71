@@ -7,21 +7,28 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import FXApp.MainFXApp;
+import Model.AuthorizedUser;
+import Model.DataReport;
 
 public class ReportDataController {
 	/**
 	 * reference to mainApp
 	 */
 	private MainFXApp mainApp;
+	private DataReport dataReport;
+	private AuthorizedUser user;
+
+	private ObservableList<String> WaterTypeList;
+	private ObservableList<String> WaterConditionList;
+
+	/** flag to signal whether dialog was closed normally */
+	private boolean submitClicked = false;
 
 	@FXML
 	private ComboBox<String> WaterTypeCombox;
 
 	@FXML
 	private ComboBox<String> WaterConditionCombox;
-
-	private ObservableList<String> WaterTypeList;
-	private ObservableList<String> WaterConditionList;
 
 	/**
 	 * called automatically after load
@@ -44,9 +51,34 @@ public class ReportDataController {
 		arrayList2.add("Treatable-Clear");
 		arrayList2.add("Treatable-Muddy");
 		arrayList2.add("Potable");
-		WaterTypeList = FXCollections.observableArrayList(arrayList2);
-		WaterTypeCombox.setItems(WaterTypeList);
+		WaterConditionList = FXCollections.observableArrayList(arrayList2);
+		WaterConditionCombox.setItems(WaterConditionList);
 
+	}
+
+	/**
+	 * Update button event handler
+	 */
+	@FXML
+	private void handleSubmitPressed() {
+
+	}
+
+	/**
+	 * Returns true if the update button is clicked.
+	 *
+	 * @return true if the update button clicked.
+	 */
+	public boolean isUpdateClicked() {
+		return submitClicked;
+	}
+
+	/**
+	 * Cancel button event handler
+	 */
+	@FXML
+	private void handleCancelPressed() {
+		mainApp.showApplication(user);
 	}
 
 	/**
