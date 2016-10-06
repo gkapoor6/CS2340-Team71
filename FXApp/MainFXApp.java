@@ -5,27 +5,22 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 import Controller.ApplicationScreenController;
-import Controller.GoogleMapController;
-import Controller.InitialStageController;
 import Controller.LoginScreenController;
 import Controller.ProfileScreenController;
 import Controller.RegistrationScreenController;
-import Controller.WaterReportViewController;
 import Controller.WelcomeScreenController;
 import Model.AuthorizedUser;
+import Model.User;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.logging.Logger;
-
-import com.lynden.gmapsfx.GoogleMapView;
 
 /**
  * Main application class
@@ -51,7 +46,7 @@ public class MainFXApp extends Application {
 	/**
 	 * layout for the welcome screen
 	 */
-	private BorderPane layout;
+	private VBox layout;
 	
 	/*
 	 * Getter of Users
@@ -64,7 +59,6 @@ public class MainFXApp extends Application {
 	public void start(Stage primaryStage) {
 		mainScreen = primaryStage;
 		initLayout(mainScreen);
-		showWelcomeScreen();
 		
 	}
 	
@@ -74,41 +68,22 @@ public class MainFXApp extends Application {
 	 */
 	public Stage getMaindScreen() { return mainScreen; }
 	
-	
-	
-	
+	/**
+	 * Initialize first and welcome screen
+	 * @param mainScreen main Stage window
+	 */
 	private void initLayout(Stage mainScreen) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/InitialStage.fxml"));
+			loader.setLocation(MainFXApp.class.getResource("../View/WelcomeScreen.fxml"));
 			layout = loader.load();
 			
-			InitialStageController controller = loader.getController();
+			WelcomeScreenController controller = loader.getController();
 			controller.setMainApp(this);
 			
 			Scene scene = new Scene(layout);
 			mainScreen.setScene(scene);
 			mainScreen.show();
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the initial stage fxml file");
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Initialize first and welcome screen
-	 * @param mainScreen main Stage window
-	 */
-	private void showWelcomeScreen() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/WelcomeScreen.fxml"));
-			VBox welcomeScreen = loader.load();
-			
-			layout.setCenter(welcomeScreen);
-			
-			WelcomeScreenController controller = loader.getController();
-			controller.setMainApp(this);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for WelcomeScreen");
 			e.printStackTrace();
@@ -119,7 +94,7 @@ public class MainFXApp extends Application {
 	 * For use to return to main window
 	 */
 	public void showMainScreen() {
-		showWelcomeScreen();
+		initLayout(mainScreen);
 	}
 	
 	/**
@@ -130,9 +105,10 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/LoginScreen.fxml"));
 			
-			Pane loginScreen = loader.load();
+			Pane pane = loader.load();
 			
-			layout.setCenter(loginScreen);
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
 			
 			LoginScreenController controller = loader.getController();
 			controller.setMainApp(this);
@@ -150,9 +126,10 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/RegistrationScreen.fxml"));
 			
-			AnchorPane registrationScreen = loader.load();
+			AnchorPane pane = loader.load();
 			
-			layout.setCenter(registrationScreen);
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
 			
 			RegistrationScreenController controller = loader.getController();
 			controller.setMainApp(this);
@@ -170,10 +147,10 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ApplicationScreen.fxml"));
 			
-			AnchorPane applicationScreen = loader.load();
-
-			layout.setCenter(applicationScreen);
-			layout.setRight(null);
+			AnchorPane pane = loader.load();
+			
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
 			
 			ApplicationScreenController controller = loader.getController();
 			controller.setUser(user);
@@ -189,9 +166,10 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ProfileScreen.fxml"));
 			
-			VBox profileScreen = loader.load();
+			VBox pane = loader.load();
 			
-			layout.setCenter(profileScreen);
+			Scene scene = new Scene(pane);
+			mainScreen.setScene(scene);
 			
 			ProfileScreenController controller = loader.getController();
 			controller.setUser(user);
@@ -200,43 +178,6 @@ public class MainFXApp extends Application {
 			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for ProfileScreen");
 			e.printStackTrace();
 		}
-	}
-	
-	public void showReports(AuthorizedUser user) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/WaterReportView.fxml"));
-			
-			AnchorPane reportView = loader.load();
-			
-			layout.setRight(reportView);
-			
-			WaterReportViewController controller = loader.getController();			
-			controller.setUser(user);
-			controller.setMain(this);
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for WaterReportView");
-			e.printStackTrace();
-		}
-	}
-	
-	public void showMap() {
-		try {
-            // Load course overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApp.class.getResource("../View/GoogleMap.fxml"));
-            AnchorPane mapScreen = loader.load();
-
-            layout.setCenter(mapScreen);
-
-            GoogleMapController controller = loader.getController();
-            controller.setMain(this);
-
-        } catch (IOException e) {
-            //error on load, so log it
-            LOGGER.log(Level.SEVERE, "Failed to find the fxml file for Google Map");
-            e.printStackTrace();
-        }
 	}
 	
 	public static void main(String[] args) {

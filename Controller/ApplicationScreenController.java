@@ -47,9 +47,4 @@ public class ApplicationScreenController {
 	public void handleEditProfilePressed() {
 		mainApp.showProfile(user);
 	}
-	
-	@FXML
-	public void handleReportsPressed() {
-		mainApp.showMap();
-	}
 }
