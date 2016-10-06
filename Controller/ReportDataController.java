@@ -1,6 +1,10 @@
 package Controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,8 +73,16 @@ public class ReportDataController {
 	 *
 	 * @return true if the update button clicked.
 	 */
-	public boolean isUpdateClicked() {
+	public boolean isSubmitClicked() {
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		// get current date time with Date()
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+
+		
 		return submitClicked;
+
 	}
 
 	/**

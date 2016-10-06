@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Date;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,30 +11,35 @@ public class DataReport {
 	 */
 	private StringProperty _waterType = new SimpleStringProperty();
 	private StringProperty _waterCondition = new SimpleStringProperty();
+	private String name;
+	private Date date;
 
-	public DataReport(String waterType, String waterCondition) {
-		_waterCondition.set(waterCondition);
-		_waterType.set(waterType);
+	public DataReport(String waterType, String waterCondition, String name,
+			Date date) {
+		this._waterType.set(waterType);
+		this._waterCondition.set(waterCondition);
+		this.name = name;
+		this.date = date;
 	}
 
 	public DataReport() {
-		this("", "");
+		this("", "", "", null);
 	}
 
 	public StringProperty getWaterType() {
 		return _waterType;
 	}
 
-	public void setWaterType(StringProperty _waterType) {
-		this._waterType = _waterType;
+	public void setWaterType(StringProperty waterType) {
+		this._waterType = waterType;
 	}
 
 	public StringProperty getWaterCondition() {
 		return _waterCondition;
 	}
 
-	public void setWaterCondition(StringProperty _waterCondition) {
-		this._waterCondition = _waterCondition;
+	public void setWaterCondition(StringProperty waterCondition) {
+		this._waterCondition = waterCondition;
 	}
 
 	@Override
