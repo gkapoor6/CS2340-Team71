@@ -38,4 +38,27 @@ public class WelcomeScreenController {
 	public void registerPressed() {
 		mainApp.showRegistration();
 	}
+	
+	/**
+	 * Close menu item event handler
+	 */
+	@FXML
+    private void handleCloseMenu() {
+        System.exit(0);
+
+    }
+	
+	/**
+	 * About menu item event handler
+	 */
+	@FXML
+	private void handleAboutMenu() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("M4 Project");
+        alert.setHeaderText("About");
+        alert.setContentText("Simple Implementation of User login and register");
+
+        alert.showAndWait();
+
+    }
 }

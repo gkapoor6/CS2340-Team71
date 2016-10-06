@@ -14,6 +14,5 @@
          </font>
       </Label>
       <Button layoutX="136.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" text="Edit Profile" />
-      <Button layoutX="74.0" layoutY="105.0" mnemonicParsing="false" onAction="#handleReportsPressed" text="Reports" />
    </children>
 </AnchorPane>

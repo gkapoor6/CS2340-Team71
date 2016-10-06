@@ -10,7 +10,6 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginScreenController">
    <children>
       <TextField fx:id="userField" layoutX="217.0" layoutY="173.0" />
-      <PasswordField fx:id="passwordField" layoutX="217.0" layoutY="226.0" />
       <Button layoutX="231.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleLoginPressed" text="Login" />
       <Button layoutX="339.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
       <Label layoutX="108.0" layoutY="179.0" prefHeight="27.0" prefWidth="90.0" text="Username:" />
@@ -20,5 +19,6 @@
             <Font size="36.0" />
          </font>
       </Label>
+      <PasswordField fx:id="passwordField" layoutX="217.0" layoutY="226.0" />
    </children>
 </Pane>
