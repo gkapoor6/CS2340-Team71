@@ -21,7 +21,6 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" text="Button" />
       <Button fx:id="submitButton" layoutX="203.0" layoutY="330.0" mnemonicParsing="false" text="Submit" />
       <Button fx:id="cancelButton" layoutX="329.0" layoutY="330.0" mnemonicParsing="false" text="Cancel" />
    </children>
