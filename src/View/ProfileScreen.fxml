@@ -19,8 +19,8 @@
             <ComboBox fx:id="titleComboBox" layoutX="259.0" layoutY="116.0" prefHeight="27.0" prefWidth="251.0" />
             <TextField fx:id="emailField" layoutX="259.0" layoutY="177.0" prefHeight="27.0" prefWidth="251.0" />
             <TextField fx:id="addressField" layoutX="260.0" layoutY="240.0" prefHeight="27.0" prefWidth="251.0" />
-            <Button layoutX="230.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleUpdatePressed" text="Update" />
-            <Button layoutX="367.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
+            <Button layoutX="228.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleUpdatePressed" prefHeight="27.0" prefWidth="95.0" text="Update" />
+            <Button layoutX="367.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="27.0" prefWidth="95.0" text="Cancel" />
       </children>
     </AnchorPane>
   </children>
