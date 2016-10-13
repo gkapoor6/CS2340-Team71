@@ -49,8 +49,8 @@
       <ComboBox fx:id="accountType" layoutX="300.0" layoutY="276.0" prefWidth="268.0" />
       <ButtonBar layoutX="327.0" layoutY="332.0" prefHeight="50.0" prefWidth="238.0">
         <buttons>
-            <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="27.0" prefWidth="105.0" text="Register" />
-          <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="27.0" prefWidth="97.0" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="27.0" prefWidth="120.0" text="Register" />
+          <Button minWidth="68.0" mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="27.0" prefWidth="122.0" text="Cancel" />
         </buttons>
       </ButtonBar>
       <Label layoutX="65.0" layoutY="280.0" text="Account Type:" />

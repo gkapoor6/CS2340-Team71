@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ApplicationScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ApplicationScreenController">
    <children>
-      <Button layoutX="300.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogoutPressed" prefHeight="27.0" prefWidth="109.0" text="Logout" />
-      <Label layoutX="151.0" layoutY="68.0" prefHeight="103.0" prefWidth="310.0" text="You are in">
+      <Button layoutX="300.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogoutPressed" prefHeight="27.0" prefWidth="120.0" text="Logout" />
+      <Label layoutX="152.0" layoutY="91.0" prefHeight="103.0" prefWidth="310.0" text="You are in">
          <font>
             <Font name="Sitka Text Italic" size="48.0" />
          </font>
       </Label>
-      <Button layoutX="148.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" prefHeight="27.0" prefWidth="109.0" text="Edit Profile" />
-      <Button layoutX="148.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" text="Actual Reports" />
-      <Button layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleReportDataPressed" prefHeight="27.0" prefWidth="109.0" text="Report Data" />
+      <Button layoutX="144.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" prefHeight="27.0" prefWidth="120.0" text="Edit Profile" />
+      <Button layoutX="144.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" prefHeight="27.0" prefWidth="120.0" text="Actual Reports" />
+      <Button layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleReportDataPressed" prefHeight="27.0" prefWidth="120.0" text="Report Data" />
    </children>
 </AnchorPane>
