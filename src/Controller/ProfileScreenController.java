@@ -72,7 +72,7 @@ public class ProfileScreenController {
 	
 	/**
 	 * Setup a certain user's interface of application
-	 * @param user
+	 * @param user user
 	 */
 	public void setUser(AuthorizedUser user) {
 		

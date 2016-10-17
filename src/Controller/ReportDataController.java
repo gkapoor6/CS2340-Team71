@@ -92,7 +92,7 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 	
 	/**
 	 * Setup a certain user's interface of application
-	 * @param user
+	 * @param user user
 	 */
 	public void setUser(AuthorizedUser user) {
 		this.user = user;
@@ -207,7 +207,7 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 			alert.setHeaderText("Not enough information input");
 			alert.setContentText("Please choose water type and water condition and choose the location");
 			alert.showAndWait();
-		} else if (user.getProfile().getNameProperty().get().equals("")) {
+		} else if (user.getProfile().getNameProperty().get() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Invalid Name");
 			alert.setHeaderText("Name in the Profile invalid");

@@ -61,7 +61,7 @@ public class AllReportViewController implements Initializable, MapComponentIniti
 	}
 	/**
 	 * Setup a certain user's interface of application
-	 * @param user
+	 * @param user user
 	 */
 	public void setUser(AuthorizedUser user) {
 		this.user = user;
