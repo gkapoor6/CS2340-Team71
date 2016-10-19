@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Class representing a water purity report
+ * Water Purity Report Class
  * @author Geetika Kapoor
  *
  */
