@@ -1,7 +1,7 @@
 package Controller;
 
 import FXApp.MainFXApp;
-import Model.*;
+import Model.ReportDBAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -79,25 +79,21 @@ public class RegistrationScreenController {
         String confirm = confirmPasswordField.getText();
         String type = accountType.getValue();
         
-        AuthorizedUser user;
-        if (userName.equals("")|| pass.equals("") || confirm.equals("") || type == null) {
+        if (userName == null || pass == null || confirm == null|| type == null) {
         	Alert alert = new Alert(Alert.AlertType.ERROR);
         	alert.setTitle("Not enough information");
         	alert.setContentText("Please complete all required information");
         	alert.showAndWait();
         } else {
         	if (pass.equals(confirm)) {
-		        if (type.equals("User")) {
-		            user = new User(userName, pass);
-		        } else if (type.equals("Worker")) {
-		            user = new Worker(userName, pass);
-		        } else if (type.equals("Manager")) {
-		            user = new Manager(userName, pass);
-		        } else {
-		            user = new Admin(userName, pass);
-		        }
-		        Model.addAuthorizedUser(user);
-		        mainApp.showMainScreen();
+        		if (!ReportDBAccess.insertUser(userName, pass, type)) {
+        			Alert alert = new Alert(Alert.AlertType.ERROR);
+        			alert.setTitle("Could not create User");
+        			alert.setContentText("A user with this username already exists");
+        			alert.showAndWait();
+        		} else {
+    		        mainApp.showMainScreen();
+        		}
 	        } else {
 	        	Alert alert = new Alert(Alert.AlertType.ERROR);
 	        	alert.setTitle("Error");

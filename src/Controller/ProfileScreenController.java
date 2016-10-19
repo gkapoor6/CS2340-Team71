@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import FXApp.MainFXApp;
 import Model.AuthorizedUser;
 import Model.Profile;
+import Model.ReportDBAccess;
 
 /**
  * Controller for profile edit window
@@ -46,9 +47,6 @@ public class ProfileScreenController {
 	private ObservableList<String> list;
 	
 	private Profile profile;
-
-	/** flag to signal whether dialog was closed normally */
-	private boolean updateClicked = false;
 	
 	/**
 	 * called automatically after load
@@ -74,25 +72,16 @@ public class ProfileScreenController {
 	
 	/**
 	 * Setup a certain user's interface of application
-	 * @param user
+	 * @param user user
 	 */
 	public void setUser(AuthorizedUser user) {
 		
 		this.user = user;
 		profile = user.getProfile();
-        titleComboBox.setValue(profile.getTitle().get());
-		nameField.setText(profile.getName().get());
-        emailField.setText(profile.getEmail().get());
-        addressField.setText(profile.getHome().get());
-	}
-
-	/**
-	 * Returns true if the update button is clicked.
-	 *
-	 * @return true if the update button clicked.
-	 */
-	public boolean isUpdateClicked() {
-		return updateClicked;
+        titleComboBox.setValue(profile.getTitleProperty().get());
+		nameField.setText(profile.getNameProperty().get());
+        emailField.setText(profile.getEmailProperty().get());
+        addressField.setText(profile.getHomeProperty().get());
 	}
 
 	/**
@@ -102,12 +91,12 @@ public class ProfileScreenController {
 	private void handleUpdatePressed() {
 		// validate the profile info
 		if (isInputValid()) {
-			profile.setEmail(emailField.getText());
 			profile.setName(nameField.getText());
-			profile.setHome(addressField.getText());
 			profile.setTitle(titleComboBox.getValue());
-			// Signal success and close the profile dialog window.
-			updateClicked = true;
+			profile.setEmail(emailField.getText());
+			profile.setHome(addressField.getText());
+			ReportDBAccess.updateProfile(nameField.getText(), titleComboBox.getValue(), emailField.getText(),
+					addressField.getText(), user.getName());
 			mainApp.showApplication(user);
 		}
 	}

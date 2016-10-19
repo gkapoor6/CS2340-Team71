@@ -92,7 +92,7 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 	
 	/**
 	 * Setup a certain user's interface of application
-	 * @param user
+	 * @param user user
 	 */
 	public void setUser(AuthorizedUser user) {
 		this.user = user;
@@ -150,7 +150,8 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 	        .zoom(12);
         
 		map = mapView.createMap(mapOptions);
-		marker = new Marker(new MarkerOptions().position(new LatLong(33.7756178, -84.3984737)));
+		marker = new Marker(new MarkerOptions().position(new LatLong(33.7756178, -84.3984737))
+				.visible(false));
 		map.addMarker(marker);
 		
 		map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
@@ -187,6 +188,8 @@ public class ReportDataController implements Initializable, MapComponentInitiali
             } else {
                 location = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
             }
+            marker.setOptions(new MarkerOptions().position(location)
+            		.visible(true));
             map.setCenter(location);
 
         });
@@ -204,14 +207,14 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 			alert.setHeaderText("Not enough information input");
 			alert.setContentText("Please choose water type and water condition and choose the location");
 			alert.showAndWait();
-		} else if (user.getProfile().getName().get().equals("")) {
+		} else if (user.getProfile().getNameProperty().get() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Invalid Name");
 			alert.setHeaderText("Name in the Profile invalid");
 			alert.setContentText("Please update your Profile name");
 			alert.showAndWait();
 		} else {
-			ReportDBAccess.insertReport(user.getProfile().getName().get(), WaterTypeCombox.getValue(), WaterConditionCombox.getValue(), location.getLatitude(), location.getLongitude());
+			ReportDBAccess.insertReport(user.getProfile().getNameProperty().get(), WaterTypeCombox.getValue(), WaterConditionCombox.getValue(), location.getLatitude(), location.getLongitude());
 			location = null;
 			mainApp.showApplication(user);
 		}

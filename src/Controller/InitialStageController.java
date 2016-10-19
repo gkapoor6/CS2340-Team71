@@ -40,9 +40,9 @@ public class InitialStageController {
 	@FXML
 	private void handleAboutMenu() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("M4 Project");
+        alert.setTitle("Clean Water Application");
         alert.setHeaderText("About");
-        alert.setContentText("Simple Implementation of User login and register");
+        alert.setContentText("Team LUL's Water Application");
 
         alert.showAndWait();
     }

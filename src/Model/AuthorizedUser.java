@@ -33,14 +33,35 @@ public abstract class AuthorizedUser {
 	
 	/**
 	 * Constructor for an Authorized User
-	 * @param name name
-	 * @param pwd password
+	 * @param username username
+	 * @param password password
 	 */
 	
-	public AuthorizedUser(String name, String password) {
-		this.name = name ;
+	public AuthorizedUser(String username, String password) {
+		this(username, password, null, null, null, null);
+	}
+	
+	/**
+	 * @param username username of user
+	 * @param password password of user
+	 * @param name name of user
+	 * @param title title of user
+	 * @param email email of user
+	 * @param address address of user
+	 */
+	public AuthorizedUser(String username, String password, String name, String title, String email, String address) {
+		this(username, password, new Profile(name, title, email, address));
+	}
+	
+	/**
+	 * @param username username of user
+	 * @param password password of user
+	 * @param profile profile of user
+	 */
+	public AuthorizedUser(String username, String password, Profile profile) {
+		this.name = username;
 		this.password = password;
-		profile = new Profile();
+		this.profile = profile;
 	}
 	
 	@Override

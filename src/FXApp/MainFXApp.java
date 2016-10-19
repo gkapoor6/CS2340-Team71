@@ -1,9 +1,9 @@
 package FXApp;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.logging.Level;
 
+import Controller.AllReportViewController;
 import Controller.ApplicationScreenController;
 import Controller.InitialStageController;
 import Controller.LoginScreenController;
@@ -27,6 +27,8 @@ import javafx.stage.Stage;
 
 import java.util.logging.Logger;
 
+import com.lynden.gmapsfx.GoogleMapView;
+
 
 /**
  * Main application class
@@ -34,10 +36,6 @@ import java.util.logging.Logger;
  *
  */
 public class MainFXApp extends Application {
-	/**
-	 * Holder of Users
-	 */
-	private HashMap<String, AuthorizedUser> users = new HashMap<>();
 	
 	/**
 	 * java logger for this class
@@ -50,21 +48,15 @@ public class MainFXApp extends Application {
 	private Stage mainScreen;
 	
 	/**
-	 * layout for the welcome screen
+	 * layout for the initial layout
 	 */
 	private BorderPane layout;
-	
-	/*
-	 * Getter of Users
-	 */
-	public HashMap<String, AuthorizedUser> getUsers() {
-		return users;
-	}
 	
 	@Override
 	public void start(Stage primaryStage) {
 		mainScreen = primaryStage;
-		ReportDBAccess.createTable();
+		ReportDBAccess.createReportTable();
+		ReportDBAccess.createUserTable();
 		initLayout(mainScreen);
 		showWelcomeScreen();
 		
@@ -76,9 +68,10 @@ public class MainFXApp extends Application {
 	 */
 	public Stage getMaindScreen() { return mainScreen; }
 	
-	
-	
-	
+	/**
+	 * Initial layout
+	 * @param mainScreen mainstage
+	 */
 	private void initLayout(Stage mainScreen) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -98,7 +91,7 @@ public class MainFXApp extends Application {
 	}
 	
 	/**
-	 * Initialize first and welcome screen
+	 * Initialize welcome screen
 	 */
 	private void showWelcomeScreen() {
 		try {
@@ -171,7 +164,7 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ApplicationScreen.fxml"));
 			
-			AnchorPane applicationScreen = loader.load();
+			BorderPane applicationScreen = loader.load();
 
 			layout.setCenter(applicationScreen);
 			layout.setBottom(null);
@@ -194,7 +187,7 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource("../View/ProfileScreen.fxml"));
 			
-			VBox profileScreen = loader.load();
+			AnchorPane profileScreen = loader.load();
 			
 			layout.setCenter(profileScreen);
 			
@@ -248,10 +241,32 @@ public class MainFXApp extends Application {
 
         } catch (IOException e) {
             //error on load, so log it
-            LOGGER.log(Level.SEVERE, "Failed to find the fxml file for Google Map");
+            LOGGER.log(Level.SEVERE, "Failed to find the fxml file for reporting data");
             e.printStackTrace();
         }
 		
+	}
+	
+	/**
+	 * Go to screen with all reports submitted by a user marker on a map 
+	 * @param user the user
+	 */
+	public void showAllReports(AuthorizedUser user) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainFXApp.class.getResource("../View/AllReportView.fxml"));
+			GoogleMapView mapScreen = loader.load();
+			
+			layout.setCenter(mapScreen);
+			
+			AllReportViewController controller = loader.getController();
+			controller.setUser(user);
+			controller.setMain(this);
+			
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for viewing all reports on a map");
+			e.printStackTrace();
+		}
 	}
 	
 	

@@ -9,6 +9,18 @@ import com.sun.rowset.CachedRowSetImpl;
  * @author Dong Son Trinh
  *
  */
+/**
+ * @author Dong Son Trinh
+ *
+ */
+/**
+ * @author Dong Son Trinh
+ *
+ */
+/**
+ * @author Dong Son Trinh
+ *
+ */
 public class DBUtilizer {
 	
 	private static final String jdbcDriver = "org.sqlite.JDBC";
@@ -18,27 +30,19 @@ public class DBUtilizer {
 	private static Connection conn = null;
 	
 	/**
-	 * Delete existing WaterSourceReport and/or create a table WaterSourceReportTable 
-	 * @throws SQLException if failed to create a table
+	 * Create Water Source Report Table
 	 */
-	public static void dbCreate() throws SQLException {
+	public static void dbCreateReports() {
 		Statement stmt = null;
 		try {
 			dbConnect();
 			
 			stmt = conn.createStatement();
 		} catch (SQLException e) {
-			System.out.println("failed to connect");
+			System.out.println("Database error occured");
 			e.printStackTrace();
 		}
 		
-		try {
-			String delete = "DROP TABLE WaterSourceReportTable";
-			
-			stmt.execute(delete);
-		} catch (SQLException e) {
-			
-		}
 		try {
 			stmt.execute("CREATE TABLE WaterSourceReportTable"
 						+ "(ReportID INT PRIMARY KEY NOT NULL,"
@@ -50,11 +54,55 @@ public class DBUtilizer {
 						+ " DateTime TEXT NOT NULL"
 						+ " )");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("WaterSourceReport Table Already exists. All good");
 		} finally {
 			if (stmt != null) {
-				stmt.close();
+				try {
+				
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
+			dbDisconnect();
+		}
+	}
+	
+	
+	/**
+	 *	Create Users Table
+	 */
+	public static void dbCreateUsers() {
+		Statement stmt = null;
+		try {
+			dbConnect();
+			
+			stmt = conn.createStatement();
+		} catch (SQLException e) {
+			System.out.println("database error");
+		}
+		
+		try {
+			stmt.execute("CREATE TABLE Users"
+					+ "(Username TEXT NOT NULL,"
+					+ " Password TEXT NOT NULL,"
+					+ " Type TEXT NOT NULL,"
+					+ " Name TEXT,"
+					+ " Title TEXT,"
+					+ " Email TEXT,"
+					+ " Address TEXT"
+					+ " )");
+		} catch (SQLException e) {
+			System.out.println("All good. User base already exists");
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			dbDisconnect();
 		}
 	}
 	
@@ -71,6 +119,7 @@ public class DBUtilizer {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("Failed to connect to the database");
+			e.printStackTrace();
 		}
 	}
 	
@@ -82,7 +131,7 @@ public class DBUtilizer {
 			if (conn != null && !conn.isClosed()) {
 				conn.close();
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Could not disconnect");
 			e.printStackTrace();
 		}
@@ -110,13 +159,21 @@ public class DBUtilizer {
 			
 		} catch (SQLException e) {
 			System.out.println("Failed to execute the query");
-			e.printStackTrace();
+			throw e;
 		} finally {
 			if (rst != null) {
-				rst.close();
+				try {
+					rst.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 			if (stmt != null) {
-				stmt.close();
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 			dbDisconnect();
 		}
@@ -137,10 +194,14 @@ public class DBUtilizer {
 			stmt.executeUpdate(updateStmt);
 		} catch (SQLException e) {
 			System.out.println("Failed to execute the update");
-			e.printStackTrace();
+			throw e;
 		} finally {
-			if (stmt != null) {
-				stmt.close();
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 			dbDisconnect();
 		}

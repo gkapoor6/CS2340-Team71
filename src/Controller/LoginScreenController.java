@@ -2,7 +2,7 @@ package Controller;
 
 import FXApp.MainFXApp;
 import Model.AuthorizedUser;
-import Model.Model;
+import Model.ReportDBAccess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -49,7 +49,7 @@ public class LoginScreenController {
 	 */
 	@FXML
 	private void handleLoginPressed() {
-		AuthorizedUser user = Model.getInstance().getUser(userField.getText());
+		AuthorizedUser user = ReportDBAccess.getUser(userField.getText(), passwordField.getText());
 		if (user != null) {
 			if (user.getPassword().equals(passwordField.getText())) {
 				mainApp.showApplication(user);

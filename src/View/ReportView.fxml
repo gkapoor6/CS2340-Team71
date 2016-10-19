@@ -5,26 +5,25 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ReportViewController">
+<SplitPane dividerPositions="0.3" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ReportViewController">
    <items>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0">
-         <children>
-            <TableView fx:id="reportTable" editable="true" prefHeight="300.0" prefWidth="700.0">
-              <columns>
-                <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID" />
-                <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="115.33334350585938" text="Name" />
-                  <TableColumn fx:id="WaterTypeColumn" prefWidth="111.33331298828125" text="WaterType" />
-                  <TableColumn fx:id="WaterConditionColumn" prefWidth="209.0" text="WaterCondition" />
-                  <TableColumn fx:id="DateTimeColumn" prefWidth="154.0" text="DateTime" />
-              </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
+      <TableView fx:id="reportTable" editable="true">
+        <columns>
+          <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID" />
+          <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="115.33334350585938" text="Name" />
+            <TableColumn fx:id="WaterTypeColumn" prefWidth="111.33331298828125" text="WaterType" />
+            <TableColumn fx:id="WaterConditionColumn" prefWidth="209.0" text="WaterCondition" />
+            <TableColumn fx:id="DateTimeColumn" prefWidth="154.0" text="DateTime" />
+        </columns>
+      </TableView>
       <GoogleMapView fx:id="mapView">
          <children>
-            <Button layoutX="520.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleBackToApplication" text="Back to Application" />
+            <Button layoutX="520.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleBackToApplication" text="Back to Application">
+               <font>
+                  <Font name="Lucida Bright Demibold" size="15.0" />
+               </font></Button>
          </children></GoogleMapView>
    </items>
 </SplitPane>

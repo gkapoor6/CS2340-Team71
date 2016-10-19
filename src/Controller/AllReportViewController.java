@@ -5,7 +5,10 @@ import java.util.ResourceBundle;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.InfoWindow;
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
@@ -18,15 +21,14 @@ import Model.ReportDBAccess;
 import Model.WaterSourceReport;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import netscape.javascript.JSObject;
 
 /**
  * Controller for view of all reports submitted by a user
  * @author Dong Son Trinh
  *
  */
-public class ReportViewController implements Initializable, MapComponentInitializedListener {
+public class AllReportViewController implements Initializable, MapComponentInitializedListener {
 	
 	/**
 	 * reference to mainApp
@@ -40,33 +42,14 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	@FXML
 	private GoogleMapView mapView;
 	
-	@FXML
-	private TableView<WaterSourceReport> reportTable;
-	
-	@FXML
-	private TableColumn<WaterSourceReport, Integer> ReportIDColumn;
-
-	@FXML
-	private TableColumn<WaterSourceReport, String> NameColumn;
-
-	@FXML
-	private TableColumn<WaterSourceReport, String> WaterTypeColumn;
-
-	@FXML
-	private TableColumn<WaterSourceReport, String> WaterConditionColumn;
-
-	@FXML
-	private TableColumn<WaterSourceReport, String> DateTimeColumn;
-	
-	
 	/**
 	 * instance date required to show the reports submitted by a user
 	 */
 	private GoogleMap map;
 	
-	private Marker marker;
-	
 	private AuthorizedUser user;
+	
+	private InfoWindow window;
 	
 	/**
 	 * Setup the main application link so we can call methods there
@@ -74,10 +57,8 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	 */
 	public void setMain(MainFXApp mainApp) {
 		this.mainApp = mainApp;
-		reportTable.setItems(ReportDBAccess.getReportList(user.getProfile().getNameProperty().get()));
 		
 	}
-	
 	/**
 	 * Setup a certain user's interface of application
 	 * @param user user
@@ -95,22 +76,11 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	@FXML
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		ReportIDColumn.setCellValueFactory(cellData -> cellData.getValue().getReportIDProperty().asObject());
-		NameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-		WaterTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getWaterTypeProperty());
-		WaterConditionColumn.setCellValueFactory(cellData -> cellData.getValue().getWaterConditionProperty());
-		DateTimeColumn.setCellValueFactory(cellData -> cellData.getValue().getDateTimeProperty());
-		
-		reportTable.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldvalue, newvalue) -> showReportLocation(newvalue));
-		
-		
 		mapView.addMapInializedListener(this);
 	}
 	
-	
 	/**
-	 * Uses GoogleMapView to show location of selected water source report in tableview
+	 * Uses GoogleMapView to mark all locations of reports
 	 */
 	@Override
 	public void mapInitialized() {
@@ -118,36 +88,39 @@ public class ReportViewController implements Initializable, MapComponentInitiali
         //Set the initial properties of the map.
         MapOptions mapOptions = new MapOptions();
         mapOptions.center(new LatLong(33.7756178, -84.3984737))
-        	.mapType(MapTypeIdEnum.ROADMAP)
+        	.mapType(MapTypeIdEnum.TERRAIN)
 	        .overviewMapControl(false)
 	        .panControl(false)
 	        .rotateControl(false)
 	        .scaleControl(false)
 	        .streetViewControl(false)
 	        .zoomControl(false)
-	        .zoom(12);
+	        .zoom(9);
+        map = mapView.createMap(mapOptions);
+        window = new InfoWindow();
+        for (WaterSourceReport w: ReportDBAccess.getReportList(user.getProfile().getNameProperty().get())) {
+        	MarkerOptions markerOptions = new MarkerOptions();
+        	LatLong location = new LatLong(w.getLatitudeProperty().get(), w.getLongitudeProperty().get());
+        	Marker marker = new Marker(markerOptions.position(location)
+        			.visible(true)
+        			.title(w.getNameProperty().get() + " submitted at " + w.getDateTimeProperty().get()));
+
+			
+			
+        	map.addUIEventHandler(marker,
+        			UIEventType.click,
+        			(JSObject obj) -> {
+        				InfoWindowOptions windowOptions = new InfoWindowOptions().content(w.toString());
+        				window.setOptions(windowOptions);
+        				window.open(map, marker);});
+        	
+        	map.addMarker(marker);;
+        }
         
-		map = mapView.createMap(mapOptions);
-		marker = new Marker(new MarkerOptions().position(new LatLong(33.7756178, -84.3984737))
-				.visible(false));
-		map.addMarker(marker);
 		
 	}
 	
 	
-	/**
-	 * Shows the location of a particular water source report
-	 * @param r water source report 
-	 */
-	private void showReportLocation(WaterSourceReport r) {
-		LatLong reportLocation = new LatLong(r.getLatitudeProperty().get(), r.getLongitudeProperty().get());
-		marker.setOptions(new MarkerOptions().position(reportLocation)
-				.visible(true));
-		int currentZoom = map.getZoom();
-        map.setZoom(currentZoom - 1);
-        map.setZoom(currentZoom);
-		map.setCenter(reportLocation);
-	}
 	
 	/**
 	 * Button event handler to go back to the application
@@ -156,4 +129,6 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	public void handleBackToApplication() {
 		mainApp.showApplication(user);
 	}
+		
+		
 }

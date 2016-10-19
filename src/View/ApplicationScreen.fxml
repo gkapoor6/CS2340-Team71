@@ -3,18 +3,39 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ApplicationScreenController">
-   <children>
-      <Button layoutX="300.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogoutPressed" prefHeight="27.0" prefWidth="120.0" text="Logout" />
-      <Label layoutX="152.0" layoutY="91.0" prefHeight="103.0" prefWidth="310.0" text="You are in">
-         <font>
-            <Font name="Sitka Text Italic" size="48.0" />
-         </font>
-      </Label>
-      <Button layoutX="144.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" prefHeight="27.0" prefWidth="120.0" text="Edit Profile" />
-      <Button layoutX="144.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" prefHeight="27.0" prefWidth="120.0" text="Actual Reports" />
-      <Button layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleReportDataPressed" prefHeight="27.0" prefWidth="120.0" text="Report Data" />
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ApplicationScreenController">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="421.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Label layoutX="239.0" layoutY="257.0" text="You are in">
+               <font>
+                  <Font name="Sitka Text Italic" size="54.0" />
+               </font>
+            </Label>
+            <Button layoutX="196.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" text="Edit Profile">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutX="165.0" layoutY="205.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" text="Actual Reports">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutX="442.0" layoutY="205.0" mnemonicParsing="false" onAction="#handleReportDataPressed" text="Report Data">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutX="165.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleViewAllReports" text="View All Reports on Map">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

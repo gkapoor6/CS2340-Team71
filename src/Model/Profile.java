@@ -33,7 +33,7 @@ public class Profile {
 	 * Constructor for profile of a newly registered user
 	 */
 	public Profile() {
-		this("", "", "", "");
+
 	}
 
 	/**
@@ -58,26 +58,26 @@ public class Profile {
 	/**
 	 * Getters for the instance data
 	 */
-	public StringProperty getName() {
+	public StringProperty getNameProperty() {
 		return _name;
 	}
 
-	public StringProperty getEmail() {
+	public StringProperty getEmailProperty() {
 		return _email;
 	}
 
-	public StringProperty getTitle() {
+	public StringProperty getTitleProperty() {
 		return _title;
 	}
 
-	public StringProperty getHome() {
+	public StringProperty getHomeProperty() {
 		return _home;
 	}
 
 	@Override
 	public String toString() {
-		return "Profile [_name=" + _name + ", _email=" + _email + ", _title="
-				+ _title + ", _home=" + _home + "]";
+		return "Profile [name=" + _name.get() + ", email=" + _email.get() + ", title="
+				+ _title.get() + ", home=" + _home.get() + "]";
 	}
 
 }

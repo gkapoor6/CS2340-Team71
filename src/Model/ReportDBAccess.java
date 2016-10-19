@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
@@ -16,19 +17,27 @@ import javafx.collections.ObservableList;
  * @author Dong Son Trinh
  *
  */
+/**
+ * @author Dong Son Trinh
+ *
+ */
+/**
+ * @author Dong Son Trinh
+ *
+ */
+/**
+ * @author Dong Son Trinh
+ *
+ */
 public class ReportDBAccess {
 	
 	
-	/**
-	 * Creates a table
-	 */
-	public static void createTable() {
-		try {
-			DBUtilizer.dbCreate();
-		} catch (SQLException e) {
-			System.out.println("failed to create the table");
-			e.printStackTrace();
-		}
+	public static void createReportTable() {
+		DBUtilizer.dbCreateReports();
+	}
+	
+	public static void createUserTable() {
+		DBUtilizer.dbCreateUsers();
 	}
 
 	/**
@@ -38,9 +47,10 @@ public class ReportDBAccess {
 	 */
 	public static ObservableList<WaterSourceReport> getReportList(String name) {
 		ObservableList<WaterSourceReport> list = FXCollections.observableArrayList();
-		String stmt = "SELECT * FROM WaterSourceReportTable WHERE Name = '" + name + "'";
+		ResultSet rs = null;
 		try {
-			ResultSet rs = DBUtilizer.dbExecuteQuery(stmt);
+			String finduser = "SELECT * FROM WaterSourceReportTable WHERE Name = '" + name + "'";
+			rs = DBUtilizer.dbExecuteQuery(finduser);
 			while (rs.next()) {
 				WaterSourceReport report = new WaterSourceReport(rs.getInt("ReportID"), rs.getString("Name"),
 						rs.getString("WaterType"), rs.getString("WaterCondition"), rs.getString("DateTime"),
@@ -48,15 +58,23 @@ public class ReportDBAccess {
 				list.add(report);
 			}
 		} catch (SQLException e) {
-			System.out.println("SQL select failed");
+			System.out.println("Could not get any reports corresponding to the Name");
 			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return list;
 	}
 	
 	/**
 	 * Add a report to the database
-	 * @param name name of submitter
+	 * @param name name of the submitter
 	 * @param waterType water type
 	 * @param waterCondition condition of water
 	 * @param latitude latitude of location
@@ -64,30 +82,175 @@ public class ReportDBAccess {
 	 */
 	public static void insertReport(String name, String waterType, String waterCondition,
 			double latitude, double longtitude) {
+
+		ResultSet rs = null;
 		try {
-			ResultSet rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from WaterSourceReportTable");
+			rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from WaterSourceReportTable");
 			int ID;
 			if (rs.next()) {
 				ID = rs.getInt("MAX(ReportID)") + 1; 
 			} else {
 				ID = 1;
 			}
-			String stmt = String.format(Locale.US, "INSERT INTO WaterSourceReportTable"
+			String insertreport = String.format(Locale.US, "INSERT INTO WaterSourceReportTable"
 					+ " (ReportID, Name, WaterType, WaterCondition, Latitude, Longitude, DateTime) "
 					+ "VALUES (%d, '%s', '%s', '%s', %f, %f, '%s');",
 					ID, name, waterType, waterCondition, latitude, longtitude, getTime());
 
-			DBUtilizer.dbExecuteUpdate(stmt);
+			DBUtilizer.dbExecuteUpdate(insertreport);
 		} catch (SQLException e) {
-			System.out.println("SQL insert failed");
+			System.out.println("failed to insert report");
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * Insert a user
+	 * @param username username of user
+	 * @param password password of user
+	 * @param usertype user type
+	 * @return result of insertion
+	 */
+	public static boolean insertUser(String username, String password, String usertype) {
+		ResultSet rs = null;
+		try {
+			rs = DBUtilizer.dbExecuteQuery(String.format(Locale.US, "SELECT * from Users WHERE Username = '%s'", username));
+			if (!rs.next()) {
+				String insertuser = String.format(Locale.US, "INSERT INTO Users"
+						+ " (Username, Password, Type)"
+						+ " VALUES ('%s', '%s', '%s')", username, password, usertype);
+				DBUtilizer.dbExecuteUpdate(insertuser);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			System.out.println("Failed to insert User");
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * Delete a user
+	 * @param username user's username 
+	 */
+	public static void deleteUser(String username) {
+		try {
+			String deleteuser = String.format(Locale.US, "DELETE FROM Users WHERE "
+					+ "Username = '%s'", username);
+			DBUtilizer.dbExecuteUpdate(deleteuser);
+		} catch (SQLException e) {
+			System.out.println("Failed to delete the user");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Update profile of a user
+	 * @param name user's names
+	 * @param title user's title
+	 * @param email user's email
+	 * @param address user's address
+	 * @param username username of user who profile is updated
+	 */
+	public static void updateProfile(String name, String title, String email, String address, String username) {
+		try {
+			String updateprofile = String.format(Locale.US, "UPDATE Users set Name = '%s',"
+					+ " Title = '%s',"
+					+ " Email = '%s',"
+					+ " Address = '%s'"
+					+ " WHERE Username = '%s'", name, title, email, address, username);
+			DBUtilizer.dbExecuteUpdate(updateprofile);
+		} catch (SQLException e) {
+			System.out.println("Failed to update profile");
 			e.printStackTrace();
 		}
 	}
 	
 	
 	/**
+	 * Get a user from database
+	 * @param username user's username
+	 * @param password user's password
+	 * @return user
+	 */
+	public static AuthorizedUser getUser(String username, String password)  {
+		AuthorizedUser user = null;
+		ResultSet rs = null;
+		try {
+			String getuser = String.format(Locale.US, "SELECT * FROM Users WHERE Username = '%s' and Password = '%s'", username, password);
+			rs = DBUtilizer.dbExecuteQuery(getuser);
+			String type = null;
+			String name = null;
+			String title = null;
+			String email = null;
+			String address = null;
+			if (rs.next()) {
+				type = rs.getString("Type");
+				name = rs.getString("Name");
+				title = rs.getString("Title");
+				email = rs.getString("Email");
+				address = rs.getString("Address");
+			}
+			if (type != null) {
+				user = (AuthorizedUser) Class.forName(String.format("Model.%s", type)).getConstructor(
+						String.class, String.class, String.class, String.class, String.class, String.class).newInstance(
+								username, password, name, title, email, address);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return user;
+	}
+	
+	
+	
+	
+	/**
 	 * Gets current time in GMT-4 Timezone or EST
-	 * @return
+	 * @return current time as a String
 	 */
 	private static String getTime() {
 		ZoneId zone = ZoneId.of("GMT-4");
