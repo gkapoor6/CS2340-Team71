@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.lynden.gmapsfx.GoogleMapView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+      <SplitPane dividerPositions="0.3" orientation="VERTICAL">
+         <items>
+            <TableView fx:id="reportTable" editable="true" prefHeight="185.0" prefWidth="688.0">
+               <columns>
+                  <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="108.0" text="Name" />
+                  <TableColumn fx:id="WaterTypeColumn" prefWidth="108.0" text="VirusPPM" />
+                  <TableColumn fx:id="WaterConditionColumn" prefWidth="132.0" text="ContaminantPPM" />
+                  <TableColumn prefWidth="138.0" text="OverallCondition" />
+                  <TableColumn fx:id="DateTimeColumn" prefWidth="180.0" text="DateTime" />
+                  <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID" />
+               </columns>
+            </TableView>
+            <GoogleMapView fx:id="mapView">
+               <children>
+                  <Button layoutX="520.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleBackToApplication" text="Back to Application">
+                     <font>
+                        <Font name="Lucida Bright Demibold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GoogleMapView>
+         </items>
+      </SplitPane>
+  </children>
+</VBox>
