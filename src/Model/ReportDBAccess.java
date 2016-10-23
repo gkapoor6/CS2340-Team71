@@ -32,8 +32,8 @@ import javafx.collections.ObservableList;
 public class ReportDBAccess {
 	
 	
-	public static void createReportTable() {
-		DBUtilizer.dbCreateReports();
+	public static void createSourceReportTable() {
+		DBUtilizer.dbCreateSourceReports();
 	}
 	
 	public static void createUserTable() {
@@ -71,35 +71,87 @@ public class ReportDBAccess {
 		}
 		return list;
 	}
-	
+    /**
+     * Gets all the water purity reports submitted by all users
+     * @param name name of user
+     * @return an observable list of water purity reports submitted by user
+     */
+	public static ObservableList<WaterPurityReport> getWaterPurityReportList
+            (String name) {
+		ObservableList<WaterPurityReport> list =
+                FXCollections.observableArrayList();
+		ResultSet rs = null;
+		try {
+			String reports = "SELECT * FROM WaterPurityReportTable";
+			rs = DBUtilizer.dbExecuteQuery(reports);
+			while (rs.next()) {
+				WaterPurityReport report = new WaterPurityReport(
+				        rs.getInt("ReportID"),
+                        rs.getString("Name"),
+						rs.getInt("VirusPPM"),
+                        rs.getInt("ContaminantPPM"),
+                        rs.getString("OverallCondition"),
+                        rs.getString("DateTime"),
+						rs.getDouble("Latitude"),
+                        rs.getDouble("Longitude"));
+				list.add(report);
+			}
+		} catch (SQLException e) {
+			System.out.println("Could not get any reports " +
+                    "corresponding to the name");
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return list;
+	}
+
 	/**
 	 * Add a report to the database
 	 * @param name name of the submitter
-	 * @param waterType water type
-	 * @param waterCondition condition of water
+     * @param virusPPM contaminantPPM
+	 * @param contaminantPPM contaminantPPM
+	 * @param overallCondition condition of water
 	 * @param latitude latitude of location
-	 * @param longtitude longitude of location
+	 * @param longitude longitude of location
 	 */
-	public static void insertReport(String name, String waterType, String waterCondition,
-			double latitude, double longtitude) {
+	public static void insertReport(String name,
+                                    int virusPPM,
+                                    int contaminantPPM,
+                                    String overallCondition,
+                                    double latitude,
+                                    double longitude) {
 
 		ResultSet rs = null;
 		try {
-			rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from WaterSourceReportTable");
+			rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from " +
+                    "WaterPurityReportTable");
 			int ID;
 			if (rs.next()) {
 				ID = rs.getInt("MAX(ReportID)") + 1; 
 			} else {
 				ID = 1;
 			}
-			String insertreport = String.format(Locale.US, "INSERT INTO WaterSourceReportTable"
-					+ " (ReportID, Name, WaterType, WaterCondition, Latitude, Longitude, DateTime) "
-					+ "VALUES (%d, '%s', '%s', '%s', %f, %f, '%s');",
-					ID, name, waterType, waterCondition, latitude, longtitude, getTime());
+			String insertReport = String.format(
+			        Locale.US, "INSERT INTO WaterPurityReportTable"
+                            + " (ReportID, Name, VirusPPM, ContaminantPPM,"
+                            + " OverallCondition, Latitude, "
+                            + "Longitude, DateTime) "
+                            + "VALUES (%d, '%s', '%d', '%d', '%s', %f,"
+                            + " %f, '%s');",
+					ID, name, virusPPM, contaminantPPM,
+                    overallCondition, latitude,
+                    longitude, getTime());
 
-			DBUtilizer.dbExecuteUpdate(insertreport);
+			DBUtilizer.dbExecuteUpdate(insertReport);
 		} catch (SQLException e) {
-			System.out.println("failed to insert report");
+			System.out.println("Failed to insert report");
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {
@@ -111,9 +163,49 @@ public class ReportDBAccess {
 			}
 		}
 	}
-	
-	
-	/**
+
+    /**
+     * Add a purity report to the database
+     * @param name name of the submitter
+     * @param waterType water type
+     * @param waterCondition condition of water
+     * @param latitude latitude of location
+     * @param longtitude longitude of location
+     */
+    public static void insertPurityReport(String name, String waterType,
+                                    String waterCondition,
+                                    double latitude, double longtitude) {
+
+        ResultSet rs = null;
+        try {
+            rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from WaterSourceReportTable");
+            int ID;
+            if (rs.next()) {
+                ID = rs.getInt("MAX(ReportID)") + 1;
+            } else {
+                ID = 1;
+            }
+            String insertreport = String.format(Locale.US, "INSERT INTO WaterSourceReportTable"
+                            + " (ReportID, Name, WaterType, WaterCondition, Latitude, Longitude, DateTime) "
+                            + "VALUES (%d, '%s', '%s', '%s', %f, %f, '%s');",
+                    ID, name, waterType, waterCondition, latitude, longtitude, getTime());
+
+            DBUtilizer.dbExecuteUpdate(insertreport);
+        } catch (SQLException e) {
+            System.out.println("failed to insert report");
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
 	 * Insert a user
 	 * @param username username of user
 	 * @param password password of user
