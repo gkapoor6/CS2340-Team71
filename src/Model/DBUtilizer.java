@@ -32,33 +32,33 @@ public class DBUtilizer {
 	/**
 	 * Create Water Source Report Table
 	 */
-	public static void dbCreateReports() {
+	public static void dbCreateSourceReports() {
 		Statement stmt = null;
 		try {
 			dbConnect();
-			
+
 			stmt = conn.createStatement();
 		} catch (SQLException e) {
 			System.out.println("Database error occured");
 			e.printStackTrace();
 		}
-		
+
 		try {
 			stmt.execute("CREATE TABLE WaterSourceReportTable"
-						+ "(ReportID INT PRIMARY KEY NOT NULL,"
-						+ " Name TEXT NOT NULL,"
-						+ " WaterType TEXT NOT NULL,"
-						+ " WaterCondition TEXT NOT NULL,"
-						+ " Latitude REAL,"
-						+ " Longitude REAL,"
-						+ " DateTime TEXT NOT NULL"
-						+ " )");
+					+ "(ReportID INT PRIMARY KEY NOT NULL,"
+					+ " Name TEXT NOT NULL,"
+					+ " WaterType TEXT NOT NULL,"
+					+ " WaterCondition TEXT NOT NULL,"
+					+ " Latitude REAL,"
+					+ " Longitude REAL,"
+					+ " DateTime TEXT NOT NULL"
+					+ " )");
 		} catch (SQLException e) {
 			System.out.println("WaterSourceReport Table Already exists. All good");
 		} finally {
 			if (stmt != null) {
 				try {
-				
+
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -105,7 +105,46 @@ public class DBUtilizer {
 			dbDisconnect();
 		}
 	}
-	
+
+	/**
+	 * Create Water Purity Report Table
+	 */
+	public static void dbCreatePurityReports() {
+		Statement stmt = null;
+		try {
+			dbConnect();
+
+			stmt = conn.createStatement();
+		} catch (SQLException e) {
+			System.out.println("Database error occured");
+			e.printStackTrace();
+		}
+
+		try {
+			stmt.execute("CREATE TABLE WaterPurityReportTable"
+					+ "(ReportID INT PRIMARY KEY NOT NULL,"
+					+ " Name TEXT NOT NULL,"
+					+ " VirusPPM INT NOT NULL,"
+                    + " ContaminantPPM INT NOT NULL,"
+					+ " OverallCondition TEXT NOT NULL,"
+					+ " Latitude REAL,"
+					+ " Longitude REAL,"
+					+ " DateTime TEXT NOT NULL"
+					+ " )");
+		} catch (SQLException e) {
+			System.out.println("WaterPurityReport Table already exists. All good");
+		} finally {
+			if (stmt != null) {
+				try {
+
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			dbDisconnect();
+		}
+	}
 	/**
 	 * Connects to the database
 	 */
