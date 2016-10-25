@@ -156,7 +156,8 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 		
 		map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
             location = new LatLong((JSObject) obj.getMember("latLng"));
-            //System.out.println("LatLong: lat: " + location.getLatitude() + " lng: " + location.getLongitude());
+            // System.out.println("LatLong: lat: " + location.getLatitude()
+			// + " lng: " + location.getLongitude());
             addressField.setText(location.toString());
             marker.setOptions(new MarkerOptions().position(location)
             		.visible(true));
