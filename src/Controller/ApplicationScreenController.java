@@ -3,6 +3,8 @@ package Controller;
 import FXApp.MainFXApp;
 import Model.AuthorizedUser;
 import javafx.fxml.FXML;
+import Model.Worker;
+import javafx.scene.control.Label;
 
 /**
  * Controller for application window when logged in
@@ -20,7 +22,12 @@ public class ApplicationScreenController {
 	 * User whose application interface is shown
 	 */
 	private AuthorizedUser user;
-	
+
+    /**
+     * label for displaying messages
+     */
+    @FXML
+    private Label myLabel;
 	/**
 	 * Setup the main application link so we can call methods there
 	 * @param main	reference to the FXApp instance
@@ -42,6 +49,7 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleLogoutPressed() {
+        myLabel.setVisible(false);
 		mainApp.showMainScreen();
 	}
 	
@@ -50,6 +58,7 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleEditProfilePressed() {
+        myLabel.setVisible(false);
 		mainApp.showProfile(user);
 	}
 	
@@ -58,6 +67,7 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleActualReportsPressed() {
+        myLabel.setVisible(false);
 		mainApp.showReports(user);
 	}
 	
@@ -66,6 +76,7 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleReportDataPressed() {
+        myLabel.setVisible(false);
 		mainApp.showReportData(user);
 	}
 	
@@ -74,6 +85,35 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleViewAllReports() {
+        myLabel.setVisible(false);
 		mainApp.showAllReports(user);
 	}
+
+	/**
+	 * Show all reports purely on a map without a table
+	 */
+	@FXML
+	public void handlePurityReports() {
+	    myLabel.setVisible(false);
+        if (user instanceof Worker) {
+            mainApp.showPurityReports(user);
+        } else {
+            myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
+            myLabel.setVisible(true);
+        }
+	}
+
+    /**
+     * Submit a water purity report
+     */
+    @FXML
+    public void handleReportPurity() {
+        myLabel.setVisible(false);
+    	if (user instanceof Worker) {
+            mainApp.showReportPurity(user);
+        } else {
+            myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
+            myLabel.setVisible(true);
+        }
+    }
 }
