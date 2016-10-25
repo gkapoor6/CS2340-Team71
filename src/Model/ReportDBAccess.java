@@ -113,7 +113,7 @@ public class ReportDBAccess {
 	}
 
 	/**
-	 * Add a report to the database
+	 * Add a purity report to the database
 	 * @param name name of the submitter
      * @param virusPPM contaminantPPM
 	 * @param contaminantPPM contaminantPPM
@@ -121,7 +121,7 @@ public class ReportDBAccess {
 	 * @param latitude latitude of location
 	 * @param longitude longitude of location
 	 */
-	public static void insertReport(String name,
+	public static void insertPurityReport(String name,
                                     int virusPPM,
                                     int contaminantPPM,
                                     String overallCondition,
@@ -172,7 +172,7 @@ public class ReportDBAccess {
      * @param latitude latitude of location
      * @param longtitude longitude of location
      */
-    public static void insertPurityReport(String name, String waterType,
+    public static void insertReport(String name, String waterType,
                                     String waterCondition,
                                     double latitude, double longtitude) {
 
