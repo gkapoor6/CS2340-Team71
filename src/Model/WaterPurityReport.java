@@ -64,7 +64,7 @@ public class WaterPurityReport {
         return _contaminantPPM;
     }
 
-    public StringProperty getWaterConditionProperty() {
+    public StringProperty getOverallConditionProperty() {
         return _overallCondition;
     }
 
