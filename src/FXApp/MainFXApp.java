@@ -3,15 +3,7 @@ package FXApp;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import Controller.AllReportViewController;
-import Controller.ApplicationScreenController;
-import Controller.InitialStageController;
-import Controller.LoginScreenController;
-import Controller.ProfileScreenController;
-import Controller.RegistrationScreenController;
-import Controller.ReportDataController;
-import Controller.ReportViewController;
-import Controller.WelcomeScreenController;
+import Controller.*;
 import Model.AuthorizedUser;
 import Model.ReportDBAccess;
 import javafx.application.Application;
@@ -55,7 +47,7 @@ public class MainFXApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		mainScreen = primaryStage;
-		ReportDBAccess.createReportTable();
+		ReportDBAccess.createSourceReportTable();
 		ReportDBAccess.createUserTable();
 		initLayout(mainScreen);
 		showWelcomeScreen();
@@ -244,8 +236,36 @@ public class MainFXApp extends Application {
             LOGGER.log(Level.SEVERE, "Failed to find the fxml file for reporting data");
             e.printStackTrace();
         }
-		
+
 	}
+
+    /**
+     * Goes from application screen to a reporting data to a water
+     * purity report screen
+     * @param user user who is submitting the report
+     */
+    public void showReportPurity(AuthorizedUser user) {
+        try {
+            // Load course overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApp.class.
+                    getResource("../View/ReportWaterPurity.fxml"));
+            SplitPane reportScreen = loader.load();
+
+            layout.setCenter(reportScreen);
+
+            ReportWaterPurityController controller = loader.getController();
+            controller.setUser(user);
+            controller.setMainApp(this);
+
+        } catch (IOException e) {
+            //error on load, so log it
+            LOGGER.log(Level.SEVERE, "Failed to find the fxml" +
+                    " file for reporting data");
+            e.printStackTrace();
+        }
+
+    }
 	
 	/**
 	 * Go to screen with all reports submitted by a user marker on a map 
@@ -254,7 +274,8 @@ public class MainFXApp extends Application {
 	public void showAllReports(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/AllReportView.fxml"));
+			loader.setLocation(MainFXApp.class.
+                    getResource("../View/AllReportView.fxml"));
 			GoogleMapView mapScreen = loader.load();
 			
 			layout.setCenter(mapScreen);
@@ -265,6 +286,30 @@ public class MainFXApp extends Application {
 			
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for viewing all reports on a map");
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Go to screen with purity reports submitted
+	 * @param user the user
+	 */
+	public void showPurityReports(AuthorizedUser user) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainFXApp.class.
+                    getResource("../View/ReportPurityView.fxml"));
+			GoogleMapView mapScreen = loader.load();
+
+			layout.setCenter(mapScreen);
+
+			ReportPurityViewController controller = loader.getController();
+			controller.setUser(user);
+			controller.setMain(this);
+
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Failed to find the fxml file" +
+                    " for viewing all reports on a map");
 			e.printStackTrace();
 		}
 	}
