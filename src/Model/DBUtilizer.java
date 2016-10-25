@@ -116,7 +116,7 @@ public class DBUtilizer {
 
 			stmt = conn.createStatement();
 		} catch (SQLException e) {
-			System.out.println("Database error occured");
+			System.out.println("Database error occurred");
 			e.printStackTrace();
 		}
 
