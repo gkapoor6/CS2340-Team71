@@ -61,7 +61,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <ComboBox layoutX="305.0" layoutY="46.0" prefWidth="150.0" />
+            <ComboBox fx:id="ConditionComboBox" layoutX="305.0" layoutY="46.0" prefWidth="150.0" />
             <Label layoutX="121.0" layoutY="50.0" text="Overall Condition">
                <font>
                   <Font size="13.0" />
@@ -77,8 +77,8 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <TextField layoutX="305.0" layoutY="81.0" />
-            <TextField layoutX="305.0" layoutY="118.0" />
+            <TextField fx:id="VirusPPMField" layoutX="305.0" layoutY="81.0" />
+            <TextField fx:id="ContaminantPPMField" layoutX="305.0" layoutY="118.0" />
             <Label layoutX="227.0" layoutY="14.0" text="Water Purity Report">
                <font>
                   <Font name="System Bold" size="17.0" />
