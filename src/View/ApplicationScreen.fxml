@@ -7,10 +7,10 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ApplicationScreenController">
-   <center>
+   <bottom>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="275.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout">
+            <Button layoutX="275.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -19,15 +19,15 @@
                   <Font name="Sitka Text Bold Italic" size="25.0" />
                </font>
             </Label>
-            <Button layoutX="263.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" text="Edit Profile">
+            <Button layoutX="263.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" text="Edit Profile">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button layoutX="251.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" text="Actual Reports">
+            <Button layoutX="251.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" text="Source Reports">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button layoutX="259.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleReportDataPressed" text="Report Data">
+            <Button layoutX="233.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleReportDataPressed" text="Report Water Source">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -40,7 +40,18 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <Button layoutX="253.0" layoutY="416.0" mnemonicParsing="false" onAction="#handlePurityReports" text="Purity Reports">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="237.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleReportPurity" text="Report Water Purity">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="myLabel" layoutX="275.0" layoutY="64.0" />
          </children>
       </AnchorPane>
-   </center>
+   </bottom>
 </BorderPane>
