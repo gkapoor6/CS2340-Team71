@@ -74,7 +74,8 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	 */
 	public void setMain(MainFXApp mainApp) {
 		this.mainApp = mainApp;
-		reportTable.setItems(ReportDBAccess.getReportList(user.getProfile().getNameProperty().get()));
+		reportTable.setItems(ReportDBAccess.getReportList(
+				user.getProfile().getNameProperty().get()));
 		
 	}
 	

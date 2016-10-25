@@ -110,6 +110,9 @@ public class ReportPurityViewController implements Initializable,
         ContaminantPPMColumn.setCellValueFactory(cellData ->
                 cellData.getValue().
                         getContaminantPPMProperty().asObject());
+        OverallConditionColumn.setCellValueFactory(cellData ->
+                cellData.getValue().
+                        getOverallConditionProperty());
         DateTimeColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getDateTimeProperty());
 
