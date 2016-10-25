@@ -4,6 +4,7 @@ import FXApp.MainFXApp;
 import Model.AuthorizedUser;
 import javafx.fxml.FXML;
 import Model.Worker;
+import Model.Manager;
 import javafx.scene.control.Label;
 
 /**
@@ -95,7 +96,7 @@ public class ApplicationScreenController {
 	@FXML
 	public void handlePurityReports() {
 	    myLabel.setVisible(false);
-        if (user instanceof Worker) {
+        if (user instanceof Manager) {
             mainApp.showPurityReports(user);
         } else {
             myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
