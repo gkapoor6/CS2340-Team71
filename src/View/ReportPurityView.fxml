@@ -17,9 +17,9 @@
             <TableView fx:id="reportTable" editable="true" prefHeight="185.0" prefWidth="688.0">
                <columns>
                   <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="108.0" text="Name" />
-                  <TableColumn fx:id="WaterTypeColumn" prefWidth="108.0" text="VirusPPM" />
-                  <TableColumn fx:id="WaterConditionColumn" prefWidth="132.0" text="ContaminantPPM" />
-                  <TableColumn prefWidth="138.0" text="OverallCondition" />
+                  <TableColumn fx:id="VirusPPMColumn" prefWidth="108.0" text="VirusPPM" />
+                  <TableColumn fx:id="ContaminantColumn" prefWidth="132.0" text="ContaminantPPM" />
+                  <TableColumn fx:id="OverallConditionColumn" prefWidth="138.0" text="OverallCondition" />
                   <TableColumn fx:id="DateTimeColumn" prefWidth="180.0" text="DateTime" />
                   <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID" />
                </columns>
