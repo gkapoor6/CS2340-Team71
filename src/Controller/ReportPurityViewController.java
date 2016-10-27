@@ -50,10 +50,10 @@ public class ReportPurityViewController implements Initializable,
     private TableColumn<WaterPurityReport, String> NameColumn;
 
     @FXML
-    private TableColumn<WaterPurityReport, Integer> VirusPPMColumn;
+    private TableColumn<WaterPurityReport, Double> VirusPPMColumn;
 
     @FXML
-    private TableColumn<WaterPurityReport, Integer> ContaminantPPMColumn;
+    private TableColumn<WaterPurityReport, Double> ContaminantPPMColumn;
 
     @FXML
     private TableColumn<WaterPurityReport, String> OverallConditionColumn;
@@ -77,9 +77,7 @@ public class ReportPurityViewController implements Initializable,
      */
     public void setMain(MainFXApp mainApp) {
         this.mainApp = mainApp;
-        reportTable.setItems(ReportDBAccess.
-                getWaterPurityReportList(user.getProfile().
-                        getNameProperty().get()));
+
 
     }
 
@@ -100,6 +98,8 @@ public class ReportPurityViewController implements Initializable,
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        reportTable.setItems(ReportDBAccess.
+                getWaterPurityReportList());
         ReportIDColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getReportIDProperty().asObject());
         NameColumn.setCellValueFactory(cellData -> cellData.getValue().

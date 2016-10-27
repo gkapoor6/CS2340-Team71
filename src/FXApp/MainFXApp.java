@@ -49,6 +49,7 @@ public class MainFXApp extends Application {
 		mainScreen = primaryStage;
 		ReportDBAccess.createSourceReportTable();
 		ReportDBAccess.createUserTable();
+		ReportDBAccess.createPurityTable();
 		initLayout(mainScreen);
 		showWelcomeScreen();
 		

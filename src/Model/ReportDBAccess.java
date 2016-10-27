@@ -40,6 +40,10 @@ public class ReportDBAccess {
 		DBUtilizer.dbCreateUsers();
 	}
 
+	public static void createPurityTable() {
+		DBUtilizer.dbCreatePurityReports();
+	}
+
 	/**
 	 * Looks up the name in the database and gets all reports submitted by him
 	 * @param name name of user
@@ -73,11 +77,9 @@ public class ReportDBAccess {
 	}
     /**
      * Gets all the water purity reports submitted by all users
-     * @param name name of user
      * @return an observable list of water purity reports submitted by user
      */
-	public static ObservableList<WaterPurityReport> getWaterPurityReportList
-            (String name) {
+	public static ObservableList<WaterPurityReport> getWaterPurityReportList () {
 		ObservableList<WaterPurityReport> list =
                 FXCollections.observableArrayList();
 		ResultSet rs = null;
@@ -88,8 +90,8 @@ public class ReportDBAccess {
 				WaterPurityReport report = new WaterPurityReport(
 				        rs.getInt("ReportID"),
                         rs.getString("Name"),
-						rs.getInt("VirusPPM"),
-                        rs.getInt("ContaminantPPM"),
+						rs.getDouble("VirusPPM"),
+                        rs.getDouble("ContaminantPPM"),
                         rs.getString("OverallCondition"),
                         rs.getString("DateTime"),
 						rs.getDouble("Latitude"),
@@ -122,8 +124,8 @@ public class ReportDBAccess {
 	 * @param longitude longitude of location
 	 */
 	public static void insertPurityReport(String name,
-                                    int virusPPM,
-                                    int contaminantPPM,
+                                    double virusPPM,
+                                    double contaminantPPM,
                                     String overallCondition,
                                     double latitude,
                                     double longitude) {
@@ -143,7 +145,7 @@ public class ReportDBAccess {
                             + " (ReportID, Name, VirusPPM, ContaminantPPM,"
                             + " OverallCondition, Latitude, "
                             + "Longitude, DateTime) "
-                            + "VALUES (%d, '%s', '%d', '%d', '%s', %f,"
+                            + "VALUES (%d, '%s', '%f', '%f', '%s', %f,"
                             + " %f, '%s');",
 					ID, name, virusPPM, contaminantPPM,
                     overallCondition, latitude,

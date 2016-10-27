@@ -15,8 +15,8 @@ public class WaterPurityReport {
 
     private IntegerProperty _reportID = new SimpleIntegerProperty();
     private StringProperty _name = new SimpleStringProperty();
-    private IntegerProperty _virusPPM = new SimpleIntegerProperty();
-    private IntegerProperty _contaminantPPM = new SimpleIntegerProperty();
+    private DoubleProperty _virusPPM = new SimpleDoubleProperty();
+    private DoubleProperty _contaminantPPM = new SimpleDoubleProperty();
     private StringProperty _overallCondition = new SimpleStringProperty();
     private DoubleProperty _latitude = new SimpleDoubleProperty();
     private DoubleProperty _longitude = new SimpleDoubleProperty();
@@ -33,8 +33,8 @@ public class WaterPurityReport {
      * @param latitude latitude of location
      * @param longitude longitude of location
      */
-    public WaterPurityReport(int reportID, String name, int virusPPM,
-                             int contaminantPPM, String overallCondition,
+    public WaterPurityReport(int reportID, String name, double virusPPM,
+                             double contaminantPPM, String overallCondition,
                              String dateTime, double latitude,
                              double longitude) {
 
@@ -56,11 +56,11 @@ public class WaterPurityReport {
         return _name;
     }
 
-    public IntegerProperty getVirusPPMProperty() {
+    public DoubleProperty getVirusPPMProperty() {
         return _virusPPM;
     }
 
-    public IntegerProperty getContaminantPPMProperty() {
+    public DoubleProperty getContaminantPPMProperty() {
         return _contaminantPPM;
     }
 

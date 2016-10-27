@@ -205,9 +205,11 @@ public class ReportWaterPurityController implements Initializable,
             alert.setContentText("Please Update Your Profile Name");
             alert.showAndWait();
         } else {
-            ReportDBAccess.insertReport(user.getProfile().
-                    getNameProperty().get(), ConditionComboBox.getValue(),
-                    VirusPPMField.getText(), location.getLatitude(),
+            ReportDBAccess.insertPurityReport(user.getProfile().
+                    getNameProperty().get(), Double.parseDouble(VirusPPMField.getText()),
+                    Double.parseDouble(ContaminantPPMField.getText()),
+                    ConditionComboBox.getValue(),
+                    location.getLatitude(),
                     location.getLongitude());
             location = null;
             mainApp.showApplication(user);
