@@ -95,7 +95,8 @@ public class ProfileScreenController {
 			profile.setTitle(titleComboBox.getValue());
 			profile.setEmail(emailField.getText());
 			profile.setHome(addressField.getText());
-			ReportDBAccess.updateProfile(nameField.getText(), titleComboBox.getValue(), emailField.getText(),
+			ReportDBAccess.updateProfile(nameField.getText(),
+					titleComboBox.getValue(), emailField.getText(),
 					addressField.getText(), user.getName());
 			mainApp.showApplication(user);
 		}
@@ -117,10 +118,12 @@ public class ProfileScreenController {
 
 	private boolean isInputValid() {
 		String errorMessage = "";
-		if (nameField.getText() == null || nameField.getText().length() == 0) {
+		if (nameField.getText() == null
+				|| nameField.getText().length() == 0) {
 			errorMessage += "Please enter a valid name.\n";
 		}
-		if (emailField.getText() == null || emailField.getText().length() == 0) {
+		if (emailField.getText() == null
+				|| emailField.getText().length() == 0) {
 			errorMessage += "Please enter a valid name.\n";
 		}
 		if (addressField.getText() == null

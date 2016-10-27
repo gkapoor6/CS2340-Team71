@@ -13,7 +13,8 @@ import javafx.collections.ObservableList;
 
 
 /**
- * Higher level connector to sqlite database implementing it with respect to columns needed for the application
+ * Higher level connector to sqlite database implementing it with respect 
+ *	to columns needed for the application
  * @author Dong Son Trinh
  *
  */
@@ -53,16 +54,22 @@ public class ReportDBAccess {
 		ObservableList<WaterSourceReport> list = FXCollections.observableArrayList();
 		ResultSet rs = null;
 		try {
-			String finduser = "SELECT * FROM WaterSourceReportTable WHERE Name = '" + name + "'";
+			String finduser = "SELECT * FROM WaterSourceReportTable"
+					+ " WHERE Name = '" + name + "'";
 			rs = DBUtilizer.dbExecuteQuery(finduser);
 			while (rs.next()) {
-				WaterSourceReport report = new WaterSourceReport(rs.getInt("ReportID"), rs.getString("Name"),
-						rs.getString("WaterType"), rs.getString("WaterCondition"), rs.getString("DateTime"),
-						rs.getDouble("Latitude"), rs.getDouble("Longitude"));
+				WaterSourceReport report = new WaterSourceReport(
+						rs.getInt("ReportID"),
+						rs.getString("Name"),
+						rs.getString("WaterType"),
+						rs.getString("WaterCondition"),
+						rs.getString("DateTime"),
+						rs.getDouble("Latitude"),
+						rs.getDouble("Longitude"));
 				list.add(report);
 			}
 		} catch (SQLException e) {
-			System.out.println("Could not get any reports corresponding to the Name");
+			System.out.println("Could not get reports with the Name");
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {
@@ -79,7 +86,8 @@ public class ReportDBAccess {
      * Gets all the water purity reports submitted by all users
      * @return an observable list of water purity reports submitted by user
      */
-	public static ObservableList<WaterPurityReport> getWaterPurityReportList () {
+	public static ObservableList<WaterPurityReport>
+			getWaterPurityReportList() {
 		ObservableList<WaterPurityReport> list =
                 FXCollections.observableArrayList();
 		ResultSet rs = null;
@@ -180,17 +188,21 @@ public class ReportDBAccess {
 
         ResultSet rs = null;
         try {
-            rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from WaterSourceReportTable");
+            rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID)"
+            		+ " from WaterSourceReportTable");
             int ID;
             if (rs.next()) {
                 ID = rs.getInt("MAX(ReportID)") + 1;
             } else {
                 ID = 1;
             }
-            String insertreport = String.format(Locale.US, "INSERT INTO WaterSourceReportTable"
-                            + " (ReportID, Name, WaterType, WaterCondition, Latitude, Longitude, DateTime) "
+            String insertreport = String.format(
+            		Locale.US, "INSERT INTO WaterSourceReportTable"
+                            + " (ReportID, Name, WaterType, WaterCondition,"
+                            + " Latitude, Longitude, DateTime) "
                             + "VALUES (%d, '%s', '%s', '%s', %f, %f, '%s');",
-                    ID, name, waterType, waterCondition, latitude, longtitude, getTime());
+                    ID, name, waterType, waterCondition, latitude,
+                    longtitude, getTime());
 
             DBUtilizer.dbExecuteUpdate(insertreport);
         } catch (SQLException e) {
@@ -214,14 +226,18 @@ public class ReportDBAccess {
 	 * @param usertype user type
 	 * @return result of insertion
 	 */
-	public static boolean insertUser(String username, String password, String usertype) {
+	public static boolean insertUser(String username,
+			String password, String usertype) {
+		
 		ResultSet rs = null;
 		try {
-			rs = DBUtilizer.dbExecuteQuery(String.format(Locale.US, "SELECT * from Users WHERE Username = '%s'", username));
+			rs = DBUtilizer.dbExecuteQuery(String.format(Locale.US,
+					"SELECT * from Users WHERE Username = '%s'", username));
 			if (!rs.next()) {
 				String insertuser = String.format(Locale.US, "INSERT INTO Users"
 						+ " (Username, Password, Type)"
-						+ " VALUES ('%s', '%s', '%s')", username, password, usertype);
+						+ " VALUES ('%s', '%s', '%s')",
+						username, password, usertype);
 				DBUtilizer.dbExecuteUpdate(insertuser);
 				return true;
 			} else {
@@ -249,7 +265,8 @@ public class ReportDBAccess {
 	 */
 	public static void deleteUser(String username) {
 		try {
-			String deleteuser = String.format(Locale.US, "DELETE FROM Users WHERE "
+			String deleteuser = String.format(
+					Locale.US, "DELETE FROM Users WHERE "
 					+ "Username = '%s'", username);
 			DBUtilizer.dbExecuteUpdate(deleteuser);
 		} catch (SQLException e) {
@@ -266,13 +283,16 @@ public class ReportDBAccess {
 	 * @param address user's address
 	 * @param username username of user who profile is updated
 	 */
-	public static void updateProfile(String name, String title, String email, String address, String username) {
+	public static void updateProfile(String name, String title,
+			String email, String address, String username) {
 		try {
-			String updateprofile = String.format(Locale.US, "UPDATE Users set Name = '%s',"
+			String updateprofile = String.format(
+					Locale.US, "UPDATE Users set Name = '%s',"
 					+ " Title = '%s',"
 					+ " Email = '%s',"
 					+ " Address = '%s'"
-					+ " WHERE Username = '%s'", name, title, email, address, username);
+					+ " WHERE Username = '%s'",
+					name, title, email, address, username);
 			DBUtilizer.dbExecuteUpdate(updateprofile);
 		} catch (SQLException e) {
 			System.out.println("Failed to update profile");
@@ -287,11 +307,13 @@ public class ReportDBAccess {
 	 * @param password user's password
 	 * @return user
 	 */
-	public static AuthorizedUser getUser(String username, String password)  {
+	public static AuthorizedUser getUser(String username, String password) {
 		AuthorizedUser user = null;
 		ResultSet rs = null;
 		try {
-			String getuser = String.format(Locale.US, "SELECT * FROM Users WHERE Username = '%s' and Password = '%s'", username, password);
+			String getuser = String.format(
+					Locale.US, "SELECT * FROM Users WHERE Username = '%s'"
+							+ " and Password = '%s'", username, password);
 			rs = DBUtilizer.dbExecuteQuery(getuser);
 			String type = null;
 			String name = null;
@@ -306,8 +328,9 @@ public class ReportDBAccess {
 				address = rs.getString("Address");
 			}
 			if (type != null) {
-				user = (AuthorizedUser) Class.forName(String.format("Model.%s", type)).getConstructor(
-						String.class, String.class, String.class, String.class, String.class, String.class).newInstance(
+				user = (AuthorizedUser) Class.forName(String.format("Model.%s", type))
+						.getConstructor(String.class, String.class, String.class,
+								String.class, String.class, String.class).newInstance(
 								username, password, name, title, email, address);
 			}
 			
@@ -350,6 +373,7 @@ public class ReportDBAccess {
 		ZoneId zone = ZoneId.of("GMT-4");
 		ZonedDateTime zonedt = ZonedDateTime.now(zone);
 		return zonedt.format(DateTimeFormatter.ISO_LOCAL_DATE) + " "
-				+ zonedt.format(DateTimeFormatter.ISO_LOCAL_TIME).split("[.]")[0];
+				+ zonedt.format(DateTimeFormatter.ISO_LOCAL_TIME)
+				.split("[.]")[0];
 	}
 }

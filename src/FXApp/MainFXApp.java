@@ -59,7 +59,7 @@ public class MainFXApp extends Application {
 	 * Getter of reference to main window stage
 	 * @return reference to main stage
 	 */
-	public Stage getMaindScreen() { return mainScreen; }
+	public Stage getMainScreen() { return mainScreen; }
 	
 	/**
 	 * Initial layout
@@ -68,7 +68,8 @@ public class MainFXApp extends Application {
 	private void initLayout(Stage mainScreen) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/InitialStage.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/InitialStage.fxml"));
 			layout = loader.load();
 			
 			InitialStageController controller = loader.getController();
@@ -78,7 +79,8 @@ public class MainFXApp extends Application {
 			mainScreen.setScene(scene);
 			mainScreen.show();
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the initial stage fxml file");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the initial stage fxml file");
 			e.printStackTrace();
 		}
 	}
@@ -89,7 +91,8 @@ public class MainFXApp extends Application {
 	private void showWelcomeScreen() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/WelcomeScreen.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/WelcomeScreen.fxml"));
 			VBox welcomeScreen = loader.load();
 			
 			layout.setCenter(welcomeScreen);
@@ -115,7 +118,8 @@ public class MainFXApp extends Application {
 	public void showLogin() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/LoginScreen.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/LoginScreen.fxml"));
 			
 			Pane loginScreen = loader.load();
 			
@@ -124,7 +128,8 @@ public class MainFXApp extends Application {
 			LoginScreenController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for LoginScreen");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the fxml file for LoginScreen");
 			e.printStackTrace();
 		}
 	}
@@ -135,7 +140,8 @@ public class MainFXApp extends Application {
 	public void showRegistration() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/RegistrationScreen.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/RegistrationScreen.fxml"));
 			
 			AnchorPane registrationScreen = loader.load();
 			
@@ -144,18 +150,22 @@ public class MainFXApp extends Application {
 			RegistrationScreenController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for RegistrationScreen");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the fxml file for RegistrationScreen");
 			e.printStackTrace();
 		}
 	}
 	
+
 	/**
 	 * Proceeds to the application view once logged in successfully
+	 * @param user the user
 	 */
 	public void showApplication(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/ApplicationScreen.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/ApplicationScreen.fxml"));
 			
 			BorderPane applicationScreen = loader.load();
 
@@ -166,7 +176,8 @@ public class MainFXApp extends Application {
 			controller.setUser(user);
 			controller.setMainApp(this);
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for RegistrationScreen");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the fxml file for RegistrationScreen");
 			e.printStackTrace();
 		}
 	}
@@ -178,7 +189,8 @@ public class MainFXApp extends Application {
 	public void showProfile(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/ProfileScreen.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/ProfileScreen.fxml"));
 			
 			AnchorPane profileScreen = loader.load();
 			
@@ -188,7 +200,8 @@ public class MainFXApp extends Application {
 			controller.setUser(user);
 			controller.setMainApp(this);
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for ProfileScreen");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the fxml file for ProfileScreen");
 			e.printStackTrace();
 		}
 	}
@@ -200,7 +213,8 @@ public class MainFXApp extends Application {
 	public void showReports(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainFXApp.class.getResource("../View/ReportView.fxml"));
+			loader.setLocation(MainFXApp.class.getResource(
+					"../View/ReportView.fxml"));
 			
 			SplitPane reportView = loader.load();
 			
@@ -210,7 +224,8 @@ public class MainFXApp extends Application {
 			controller.setUser(user);
 			controller.setMain(this);
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for viewing reports");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the fxml file for viewing reports");
 			e.printStackTrace();
 		}
 	}
@@ -223,7 +238,8 @@ public class MainFXApp extends Application {
 		try {
             // Load course overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApp.class.getResource("../View/ReportData.fxml"));
+            loader.setLocation(MainFXApp.class.getResource(
+            		"../View/ReportData.fxml"));
             SplitPane reportScreen = loader.load();
 
             layout.setCenter(reportScreen);
@@ -234,7 +250,8 @@ public class MainFXApp extends Application {
 
         } catch (IOException e) {
             //error on load, so log it
-            LOGGER.log(Level.SEVERE, "Failed to find the fxml file for reporting data");
+            LOGGER.log(Level.SEVERE,
+            		"Failed to find the fxml file for reporting data");
             e.printStackTrace();
         }
 
@@ -250,7 +267,8 @@ public class MainFXApp extends Application {
             // Load course overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainFXApp.class.
-                    getResource("../View/ReportWaterPurity.fxml"));
+                    getResource(
+                    		"../View/ReportWaterPurity.fxml"));
             VBox reportScreen = loader.load();
 
             layout.setCenter(reportScreen);
@@ -286,7 +304,8 @@ public class MainFXApp extends Application {
 			controller.setMain(this);
 			
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for viewing all reports on a map");
+			LOGGER.log(Level.SEVERE,
+					"Failed to find the fxml file for viewing all reports on a map");
 			e.printStackTrace();
 		}
 	}

@@ -54,7 +54,7 @@ public class DBUtilizer {
 					+ " DateTime TEXT NOT NULL"
 					+ " )");
 		} catch (SQLException e) {
-			System.out.println("WaterSourceReport Table Already exists. All good");
+			System.out.println("WaterSourceReport Table Already exists.");
 		} finally {
 			if (stmt != null) {
 				try {
@@ -132,7 +132,7 @@ public class DBUtilizer {
 					+ " DateTime TEXT NOT NULL"
 					+ " )");
 		} catch (SQLException e) {
-			System.out.println("WaterPurityReport Table already exists. All good");
+			System.out.println("WaterPurityReport Table already exists.");
 		} finally {
 			if (stmt != null) {
 				try {
@@ -181,7 +181,7 @@ public class DBUtilizer {
 	 * Gives back a result set from the query
 	 * @param queryStmt query statement/string
 	 * @return result of the query
-	 * @throws SQLException thrown if failed to execute the query/disconnect from database/close the resultset
+	 * @throws SQLException thrown if failed to execute the query/disconnect
 	 */
 	public static ResultSet dbExecuteQuery(String queryStmt) throws SQLException {
 		Statement stmt = null;
@@ -222,7 +222,7 @@ public class DBUtilizer {
 	/**
 	 * Update the database
 	 * @param updateStmt update statement/String
-	 * @throws SQLException thrown if failed to execute the update/disconnect from database/close the statement
+	 * @throws SQLException thrown if failed to execute the update/disconnect
 	 */
 	public static void dbExecuteUpdate(String updateStmt) throws SQLException {
 		Statement stmt = null;

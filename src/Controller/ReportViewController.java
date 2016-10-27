@@ -26,7 +26,8 @@ import javafx.scene.control.TableView;
  * @author Dong Son Trinh
  *
  */
-public class ReportViewController implements Initializable, MapComponentInitializedListener {
+public class ReportViewController
+		implements Initializable, MapComponentInitializedListener {
 	
 	/**
 	 * reference to mainApp
@@ -96,14 +97,20 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	@FXML
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		ReportIDColumn.setCellValueFactory(cellData -> cellData.getValue().getReportIDProperty().asObject());
-		NameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-		WaterTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getWaterTypeProperty());
-		WaterConditionColumn.setCellValueFactory(cellData -> cellData.getValue().getWaterConditionProperty());
-		DateTimeColumn.setCellValueFactory(cellData -> cellData.getValue().getDateTimeProperty());
+		ReportIDColumn.setCellValueFactory(cellData ->
+			cellData.getValue().getReportIDProperty().asObject());
+		NameColumn.setCellValueFactory(cellData ->
+			cellData.getValue().getNameProperty());
+		WaterTypeColumn.setCellValueFactory(cellData ->
+			cellData.getValue().getWaterTypeProperty());
+		WaterConditionColumn.setCellValueFactory(cellData ->
+			cellData.getValue().getWaterConditionProperty());
+		DateTimeColumn.setCellValueFactory(cellData ->
+			cellData.getValue().getDateTimeProperty());
 		
 		reportTable.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldvalue, newvalue) -> showReportLocation(newvalue));
+				(observable, oldvalue, newvalue) ->
+				showReportLocation(newvalue));
 		
 		
 		mapView.addMapInializedListener(this);
@@ -111,7 +118,8 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	
 	
 	/**
-	 * Uses GoogleMapView to show location of selected water source report in tableview
+	 * Uses GoogleMapView to show location of selected 
+	 * water source report in tableview
 	 */
 	@Override
 	public void mapInitialized() {
@@ -129,7 +137,8 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	        .zoom(12);
         
 		map = mapView.createMap(mapOptions);
-		marker = new Marker(new MarkerOptions().position(new LatLong(33.7756178, -84.3984737))
+		marker = new Marker(new MarkerOptions().position(
+				new LatLong(33.7756178, -84.3984737))
 				.visible(false));
 		map.addMarker(marker);
 		
@@ -141,7 +150,8 @@ public class ReportViewController implements Initializable, MapComponentInitiali
 	 * @param r water source report 
 	 */
 	private void showReportLocation(WaterSourceReport r) {
-		LatLong reportLocation = new LatLong(r.getLatitudeProperty().get(), r.getLongitudeProperty().get());
+		LatLong reportLocation = new LatLong(r.getLatitudeProperty().get(),
+				r.getLongitudeProperty().get());
 		marker.setOptions(new MarkerOptions().position(reportLocation)
 				.visible(true));
 		int currentZoom = map.getZoom();

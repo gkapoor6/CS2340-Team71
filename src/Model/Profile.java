@@ -76,8 +76,8 @@ public class Profile {
 
 	@Override
 	public String toString() {
-		return "Profile [name=" + _name.get() + ", email=" + _email.get() + ", title="
-				+ _title.get() + ", home=" + _home.get() + "]";
+		return "Profile [name=" + _name.get() + ", email=" + _email.get()
+		+ ", title=" + _title.get() + ", home=" + _home.get() + "]";
 	}
 
 }

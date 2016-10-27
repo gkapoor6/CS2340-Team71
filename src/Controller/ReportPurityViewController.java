@@ -100,6 +100,8 @@ public class ReportPurityViewController implements Initializable,
     public void initialize(URL url, ResourceBundle rb) {
         reportTable.setItems(ReportDBAccess.
                 getWaterPurityReportList());
+        
+        
         ReportIDColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getReportIDProperty().asObject());
         NameColumn.setCellValueFactory(cellData -> cellData.getValue().
