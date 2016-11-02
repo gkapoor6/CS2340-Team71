@@ -119,12 +119,15 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleWaterQualityHistoryGraph() {
-		myLabel.setVisible(false);
 		if (user instanceof Manager) {
 			mainApp.showWaterQualityHistoryGraph(user);
 		} else {
-			myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
-			myLabel.setVisible(true);
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Access Restriction");
+			alert.setContentText("Your access level is below Manager type of"
+					+ " user, you are not allowed to view water quality history graphs");
+
+			alert.showAndWait();
 		}
 	}
 }
