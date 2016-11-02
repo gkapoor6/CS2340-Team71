@@ -11,6 +11,7 @@ import com.lynden.gmapsfx.javascript.object.*;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -228,6 +229,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                 xAxis, yAxis);
         lineChart.setTitle("My Chart");
         XYChart.Series<String, Number> series = new XYChart.Series<>();
+
         if (year == null | location == null | type == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Not enough information");
@@ -247,13 +249,15 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
 
 
             for (WaterPurityReport report : waterPurityReportList) {
+                //System.out.print(location.getLatitude() instanceof IntegerProperty)
+               // System.out.println(report.getDateTimeProperty().getValue());
+                String yearRecorded = report.getDateTimeProperty().getValue().substring(0, 4);
+                if ((Math.round(report.getLongitudeProperty().get()) == Math.round(location.getLongitude()))
+                        && Math.round(report.getLatitudeProperty().get()) == Math.round(location.getLatitude())
+                        && yearRecorded.equals(year)) {
 
-                if (report.getLatitudeProperty().getValue().equals(location.getLatitude())
-                        && report.getLongitudeProperty().getValue().equals(location.getLongitude())
-                        && report.getDateTimeProperty().toString().substring(0, 4).equals(year)) {
 
-
-                    if (report.getDateTimeProperty().toString().substring(6, 8).equals("01")) {
+                    if (report.getDateTimeProperty().getValue().substring(6, 8).equals("01")) {
 
                         //month = "January";
 
@@ -266,7 +270,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                         }
 
 
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("02")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("02")) {
                         //month = "February";
                         if (type.equals("Virus PPM")) {
                             virusFeb = virusFeb + report.getVirusPPMProperty().getValue();
@@ -275,7 +279,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusFeb = virusFeb + report.getContaminantPPMProperty().getValue();
                             virusFebCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("03")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("03")) {
                         //month = "March";
                         if (type.equals("Virus PPM")) {
                             virusMar = virusMar + report.getVirusPPMProperty().getValue();
@@ -284,7 +288,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusMar = virusMar + report.getContaminantPPMProperty().getValue();
                             virusMarCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("04")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("04")) {
                         //month = "April";
                         if (type.equals("Virus PPM")) {
                             virusApr = virusApr + report.getVirusPPMProperty().getValue();
@@ -293,7 +297,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusApr = virusApr + report.getContaminantPPMProperty().getValue();
                             virusAprCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("05")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("05")) {
                         //month = "May";
                         if (type.equals("Virus PPM")) {
                             virusMay = virusMay + report.getVirusPPMProperty().getValue();
@@ -302,7 +306,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusMay = virusMay + report.getContaminantPPMProperty().getValue();
                             virusMayCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("06")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("06")) {
                         //month = "June";
                         if (type.equals("Virus PPM")) {
                             virusJun = virusJun + report.getVirusPPMProperty().getValue();
@@ -311,7 +315,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusJun = virusJun + report.getContaminantPPMProperty().getValue();
                             virusJunCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("07")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("07")) {
                         //month = "July";
                         if (type.equals("Virus PPM")) {
                             virusJul = virusJul + report.getVirusPPMProperty().getValue();
@@ -320,7 +324,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusJul = virusJul + report.getContaminantPPMProperty().getValue();
                             virusJulCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("08")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("08")) {
                         //month = "August";
                         if (type.equals("Virus PPM")) {
                             virusAug = virusAug + report.getVirusPPMProperty().getValue();
@@ -329,7 +333,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusAug = virusAug + report.getContaminantPPMProperty().getValue();
                             virusAugCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("09")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("09")) {
                         //month = "September";
                         if (type.equals("Virus PPM")) {
                             virusSept = virusSept + report.getVirusPPMProperty().getValue();
@@ -338,7 +342,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusSept = virusSept + report.getContaminantPPMProperty().getValue();
                             virusSeptCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("10")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("10")) {
                         //month = "October";
                         if (type.equals("Virus PPM")) {
                             virusOct = virusOct + report.getVirusPPMProperty().getValue();
@@ -347,7 +351,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusOct = virusOct + report.getContaminantPPMProperty().getValue();
                             virusOctCount++;
                         }
-                    } else if (report.getDateTimeProperty().toString().substring(6, 8).equals("11")) {
+                    } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("11")) {
                         //month = "November";
                         if (type.equals("Virus PPM")) {
                             virusNov = virusNov + report.getVirusPPMProperty().getValue();
