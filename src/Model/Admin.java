@@ -22,7 +22,8 @@ public class Admin extends AuthorizedUser{
 	 * @param email email of admin
 	 * @param address address of admin
 	 */
-	public Admin(String username, String password, String name, String title, String email, String address) {
+	public Admin(String username, String password, String name, String title,
+			String email, String address) {
 		super(username, password, name, title, email, address);
 	}
 	

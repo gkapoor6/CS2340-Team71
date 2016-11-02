@@ -5,7 +5,7 @@ import Model.AuthorizedUser;
 import javafx.fxml.FXML;
 import Model.Worker;
 import Model.Manager;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
 
 /**
  * Controller for application window when logged in
@@ -24,11 +24,6 @@ public class ApplicationScreenController {
 	 */
 	private AuthorizedUser user;
 
-    /**
-     * label for displaying messages
-     */
-    @FXML
-    private Label myLabel;
 	/**
 	 * Setup the main application link so we can call methods there
 	 * @param main	reference to the FXApp instance
@@ -50,7 +45,6 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleLogoutPressed() {
-        myLabel.setVisible(false);
 		mainApp.showMainScreen();
 	}
 	
@@ -59,7 +53,6 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleEditProfilePressed() {
-        myLabel.setVisible(false);
 		mainApp.showProfile(user);
 	}
 	
@@ -68,7 +61,6 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleActualReportsPressed() {
-        myLabel.setVisible(false);
 		mainApp.showReports(user);
 	}
 	
@@ -77,7 +69,6 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleReportDataPressed() {
-        myLabel.setVisible(false);
 		mainApp.showReportData(user);
 	}
 	
@@ -86,7 +77,6 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handleViewAllReports() {
-        myLabel.setVisible(false);
 		mainApp.showAllReports(user);
 	}
 
@@ -95,12 +85,15 @@ public class ApplicationScreenController {
 	 */
 	@FXML
 	public void handlePurityReports() {
-	    myLabel.setVisible(false);
         if (user instanceof Manager) {
             mainApp.showPurityReports(user);
         } else {
-            myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
-            myLabel.setVisible(true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Access Restriction");
+            alert.setContentText("You are not a Manager, you are not allowed"
+            		+ " to access all the Purity reports");
+            
+            alert.showAndWait();
         }
 	}
 
@@ -109,12 +102,15 @@ public class ApplicationScreenController {
      */
     @FXML
     public void handleReportPurity() {
-        myLabel.setVisible(false);
     	if (user instanceof Worker) {
             mainApp.showReportPurity(user);
         } else {
-            myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
-            myLabel.setVisible(true);
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+        	alert.setTitle("Access Restriction");
+        	alert.setContentText("Your access level is below Worker type of"
+        			+ " user, you are not allowed to submit purity reports");
+        	
+        	alert.showAndWait();
         }
     }
 

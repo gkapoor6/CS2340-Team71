@@ -28,7 +28,8 @@ import netscape.javascript.JSObject;
  * @author Dong Son Trinh
  *
  */
-public class AllReportViewController implements Initializable, MapComponentInitializedListener {
+public class AllReportViewController
+		implements Initializable, MapComponentInitializedListener {
 	
 	/**
 	 * reference to mainApp
@@ -98,19 +99,28 @@ public class AllReportViewController implements Initializable, MapComponentIniti
 	        .zoom(9);
         map = mapView.createMap(mapOptions);
         window = new InfoWindow();
-        for (WaterSourceReport w: ReportDBAccess.getReportList(user.getProfile().getNameProperty().get())) {
+        
+        
+        
+        for (WaterSourceReport w: ReportDBAccess.getReportList(
+        		user.getProfile().getNameProperty().get())) {
+        	
         	MarkerOptions markerOptions = new MarkerOptions();
-        	LatLong location = new LatLong(w.getLatitudeProperty().get(), w.getLongitudeProperty().get());
+        	LatLong location = new LatLong(w.getLatitudeProperty().get(),
+        			w.getLongitudeProperty().get());
+        	
         	Marker marker = new Marker(markerOptions.position(location)
         			.visible(true)
-        			.title(w.getNameProperty().get() + " submitted at " + w.getDateTimeProperty().get()));
+        			.title(w.getNameProperty().get() + " submitted at "
+        			+ w.getDateTimeProperty().get()));
 
 			
 			
         	map.addUIEventHandler(marker,
         			UIEventType.click,
         			(JSObject obj) -> {
-        				InfoWindowOptions windowOptions = new InfoWindowOptions().content(w.toString());
+        				InfoWindowOptions windowOptions = new
+        						InfoWindowOptions().content(w.toString());
         				window.setOptions(windowOptions);
         				window.open(map, marker);});
         	

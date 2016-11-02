@@ -36,7 +36,8 @@ public class WaterSourceReport {
 	 * @param longitude longitude of location
 	 */
 	public WaterSourceReport(int reportID, String name, String waterType,
-			String waterCondition, String dateTime, double latitude, double longitude) {
+			String waterCondition, String dateTime, double latitude,
+			double longitude) {
 		
 		_reportID.set(reportID);
 		_name.set(name);
@@ -91,9 +92,11 @@ public class WaterSourceReport {
 
 	@Override
 	public String toString() {
-		return "WaterSourceReport [reportID=" + _reportID.get() + ", name=" + _name.get() + ", waterType=" + _waterType.get()
-				+ ", waterCondition=" + _waterCondition.get() + ", latitude=" + _latitude.get() + ", longitude=" + _longitude.get()
-				+ ", dateTime=" + _dateTime.get() + "]";
+		return "WaterSourceReport [reportID=" + _reportID.get() +
+				", name=" + _name.get() + ", waterType=" + _waterType.get()
+				+ ", waterCondition=" + _waterCondition.get()
+				+ ", latitude=" + _latitude.get() + ", longitude="
+				+ _longitude.get() + ", dateTime=" + _dateTime.get() + "]";
 	}
 
 

@@ -49,7 +49,9 @@ public class LoginScreenController {
 	 */
 	@FXML
 	private void handleLoginPressed() {
-		AuthorizedUser user = ReportDBAccess.getUser(userField.getText(), passwordField.getText());
+		AuthorizedUser user = ReportDBAccess.getUser(userField.getText(),
+				passwordField.getText());
+		
 		if (user != null) {
 			if (user.getPassword().equals(passwordField.getText())) {
 				mainApp.showApplication(user);
@@ -58,7 +60,8 @@ public class LoginScreenController {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 	            alert.setTitle("Login Attempt");
 	            alert.setHeaderText("Attempt Failed");
-	            alert.setContentText("Combination of username and password not found");
+	            alert.setContentText("Combination of username "
+	            		+ "and password not found");
 
 	            alert.showAndWait();
 			}
@@ -66,7 +69,8 @@ public class LoginScreenController {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Attempt");
             alert.setHeaderText("No Such user exists");
-            alert.setContentText("Combination of username and password not found");
+            alert.setContentText("Combination of username"
+            		+ " and password not found");
 
             alert.showAndWait();
 		}

@@ -37,7 +37,8 @@ import Model.ReportDBAccess;
  * @author Dong Son Trinh
  *
  */
-public class ReportDataController implements Initializable, MapComponentInitializedListener {
+public class ReportDataController
+		implements Initializable, MapComponentInitializedListener {
 	/**
 	 * reference to mainApp
 	 */
@@ -169,25 +170,32 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 	
 	/**
 	 * Goes to a location on the map using the text printed into the search field
-	 * Upon several presses of ENTER, goes to next possible location matching the text in the search field
+	 * Upon several presses of ENTER, 
+	 * goes to next possible location matching the text in the search field
 	 */
 	@FXML
     public void addressTextFieldAction() {
-        geocodingService.geocode(address.get(), (GeocodingResult[] results, GeocoderStatus status) -> {
+        geocodingService.geocode(address.get(),
+        		(GeocodingResult[] results, GeocoderStatus status) -> {
         	if (!address.get().equals(locationSearch)) {
         		locationNum = 0;
         		locationSearch = address.get();
         	}
             
             if (status == GeocoderStatus.ZERO_RESULTS) {
-            	Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
+            	Alert alert = new Alert(Alert.AlertType.ERROR,
+            			"No matching address found");
                 alert.show();
                 return;
             } else if (results.length > 1 ) {
-                location = new LatLong(results[locationNum].getGeometry().getLocation().getLatitude(), results[locationNum].getGeometry().getLocation().getLongitude());
+                location = new LatLong(results[locationNum].getGeometry()
+                		.getLocation().getLatitude(), results[locationNum]
+                				.getGeometry().getLocation().getLongitude());
                 locationNum = (locationNum + 1) % results.length;
             } else {
-                location = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
+                location = new LatLong(results[0].getGeometry().getLocation()
+                		.getLatitude(), results[0].getGeometry().getLocation()
+                		.getLongitude());
             }
             marker.setOptions(new MarkerOptions().position(location)
             		.visible(true));
@@ -202,11 +210,13 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 	 */
 	@FXML
 	private void handleSubmitPressed() {
-		if (location == null || WaterTypeCombox.getValue() == null || WaterConditionCombox.getValue() == null) {
+		if (location == null || WaterTypeCombox.getValue() == null
+				|| WaterConditionCombox.getValue() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Invalid Fields");
 			alert.setHeaderText("Not enough information input");
-			alert.setContentText("Please choose water type and water condition and choose the location");
+			alert.setContentText("Please choose water type and water condition"
+					+ " and choose the location");
 			alert.showAndWait();
 		} else if (user.getProfile().getNameProperty().get() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -215,7 +225,10 @@ public class ReportDataController implements Initializable, MapComponentInitiali
 			alert.setContentText("Please update your Profile name");
 			alert.showAndWait();
 		} else {
-			ReportDBAccess.insertReport(user.getProfile().getNameProperty().get(), WaterTypeCombox.getValue(), WaterConditionCombox.getValue(), location.getLatitude(), location.getLongitude());
+			ReportDBAccess.insertReport(
+					user.getProfile().getNameProperty().get(),
+					WaterTypeCombox.getValue(), WaterConditionCombox.getValue(),
+					location.getLatitude(), location.getLongitude());
 			location = null;
 			mainApp.showApplication(user);
 		}

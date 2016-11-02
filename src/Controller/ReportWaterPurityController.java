@@ -137,7 +137,7 @@ public class ReportWaterPurityController implements Initializable,
             map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
                 location = new LatLong((JSObject) obj.getMember("latLng"));
                 //System.out.println("LatLong: lat: " +
-                // location.getLatitude() + " lng: " + location.getLongitude());
+                //location.getLatitude() + " lng: " + location.getLongitude());
             addressField.setText(location.toString());
             marker.setOptions(new MarkerOptions().position(location)
                     .visible(true));
@@ -147,7 +147,9 @@ public class ReportWaterPurityController implements Initializable,
         });
     }
     /**
-     * Goes to a location on the map using the text printed into the search field
+     * Goes to a location on the map using the text printed 
+     * into the search field
+     * 
      * Upon several presses of ENTER, goes to next possible location
      * matching the text in the search field
      */
@@ -206,7 +208,8 @@ public class ReportWaterPurityController implements Initializable,
             alert.showAndWait();
         } else {
             ReportDBAccess.insertPurityReport(user.getProfile().
-                    getNameProperty().get(), Double.parseDouble(VirusPPMField.getText()),
+                    getNameProperty().get(),
+                    Double.parseDouble(VirusPPMField.getText()),
                     Double.parseDouble(ContaminantPPMField.getText()),
                     ConditionComboBox.getValue(),
                     location.getLatitude(),

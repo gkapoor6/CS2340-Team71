@@ -22,7 +22,8 @@ public class Worker extends User{
 	 * @param email email of worker
 	 * @param address address of worker
 	 */
-	public Worker(String username, String password, String name, String title, String email, String address) {
+	public Worker(String username, String password, String name,
+			String title, String email, String address) {
 		super(username, password, name, title, email, address);
 	}
 	

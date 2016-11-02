@@ -49,7 +49,8 @@ public abstract class AuthorizedUser {
 	 * @param email email of user
 	 * @param address address of user
 	 */
-	public AuthorizedUser(String username, String password, String name, String title, String email, String address) {
+	public AuthorizedUser(String username, String password, String name,
+			String title, String email, String address) {
 		this(username, password, new Profile(name, title, email, address));
 	}
 	
