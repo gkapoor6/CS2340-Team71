@@ -222,12 +222,16 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
     private void handleSubmitPressed() {
         String year = yearEntered.getText();
         String type = typePicked.getValue();
-        final CategoryAxis xAxis = new CategoryAxis();
-        final NumberAxis yAxis = new NumberAxis();
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Month");
-        final LineChart<String, Number> lineChart = new LineChart<String, Number>(
+        yAxis.setLabel(type);
+        yAxis.autoRangingProperty();
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(
                 xAxis, yAxis);
-        lineChart.setTitle("My Chart");
+        //XYChart.Series series2 = new XYChart.Series();
+
+        lineChart.setTitle("Purity History Graph");
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         if (year == null | location == null | type == null) {
@@ -239,9 +243,9 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
             ObservableList<WaterPurityReport> waterPurityReportList = ReportDBAccess.getWaterPurityReportList();
 
             //String month;
-            double virusJan = 0, virusFeb = 0, virusMar = 0, virusApr = 0,
-                    virusMay = 0, virusJun = 0, virusJul = 0, virusAug = 0,
-                    virusSept = 0, virusOct = 0, virusNov = 0, virusDec = 0;
+            double virusJan = 0.0, virusFeb = 0.0, virusMar = 0.0, virusApr = 0.0,
+                    virusMay = 0.0, virusJun = 0.0, virusJul = 0.0, virusAug = 0.0,
+                    virusSept = 0.0, virusOct = 0.0, virusNov = 0.0, virusDec = 0.0;
             int virusJanCount = 0, virusFebCount = 0,
                     virusMarCount = 0, virusAprCount = 0, virusMayCount = 0,
                     virusJunCount = 0, virusJulCount = 0, virusAugCount = 0,
@@ -373,22 +377,74 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
 
                 }
             }
-            series.getData().add(new XYChart.Data<String, Number>("January", (virusJan / virusJanCount)));
-            series.getData().add(new XYChart.Data<String, Number>("February", (virusFeb / virusFebCount)));
-            series.getData().add(new XYChart.Data<String, Number>("March", (virusMar / virusMarCount)));
-            series.getData().add(new XYChart.Data<String, Number>("April", (virusApr / virusAprCount)));
-            series.getData().add(new XYChart.Data<String, Number>("May", (virusMay / virusMayCount)));
-            series.getData().add(new XYChart.Data<String, Number>("June", (virusJun / virusJunCount)));
-            series.getData().add(new XYChart.Data<String, Number>("July", (virusJul / virusJulCount)));
-            series.getData().add(new XYChart.Data<String, Number>("August", (virusAug / virusAugCount)));
-            series.getData().add(new XYChart.Data<String, Number>("September", (virusSept / virusSeptCount)));
-            series.getData().add(new XYChart.Data<String, Number>("October", (virusOct / virusOctCount)));
-            series.getData().add(new XYChart.Data<String, Number>("November", (virusNov / virusNovCount)));
-            series.getData().add(new XYChart.Data<String, Number>("December", (virusDec / virusDecCount)));
+            if (virusJanCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("January", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("January", (virusJan / virusJanCount)));
+
+            }
+            if (virusFebCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("February", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("February", (virusFeb / virusFebCount)));
+            }
+            if (virusMarCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("March", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("March", (virusMar / virusMarCount)));
+            }
+            if (virusAprCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("April", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("April", (virusApr / virusAprCount)));
+
+            }
+            if (virusMayCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("May", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("May", (virusMay / virusMayCount)));
+            }
+            if (virusJunCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("June", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("June", (virusJun / virusJunCount)));
+            }
+            if (virusJulCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("July", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("July", (virusJul / virusJulCount)));
+            }
+            if (virusAugCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("August", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("August", (virusAug / virusAugCount)));
+            }
+            if (virusSeptCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("September", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("September", (virusSept / virusSeptCount)));
+            }
+            if (virusOctCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("October", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("October", (virusOct / virusOctCount)));
+            }
+            if (virusNovCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("November", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("November", (virusNov / virusNovCount)));
+            }
+            if (virusDecCount == 0) {
+                series.getData().add(new XYChart.Data<String, Number>("December", 0));
+            } else {
+                series.getData().add(new XYChart.Data<String, Number>("December", (virusDec / virusDecCount)));
+            }
+
             lineChart.getData().add(series);
             Scene scene = new Scene(lineChart, 800, 600);
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.show();
         }
     }
 }
