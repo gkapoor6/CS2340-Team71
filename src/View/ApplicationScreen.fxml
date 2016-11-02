@@ -51,7 +51,7 @@
                </font>
             </Button>
             <Label fx:id="myLabel" layoutX="275.0" layoutY="64.0" />
-            <Button layoutX="202.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleWaterQualityHistoryGraph" text="VIew Water Quality History Graph" />
+            <Button layoutX="202.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleWaterQualityHistoryGraph" text="View Water Quality History Graph" />
          </children>
       </AnchorPane>
    </bottom>
