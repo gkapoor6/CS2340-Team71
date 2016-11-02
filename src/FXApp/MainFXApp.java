@@ -314,7 +314,31 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Go to show water quality history graph screen
+	 * @param user the user
+	 */
+	public void showWaterQualityHistoryGraph(AuthorizedUser user) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainFXApp.class.
+					getResource("../View/ViewWaterQualityHistoryGraph.fxml"));
+			SplitPane waterQualityHistoryGraphScreen = loader.load();
+
+			layout.setCenter(waterQualityHistoryGraphScreen);
+
+			ViewWaterQualityHistoryGraph controller = loader.getController();
+			controller.setUser(user);
+			controller.setMainApp(this);
+
+
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Failed to find the fxml file for waterQualityHistoryGraphScreen");
+			e.printStackTrace();
+		}
+	}
+
 	
 	public static void main(String[] args) {
 		launch(args);

@@ -117,4 +117,19 @@ public class ApplicationScreenController {
             myLabel.setVisible(true);
         }
     }
+
+	/**
+	 * View Water Quality History Graph
+	 */
+	@FXML
+	public void handleWaterQualityHistoryGraph() {
+		myLabel.setVisible(false);
+		if (user instanceof Manager) {
+			mainApp.showWaterQualityHistoryGraph(user);
+		} else {
+			myLabel.setText("ACCESS PRIVILEGES NOT GRANTED");
+			myLabel.setVisible(true);
+		}
+	}
 }
+
