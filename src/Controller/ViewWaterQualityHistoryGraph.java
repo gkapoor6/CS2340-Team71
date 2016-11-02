@@ -261,7 +261,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
 
                     if (report.getDateTimeProperty().getValue().substring(6, 8).equals("01")) {
 
-                        //month = "January";
+
 
                         if (type.equals("Virus PPM")) {
                             virusJan = virusJan + report.getVirusPPMProperty().getValue();
@@ -273,7 +273,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
 
 
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("02")) {
-                        //month = "February";
+
                         if (type.equals("Virus PPM")) {
                             virusFeb = virusFeb + report.getVirusPPMProperty().getValue();
                             virusFebCount++;
@@ -282,7 +282,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusFebCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("03")) {
-                        //month = "March";
+
                         if (type.equals("Virus PPM")) {
                             virusMar = virusMar + report.getVirusPPMProperty().getValue();
                             virusMarCount++;
@@ -291,7 +291,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusMarCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("04")) {
-                        //month = "April";
+
                         if (type.equals("Virus PPM")) {
                             virusApr = virusApr + report.getVirusPPMProperty().getValue();
                             virusAprCount++;
@@ -300,7 +300,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusAprCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("05")) {
-                        //month = "May";
+
                         if (type.equals("Virus PPM")) {
                             virusMay = virusMay + report.getVirusPPMProperty().getValue();
                             virusMayCount++;
@@ -309,7 +309,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusMayCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("06")) {
-                        //month = "June";
+
                         if (type.equals("Virus PPM")) {
                             virusJun = virusJun + report.getVirusPPMProperty().getValue();
                             virusJunCount++;
@@ -318,7 +318,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusJunCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("07")) {
-                        //month = "July";
+
                         if (type.equals("Virus PPM")) {
                             virusJul = virusJul + report.getVirusPPMProperty().getValue();
                             virusJulCount++;
@@ -327,7 +327,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusJulCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("08")) {
-                        //month = "August";
+
                         if (type.equals("Virus PPM")) {
                             virusAug = virusAug + report.getVirusPPMProperty().getValue();
                             virusAugCount++;
@@ -336,7 +336,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusAugCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("09")) {
-                        //month = "September";
+
                         if (type.equals("Virus PPM")) {
                             virusSept = virusSept + report.getVirusPPMProperty().getValue();
                             virusSeptCount++;
@@ -345,7 +345,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusSeptCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("10")) {
-                        //month = "October";
+
                         if (type.equals("Virus PPM")) {
                             virusOct = virusOct + report.getVirusPPMProperty().getValue();
                             virusOctCount++;
@@ -354,7 +354,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusOctCount++;
                         }
                     } else if (report.getDateTimeProperty().getValue().substring(5, 7).equals("11")) {
-                        //month = "November";
+
                         if (type.equals("Virus PPM")) {
                             virusNov = virusNov + report.getVirusPPMProperty().getValue();
                             virusNovCount++;
@@ -363,7 +363,7 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
                             virusNovCount++;
                         }
                     } else {
-                        //month = "December";
+
                         if (type.equals("Virus PPM")) {
                             virusDec = virusDec + report.getVirusPPMProperty().getValue();
                             virusDecCount++;
