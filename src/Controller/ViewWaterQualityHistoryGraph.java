@@ -253,8 +253,6 @@ public class ViewWaterQualityHistoryGraph implements Initializable, MapComponent
 
 
             for (WaterPurityReport report : waterPurityReportList) {
-                //System.out.print(location.getLatitude() instanceof IntegerProperty)
-               // System.out.println(report.getDateTimeProperty().getValue());
                 String yearRecorded = report.getDateTimeProperty().getValue().substring(0, 4);
                 if ((Math.round(report.getLongitudeProperty().get()) == Math.round(location.getLongitude()))
                         && Math.round(report.getLatitudeProperty().get()) == Math.round(location.getLatitude())
