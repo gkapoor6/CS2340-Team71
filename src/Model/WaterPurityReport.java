@@ -5,14 +5,12 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
 /**
  * Water Purity Report Class
  * @author Geetika Kapoor
  *
  */
 public class WaterPurityReport {
-
     private IntegerProperty _reportID = new SimpleIntegerProperty();
     private StringProperty _name = new SimpleStringProperty();
     private DoubleProperty _virusPPM = new SimpleDoubleProperty();
@@ -21,7 +19,6 @@ public class WaterPurityReport {
     private DoubleProperty _latitude = new SimpleDoubleProperty();
     private DoubleProperty _longitude = new SimpleDoubleProperty();
     private StringProperty _dateTime = new SimpleStringProperty();
-
     /**
      * Water Purity Report Constructor
      * @param reportID ID of the report
@@ -37,7 +34,6 @@ public class WaterPurityReport {
                              double contaminantPPM, String overallCondition,
                              String dateTime, double latitude,
                              double longitude) {
-
         _reportID.set(reportID);
         _name.set(name);
         _contaminantPPM.set(contaminantPPM);
@@ -47,39 +43,30 @@ public class WaterPurityReport {
         _latitude.set(latitude);
         _longitude.set(longitude);
     }
-
     public IntegerProperty getReportIDProperty() {
         return _reportID;
     }
-
     public StringProperty getNameProperty() {
         return _name;
     }
-
     public DoubleProperty getVirusPPMProperty() {
         return _virusPPM;
     }
-
     public DoubleProperty getContaminantPPMProperty() {
         return _contaminantPPM;
     }
-
     public StringProperty getOverallConditionProperty() {
         return _overallCondition;
     }
-
     public DoubleProperty getLatitudeProperty() {
         return _latitude;
     }
-
     public DoubleProperty getLongitudeProperty() {
         return _longitude;
     }
-
     public StringProperty getDateTimeProperty() {
         return _dateTime;
     }
-
     @Override
     public String toString() {
         return "Water Purity Report [Report ID = " + _reportID.get()
@@ -90,5 +77,4 @@ public class WaterPurityReport {
                 + _latitude.get() + ", Longitude = " + _longitude.get()
                 + ", Date and Time = " + _dateTime.get() + "]";
     }
-
 }
