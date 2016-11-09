@@ -19,6 +19,8 @@ public class WaterPurityReport {
     private DoubleProperty _latitude = new SimpleDoubleProperty();
     private DoubleProperty _longitude = new SimpleDoubleProperty();
     private StringProperty _dateTime = new SimpleStringProperty();
+    
+    
     /**
      * Water Purity Report Constructor
      * @param reportID ID of the report
