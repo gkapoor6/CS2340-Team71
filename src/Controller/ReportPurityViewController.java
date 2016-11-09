@@ -77,8 +77,6 @@ public class ReportPurityViewController implements Initializable,
      */
     public void setMain(MainFXApp mainApp) {
         this.mainApp = mainApp;
-
-
     }
 
     /**
@@ -100,27 +98,24 @@ public class ReportPurityViewController implements Initializable,
     public void initialize(URL url, ResourceBundle rb) {
         reportTable.setItems(ReportDBAccess.
                 getWaterPurityReportList());
-        
-        
+
+
         ReportIDColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getReportIDProperty().asObject());
         NameColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getNameProperty());
         VirusPPMColumn.setCellValueFactory(cellData ->
-                cellData.getValue().
-                        getVirusPPMProperty().asObject());
+            cellData.getValue().getVirusPPMProperty().asObject());
         ContaminantPPMColumn.setCellValueFactory(cellData ->
-                cellData.getValue().
-                        getContaminantPPMProperty().asObject());
+            cellData.getValue().getContaminantPPMProperty().asObject());
         OverallConditionColumn.setCellValueFactory(cellData ->
-                cellData.getValue().
-                        getOverallConditionProperty());
+            cellData.getValue().getOverallConditionProperty());
         DateTimeColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getDateTimeProperty());
 
         reportTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldvalue, newvalue) ->
-                        showReportLocation(newvalue));
+                    showReportLocation(newvalue));
 
 
         mapView.addMapInializedListener(this);
@@ -147,8 +142,8 @@ public class ReportPurityViewController implements Initializable,
                 .zoom(12);
 
         map = mapView.createMap(mapOptions);
-        marker = new Marker(new MarkerOptions().position
-                (new LatLong(33.7756178, -84.3984737))
+        marker = new Marker(new MarkerOptions().position(
+                new LatLong(33.7756178, -84.3984737))
                 .visible(false));
         map.addMarker(marker);
 

@@ -129,27 +129,24 @@ public class ReportWaterPurityController implements Initializable,
                 .zoom(12);
 
         map = mapView.createMap(mapOptions);
-            marker = new Marker(new MarkerOptions().
+        marker = new Marker(new MarkerOptions().
                     position(new LatLong(33.7756178, -84.3984737))
                     .visible(false));
-            map.addMarker(marker);
+        map.addMarker(marker);
 
-            map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
+        map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
                 location = new LatLong((JSObject) obj.getMember("latLng"));
-                //System.out.println("LatLong: lat: " +
-                //location.getLatitude() + " lng: " + location.getLongitude());
-            addressField.setText(location.toString());
-            marker.setOptions(new MarkerOptions().position(location)
+                addressField.setText(location.toString());
+                marker.setOptions(new MarkerOptions().position(location)
                     .visible(true));
-            int currentZoom = map.getZoom();
-            map.setZoom(currentZoom - 1);
-            map.setZoom(currentZoom);
-        });
+                int currentZoom = map.getZoom();
+                map.setZoom(currentZoom - 1);
+                map.setZoom(currentZoom);
+            });
     }
     /**
-     * Goes to a location on the map using the text printed 
+     * Goes to a location on the map using the text printed
      * into the search field
-     * 
      * Upon several presses of ENTER, goes to next possible location
      * matching the text in the search field
      */
@@ -157,31 +154,31 @@ public class ReportWaterPurityController implements Initializable,
     public void addressTextFieldAction() {
         geocodingService.geocode(address.get(), (GeocodingResult[] results,
                                                  GeocoderStatus status) -> {
-            if (!address.get().equals(locationSearch)) {
-                locationNum = 0;
-                locationSearch = address.get();
-            }
+                if (!address.get().equals(locationSearch)) {
+                    locationNum = 0;
+                    locationSearch = address.get();
+                }
 
-            if (status == GeocoderStatus.ZERO_RESULTS) {
-                Alert alert = new Alert(Alert.AlertType.ERROR,
-                        "No matching address found");
-                alert.show();
-                return;
-            } else if (results.length > 1 ) {
-                location = new LatLong(results[locationNum].getGeometry()
-                        .getLocation().getLatitude(), results[locationNum]
-                        .getGeometry().getLocation().getLongitude());
-                locationNum = (locationNum + 1) % results.length;
-            } else {
-                location = new LatLong(results[0].getGeometry()
-                        .getLocation().getLatitude(), results[0]
-                        .getGeometry().getLocation().getLongitude());
-            }
-            marker.setOptions(new MarkerOptions().position(location)
-                    .visible(true));
-            map.setCenter(location);
+                if (status == GeocoderStatus.ZERO_RESULTS) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR,
+                            "No matching address found");
+                    alert.show();
+                    return;
+                } else if (results.length > 1) {
+                    location = new LatLong(results[locationNum].getGeometry()
+                            .getLocation().getLatitude(), results[locationNum]
+                            .getGeometry().getLocation().getLongitude());
+                    locationNum = (locationNum + 1) % results.length;
+                } else {
+                    location = new LatLong(results[0].getGeometry()
+                            .getLocation().getLatitude(), results[0]
+                            .getGeometry().getLocation().getLongitude());
+                }
+                marker.setOptions(new MarkerOptions().position(location)
+                        .visible(true));
+                map.setCenter(location);
 
-        });
+            });
     }
 
     /**
@@ -196,9 +193,8 @@ public class ReportWaterPurityController implements Initializable,
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Not Enough Information Input");
-            alert.setContentText("Please Choose Overall Water " +
-                    "Condition, Virus PPM, and Contaminant PPM" +
-                    "");
+            alert.setContentText("Please Choose Overall Water "
+                    + "Condition, Virus PPM, and Contaminant PPM");
             alert.showAndWait();
         } else if (user.getProfile().getNameProperty().get() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

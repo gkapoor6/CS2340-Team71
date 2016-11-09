@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 
 public class getSourceReportsTest {
-    
+
     /**
      * Test data
      */
@@ -88,7 +88,7 @@ public class getSourceReportsTest {
 
         testList = ReportDBAccess.getReportList(ONE_NAME);
         assertEquals("Wrong size after adding", testList.size(), setupObsList.size());
-        
+
         testList = ReportDBAccess.getReportList(WRONG_NAME);
         assertEquals("Size should be 0", testList.size(), 0);
     }
@@ -120,16 +120,16 @@ public class getSourceReportsTest {
         r.getNameProperty().set(ONE_NAME);
         r.getWaterConditionProperty().set(String.format("Condition%d", INITIAL_CAPACITY));
         r.getWaterTypeProperty().set(String.format("Type%d", INITIAL_CAPACITY));
-        
+
         testList = ReportDBAccess.getReportList(ONE_NAME);
         assertEquals("A report that should not exist is detected", testList.indexOf(r), -1);
-        
+
         ReportDBAccess.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
                 r.getWaterConditionProperty().get(), r.getLatitudeProperty().get(), r.getLongitudeProperty().get());
         setupObsList.add(r);
 
         testList = ReportDBAccess.getReportList(ONE_NAME);
-        
+
         compare2Reports(testList.get(INITIAL_CAPACITY), r);
     }
 
