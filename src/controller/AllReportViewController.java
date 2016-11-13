@@ -16,7 +16,7 @@ import FXApp.MainFXApp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import model.WaterSourceReport;
 import netscape.javascript.JSObject;
 /**
@@ -83,7 +83,7 @@ public class AllReportViewController
             .zoom(9);
         map = mapView.createMap(mapOptions);
         window = new InfoWindow();
-        for (WaterSourceReport w: ReportDBAccess.getReportList(
+        for (WaterSourceReport w: DBInterfacer.getReportList(
                 user.getProfile().getNameProperty().get())) {
             MarkerOptions markerOptions = new MarkerOptions();
             LatLong location = new LatLong(w.getLatitudeProperty().get(),

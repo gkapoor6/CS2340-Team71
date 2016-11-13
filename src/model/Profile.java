@@ -20,10 +20,10 @@ public class Profile {
      * @param home home address
      */
     public Profile(String name, String email, String title, String home) {
-        _name.set(name);
-        _email.set(email);
-        _title.set(title);
-        _home.set(home);
+        this._name.set(name);
+        this._email.set(email);
+        this._title.set(title);
+        this._home.set(home);
     }
     /**
      * Constructor for profile of a newly registered user
@@ -34,35 +34,35 @@ public class Profile {
      * Setters for the instance data
      */
     public void setName(String name) {
-        _name.set(name);
+        this._name.set(name);
     }
     public void setEmail(String email) {
-        _email.set(email);
+        this._email.set(email);
     }
     public void setTitle(String title) {
-        _title.set(title);
+        this._title.set(title);
     }
     public void setHome(String home) {
-        _home.set(home);
+        this._home.set(home);
     }
     /**
      * Getters for the instance data
      */
     public StringProperty getNameProperty() {
-        return _name;
+        return this._name;
     }
     public StringProperty getEmailProperty() {
-        return _email;
+        return this._email;
     }
     public StringProperty getTitleProperty() {
-        return _title;
+        return this._title;
     }
     public StringProperty getHomeProperty() {
-        return _home;
+        return this._home;
     }
     @Override
     public String toString() {
-        return "Profile [name=" + _name.get() + ", email=" + _email.get()
-            + ", title=" + _title.get() + ", home=" + _home.get() + "]";
+        return "Profile [name=" + this._name.get() + ", email=" + this._email.get()
+            + ", title=" + this._title.get() + ", home=" + this._home.get() + "]";
     }
 }

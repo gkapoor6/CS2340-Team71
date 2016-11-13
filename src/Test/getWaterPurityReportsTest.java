@@ -11,11 +11,11 @@ import org.junit.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.DBUtilizer;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import model.WaterPurityReport;
 
 /**
- * Test class for {@link model.ReportDBAccess#getWaterPurityReportList()}.
+ * Test class for {@link model.DBInterfacer#getWaterPurityReportList()}.
  * @author Md Irtiza Hafiz
  * @version 1.0
  */
@@ -63,7 +63,7 @@ public class getWaterPurityReportsTest {
         DBUtilizer.dbExecuteUpdate("DELETE FROM WaterPurityReportTable");
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
             WaterPurityReport p = setupList.get(i);
-            ReportDBAccess.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
+            DBInterfacer.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
                     p.getContaminantPPMProperty().get(), p.getOverallConditionProperty().get(),
                     p.getLatitudeProperty().get(), p.getLongitudeProperty().get());
         }
@@ -74,7 +74,7 @@ public class getWaterPurityReportsTest {
      */
     @Test
     public void testSize() {
-        testList = ReportDBAccess.getWaterPurityReportList();
+        testList = DBInterfacer.getWaterPurityReportList();
         WaterPurityReport p = new WaterPurityReport(0, null, 0, 0, null, null, 0, 0);
         p.getNameProperty().set(ONE_NAME);
         p.getVirusPPMProperty().set(INITIAL_CAPACITY);
@@ -82,12 +82,12 @@ public class getWaterPurityReportsTest {
         p.getOverallConditionProperty().set(String.format("Condition%d", INITIAL_CAPACITY));
         p.getLatitudeProperty().set(INITIAL_CAPACITY);
         p.getLongitudeProperty().set(INITIAL_CAPACITY);
-        ReportDBAccess.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
+        DBInterfacer.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
                 p.getContaminantPPMProperty().get(), p.getOverallConditionProperty().get(),
                 p.getLatitudeProperty().get(), p.getLongitudeProperty().get());
         setupObsList.add(p);
         
-        testList = ReportDBAccess.getWaterPurityReportList();
+        testList = DBInterfacer.getWaterPurityReportList();
         assertEquals("Wrong size after adding", testList.size(), setupObsList.size());
     }
     
@@ -96,7 +96,7 @@ public class getWaterPurityReportsTest {
      */
     @Test
     public void testInitReports() {
-        testList = ReportDBAccess.getWaterPurityReportList();
+        testList = DBInterfacer.getWaterPurityReportList();
         WaterPurityReport init;
         WaterPurityReport dbInit;
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
@@ -119,15 +119,15 @@ public class getWaterPurityReportsTest {
         p.getVirusPPMProperty().set(INITIAL_CAPACITY);
         p.getOverallConditionProperty().set(String.format("Condition%d", INITIAL_CAPACITY));
         
-        testList = ReportDBAccess.getWaterPurityReportList();
+        testList = DBInterfacer.getWaterPurityReportList();
         assertEquals("A report that should not exist is detected", testList.indexOf(p), -1);
         
-        ReportDBAccess.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
+        DBInterfacer.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
                 p.getContaminantPPMProperty().get(), p.getOverallConditionProperty().get(),
                 p.getLatitudeProperty().get(), p.getLongitudeProperty().get());
         setupObsList.add(p);
         
-        testList = ReportDBAccess.getWaterPurityReportList();
+        testList = DBInterfacer.getWaterPurityReportList();
         
         compare2Reports(testList.get(INITIAL_CAPACITY), p);
     }

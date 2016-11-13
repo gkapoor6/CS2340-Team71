@@ -6,7 +6,7 @@ import org.junit.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.DBUtilizer;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import model.WaterSourceReport;
 
 import static org.junit.Assert.*;
@@ -63,7 +63,7 @@ public class getSourceReportsTest {
         DBUtilizer.dbExecuteUpdate("DELETE FROM WaterSourceReportTable");
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
             WaterSourceReport r = setupList.get(i);
-            ReportDBAccess.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
+            DBInterfacer.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
                     r.getWaterConditionProperty().get(), r.getLatitudeProperty().get(), r.getLongitudeProperty().get());
         }
     }
@@ -74,7 +74,7 @@ public class getSourceReportsTest {
      */
     @Test
     public void testSize() {
-        testList = ReportDBAccess.getReportList(ONE_NAME);
+        testList = DBInterfacer.getReportList(ONE_NAME);
         assertEquals("Wrong size", testList.size(), setupObsList.size());
         WaterSourceReport r = new WaterSourceReport();
         r.getLatitudeProperty().set(INITIAL_CAPACITY);
@@ -82,14 +82,14 @@ public class getSourceReportsTest {
         r.getNameProperty().set(ONE_NAME);
         r.getWaterConditionProperty().set(String.format("Condition%d", INITIAL_CAPACITY));
         r.getWaterTypeProperty().set(String.format("Type%d", INITIAL_CAPACITY));
-        ReportDBAccess.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
+        DBInterfacer.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
                 r.getWaterConditionProperty().get(), r.getLatitudeProperty().get(), r.getLongitudeProperty().get());
         setupObsList.add(r);
 
-        testList = ReportDBAccess.getReportList(ONE_NAME);
+        testList = DBInterfacer.getReportList(ONE_NAME);
         assertEquals("Wrong size after adding", testList.size(), setupObsList.size());
 
-        testList = ReportDBAccess.getReportList(WRONG_NAME);
+        testList = DBInterfacer.getReportList(WRONG_NAME);
         assertEquals("Size should be 0", testList.size(), 0);
     }
 
@@ -98,7 +98,7 @@ public class getSourceReportsTest {
      */
     @Test
     public void testInitReports() {
-        testList = ReportDBAccess.getReportList(ONE_NAME);
+        testList = DBInterfacer.getReportList(ONE_NAME);
         WaterSourceReport init;
         WaterSourceReport dbInit;
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
@@ -121,14 +121,14 @@ public class getSourceReportsTest {
         r.getWaterConditionProperty().set(String.format("Condition%d", INITIAL_CAPACITY));
         r.getWaterTypeProperty().set(String.format("Type%d", INITIAL_CAPACITY));
 
-        testList = ReportDBAccess.getReportList(ONE_NAME);
+        testList = DBInterfacer.getReportList(ONE_NAME);
         assertEquals("A report that should not exist is detected", testList.indexOf(r), -1);
 
-        ReportDBAccess.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
+        DBInterfacer.insertReport(r.getNameProperty().get(), r.getWaterTypeProperty().get(),
                 r.getWaterConditionProperty().get(), r.getLatitudeProperty().get(), r.getLongitudeProperty().get());
         setupObsList.add(r);
 
-        testList = ReportDBAccess.getReportList(ONE_NAME);
+        testList = DBInterfacer.getReportList(ONE_NAME);
 
         compare2Reports(testList.get(INITIAL_CAPACITY), r);
     }

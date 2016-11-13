@@ -33,7 +33,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import model.WaterPurityReport;
 import netscape.javascript.JSObject;
 /**
@@ -200,7 +200,7 @@ public class ViewWaterQualityHistoryGraph
             alert.showAndWait();
         } else {
             ObservableList<WaterPurityReport> waterPurityReportList =
-                    ReportDBAccess.getWaterPurityReportList();
+                    DBInterfacer.getWaterPurityReportList();
             //String month;
             double virusJan = 0.0, virusFeb = 0.0,
                     virusMar = 0.0, virusApr = 0.0,

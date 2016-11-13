@@ -28,7 +28,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import netscape.javascript.JSObject;
 /**
  * Controller for view of water source report submission
@@ -194,7 +194,7 @@ public class ReportDataController
             alert.setContentText("Please update your Profile name");
             alert.showAndWait();
         } else {
-            ReportDBAccess.insertReport(
+            DBInterfacer.insertReport(
                     user.getProfile().getNameProperty().get(),
                     WaterTypeCombox.getValue(), WaterConditionCombox.getValue(),
                     location.getLatitude(), location.getLongitude());

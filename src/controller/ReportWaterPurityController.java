@@ -27,7 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import netscape.javascript.JSObject;
 import FXApp.MainFXApp;
 /**
@@ -201,7 +201,7 @@ public class ReportWaterPurityController implements Initializable,
             alert.setContentText("Please Update Your Profile Name");
             alert.showAndWait();
         } else {
-            ReportDBAccess.insertPurityReport(user.getProfile().
+            DBInterfacer.insertPurityReport(user.getProfile().
                     getNameProperty().get(),
                     Double.parseDouble(VirusPPMField.getText()),
                     Double.parseDouble(ContaminantPPMField.getText()),

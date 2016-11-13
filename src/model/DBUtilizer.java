@@ -59,6 +59,7 @@ public class DBUtilizer {
             stmt = conn.createStatement();
         } catch (SQLException e) {
             System.out.println("database error");
+            e.printStackTrace();
         }
         try {
             stmt.execute("CREATE TABLE Users"

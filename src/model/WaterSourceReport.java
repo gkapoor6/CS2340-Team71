@@ -34,13 +34,13 @@ public class WaterSourceReport {
     public WaterSourceReport(int reportID, String name, String waterType,
             String waterCondition, String dateTime, double latitude,
             double longitude) {
-        _reportID.set(reportID);
-        _name.set(name);
-        _waterCondition.set(waterCondition);
-        _waterType.set(waterType);
-        _dateTime.set(dateTime);
-        _latitude.set(latitude);
-        _longitude.set(longitude);
+        this._reportID.set(reportID);
+        this._name.set(name);
+        this._waterCondition.set(waterCondition);
+        this._waterType.set(waterType);
+        this._dateTime.set(dateTime);
+        this._latitude.set(latitude);
+        this._longitude.set(longitude);
     }
     /**
      * Default constructor
@@ -51,32 +51,32 @@ public class WaterSourceReport {
      * Getters for all the properties
      */
     public IntegerProperty getReportIDProperty() {
-        return _reportID;
+        return this._reportID;
     }
     public StringProperty getNameProperty() {
-        return _name;
+        return this._name;
     }
     public StringProperty getWaterTypeProperty() {
-        return _waterType;
+        return this._waterType;
     }
     public StringProperty getWaterConditionProperty() {
-        return _waterCondition;
+        return this._waterCondition;
     }
     public DoubleProperty getLatitudeProperty() {
-        return _latitude;
+        return this._latitude;
     }
     public DoubleProperty getLongitudeProperty() {
-        return _longitude;
+        return this._longitude;
     }
     public StringProperty getDateTimeProperty() {
-        return _dateTime;
+        return this._dateTime;
     }
     @Override
     public String toString() {
-        return "WaterSourceReport [reportID=" + _reportID.get()
-                + ", name=" + _name.get() + ", waterType=" + _waterType.get()
-                + ", waterCondition=" + _waterCondition.get()
-                + ", latitude=" + _latitude.get() + ", longitude="
-                + _longitude.get() + ", dateTime=" + _dateTime.get() + "]";
+        return "WaterSourceReport [reportID=" + this._reportID.get()
+                + ", name=" + this._name.get() + ", waterType=" + this._waterType.get()
+                + ", waterCondition=" + this._waterCondition.get()
+                + ", latitude=" + this._latitude.get() + ", longitude="
+                + this._longitude.get() + ", dateTime=" + this._dateTime.get() + "]";
     }
 }

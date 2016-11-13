@@ -10,7 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.AuthorizedUser;
 import model.Profile;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 /**
  * Controller for profile edit window
  * @author Hairong Ke
@@ -79,7 +79,7 @@ public class ProfileScreenController {
             profile.setTitle(titleComboBox.getValue());
             profile.setEmail(emailField.getText());
             profile.setHome(addressField.getText());
-            ReportDBAccess.updateProfile(nameField.getText(),
+            DBInterfacer.updateProfile(nameField.getText(),
                     titleComboBox.getValue(), emailField.getText(),
                     addressField.getText(), user.getName());
             mainApp.showApplication(user);

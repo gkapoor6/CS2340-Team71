@@ -14,21 +14,21 @@ public abstract class AuthorizedUser {
      * @return username
      */
     public String getName() {
-        return username;
+        return this.username;
     }
     /**
      * Returns the password
      * @return password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
     /**
      * Return user's profile object
      * @return profile object
      */
     public Profile getProfile() {
-        return profile;
+        return this.profile;
     }
     /**
      * Constructor for an Authorized User
@@ -63,6 +63,6 @@ public abstract class AuthorizedUser {
     }
     @Override
     public String toString() {
-        return username + " " + password;
+        return this.username + " " + this.password;
     }
 }

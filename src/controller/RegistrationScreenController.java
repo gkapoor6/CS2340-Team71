@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 /**
  * Registration screen controller
  *
@@ -74,7 +74,7 @@ public class RegistrationScreenController {
             alert.showAndWait();
         } else {
             if (pass.equals(confirm)) {
-                if (!ReportDBAccess.insertUser(userName, pass, type)) {
+                if (!DBInterfacer.insertUser(userName, pass, type)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Could not create User");
                     alert.setContentText("A user with this username"

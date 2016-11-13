@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
  * @author Dong Son Trinh
  *
  */
-public class ReportDBAccess {
+public class DBInterfacer {
     public static void createSourceReportTable() {
         DBUtilizer.dbCreateSourceReports();
     }
@@ -37,8 +37,9 @@ public class ReportDBAccess {
             String finduser = "SELECT * FROM WaterSourceReportTable"
                     + " WHERE Name = '" + name + "'";
             rs = DBUtilizer.dbExecuteQuery(finduser);
+            WaterSourceReport report;
             while (rs.next()) {
-                WaterSourceReport report = new WaterSourceReport(
+                report = new WaterSourceReport(
                         rs.getInt("ReportID"),
                         rs.getString("Name"),
                         rs.getString("WaterType"),
@@ -74,8 +75,9 @@ public class ReportDBAccess {
         try {
             String reports = "SELECT * FROM WaterPurityReportTable";
             rs = DBUtilizer.dbExecuteQuery(reports);
+            WaterPurityReport report;
             while (rs.next()) {
-                WaterPurityReport report = new WaterPurityReport(
+                report = new WaterPurityReport(
                         rs.getInt("ReportID"),
                         rs.getString("Name"),
                         rs.getDouble("VirusPPM"),

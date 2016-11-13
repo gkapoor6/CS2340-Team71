@@ -18,7 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import model.WaterSourceReport;
 
 /**
@@ -75,7 +75,7 @@ public class ReportViewController
      */
     public void setMain(MainFXApp mainApp) {
         this.mainApp = mainApp;
-        reportTable.setItems(ReportDBAccess.getReportList(
+        reportTable.setItems(DBInterfacer.getReportList(
                 user.getProfile().getNameProperty().get()));
 
     }

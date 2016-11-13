@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 
 import java.util.logging.Logger;
 
@@ -47,9 +47,9 @@ public class MainFXApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		mainScreen = primaryStage;
-		ReportDBAccess.createSourceReportTable();
-		ReportDBAccess.createUserTable();
-		ReportDBAccess.createPurityTable();
+		DBInterfacer.createSourceReportTable();
+		DBInterfacer.createUserTable();
+		DBInterfacer.createPurityTable();
 		initLayout(mainScreen);
 		showWelcomeScreen();
 		

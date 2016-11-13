@@ -18,7 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.AuthorizedUser;
-import model.ReportDBAccess;
+import model.DBInterfacer;
 import model.WaterPurityReport;
 /**
  * Controller for view all purity reports
@@ -96,7 +96,7 @@ public class ReportPurityViewController implements Initializable,
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reportTable.setItems(ReportDBAccess.
+        reportTable.setItems(DBInterfacer.
                 getWaterPurityReportList());
 
 

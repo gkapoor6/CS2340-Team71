@@ -35,47 +35,48 @@ public class WaterPurityReport {
                              double contaminantPPM, String overallCondition,
                              String dateTime, double latitude,
                              double longitude) {
-        _reportID.set(reportID);
-        _name.set(name);
-        _contaminantPPM.set(contaminantPPM);
-        _virusPPM.set(virusPPM);
-        _overallCondition.set(overallCondition);
-        _dateTime.set(dateTime);
-        _latitude.set(latitude);
-        _longitude.set(longitude);
+        this._reportID.set(reportID);
+        this._name.set(name);
+        this._contaminantPPM.set(contaminantPPM);
+        this._virusPPM.set(virusPPM);
+        this._overallCondition.set(overallCondition);
+        this._dateTime.set(dateTime);
+        this._latitude.set(latitude);
+        this._longitude.set(longitude);
     }
     public IntegerProperty getReportIDProperty() {
-        return _reportID;
+        return this._reportID;
     }
     public StringProperty getNameProperty() {
-        return _name;
+        return this._name;
     }
     public DoubleProperty getVirusPPMProperty() {
-        return _virusPPM;
+        return this._virusPPM;
     }
     public DoubleProperty getContaminantPPMProperty() {
-        return _contaminantPPM;
+        return this._contaminantPPM;
     }
     public StringProperty getOverallConditionProperty() {
-        return _overallCondition;
+        return this._overallCondition;
     }
     public DoubleProperty getLatitudeProperty() {
-        return _latitude;
+        return this._latitude;
     }
     public DoubleProperty getLongitudeProperty() {
-        return _longitude;
+        return this._longitude;
     }
     public StringProperty getDateTimeProperty() {
-        return _dateTime;
+        return this._dateTime;
     }
     @Override
     public String toString() {
-        return "Water Purity Report [Report ID = " + _reportID.get()
-                + ", Name = " + _name.get()
-                + ", Virus PPM = " + _virusPPM.get()
-                + ", Contaminant PPM = " + _contaminantPPM.get()
-                + ", Latitude = "
-                + _latitude.get() + ", Longitude = " + _longitude.get()
-                + ", Date and Time = " + _dateTime.get() + "]";
+        return "Water Purity Report [Report ID = " + this._reportID.get()
+                + ", Name = " + this._name.get()
+                + ", Virus PPM = " + this._virusPPM.get()
+                + ", Contaminant PPM = " + this._contaminantPPM.get()
+                + ", Overall Condition = " + this._overallCondition.get()
+                + ", Latitude = " + this._latitude.get()
+                + ", Longitude = " + this._longitude.get()
+                + ", Date and Time = " + this._dateTime.get() + "]";
     }
 }
