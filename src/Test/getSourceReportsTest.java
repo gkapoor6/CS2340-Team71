@@ -3,11 +3,11 @@ package Test;
 import org.junit.Before;
 import org.junit.Test;
 
-import Model.DBUtilizer;
-import Model.ReportDBAccess;
-import Model.WaterSourceReport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.DBUtilizer;
+import model.ReportDBAccess;
+import model.WaterSourceReport;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Test class for {@link Model.ReportDBAccess#getReportList(String)()}.
+ * Test class for {@link model.ReportDBAccess#getReportList(String)()}.
  * @author Dong Son Trinh
  * @version 1.1
  */

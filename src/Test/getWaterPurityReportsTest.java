@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import Model.DBUtilizer;
-import Model.ReportDBAccess;
-import Model.WaterPurityReport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.DBUtilizer;
+import model.ReportDBAccess;
+import model.WaterPurityReport;
 
 /**
- * Test class for {@link Model.ReportDBAccess#getWaterPurityReportList()}.
+ * Test class for {@link model.ReportDBAccess#getWaterPurityReportList()}.
  * @author Md Irtiza Hafiz
  * @version 1.0
  */
