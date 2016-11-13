@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Test class for {@link model.DBInterfacer#getReportList(String)()}.
+ * Test class for {@link model.DBInterfacer#getSourceReportList(String)()}.
  * @author Dong Son Trinh
  * @version 1.1
  */
