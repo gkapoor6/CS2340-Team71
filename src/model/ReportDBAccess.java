@@ -146,7 +146,7 @@ public class ReportDBAccess {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    return false;
+                    e.printStackTrace();
                 }
             }
         }
@@ -190,7 +190,7 @@ public class ReportDBAccess {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    return false;
+                    e.printStackTrace();
                 }
             }
         }
@@ -228,7 +228,7 @@ public class ReportDBAccess {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    return false;
+                    e.printStackTrace();
                 }
             }
         }
@@ -304,7 +304,7 @@ public class ReportDBAccess {
             }
             if (type != null) {
                 user = (AuthorizedUser) Class.
-                        forName(String.format("Model.%s", type))
+                        forName(String.format("model.%s", type))
                         .getConstructor(String.class, String.class,
                                 String.class,
                         String.class, String.class, String.class).newInstance(

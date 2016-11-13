@@ -186,7 +186,7 @@ public class ViewWaterQualityHistoryGraph
         xAxis.setLabel("Month");
         yAxis.setLabel(type);
         yAxis.autoRangingProperty();
-        LineChart<String, Number> lineChart = new LineChart<String, Number>(
+        LineChart<String, Number> lineChart = new LineChart<>(
                 xAxis, yAxis);
         //XYChart.Series series2 = new XYChart.Series();
 
@@ -391,99 +391,99 @@ public class ViewWaterQualityHistoryGraph
             }
             if (virusJanCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("January", 0));
+                    .add(new XYChart.Data<>("January", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("January",
-                        (virusJan / virusJanCount)));
+                    .add(new XYChart.Data<>("January",
+                            (virusJan / virusJanCount)));
             }
             if (virusFebCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("February", 0));
+                    .add(new XYChart.Data<>("February", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("February",
-                        (virusFeb / virusFebCount)));
+                    .add(new XYChart.Data<>("February",
+                            (virusFeb / virusFebCount)));
             }
             if (virusMarCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("March", 0));
+                    .add(new XYChart.Data<>("March", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("March",
-                        (virusMar / virusMarCount)));
+                    .add(new XYChart.Data<>("March",
+                            (virusMar / virusMarCount)));
             }
             if (virusAprCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("April", 0));
+                    .add(new XYChart.Data<>("April", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("April",
-                        (virusApr / virusAprCount)));
+                    .add(new XYChart.Data<>("April",
+                            (virusApr / virusAprCount)));
             }
             if (virusMayCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("May", 0));
+                    .add(new XYChart.Data<>("May", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("May",
-                        (virusMay / virusMayCount)));
+                    .add(new XYChart.Data<>("May",
+                            (virusMay / virusMayCount)));
             }
             if (virusJunCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("June", 0));
+                    .add(new XYChart.Data<>("June", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("June",
-                        (virusJun / virusJunCount)));
+                    .add(new XYChart.Data<>("June",
+                            (virusJun / virusJunCount)));
             }
             if (virusJulCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("July", 0));
+                    .add(new XYChart.Data<>("July", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("July",
-                        (virusJul / virusJulCount)));
+                    .add(new XYChart.Data<>("July",
+                            (virusJul / virusJulCount)));
             }
             if (virusAugCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("August", 0));
+                    .add(new XYChart.Data<>("August", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("August",
-                        (virusAug / virusAugCount)));
+                    .add(new XYChart.Data<>("August",
+                            (virusAug / virusAugCount)));
             }
             if (virusSeptCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("September", 0));
+                    .add(new XYChart.Data<>("September", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("September",
-                        (virusSept / virusSeptCount)));
+                    .add(new XYChart.Data<>("September",
+                            (virusSept / virusSeptCount)));
             }
             if (virusOctCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("October", 0));
+                    .add(new XYChart.Data<>("October", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("October",
-                        (virusOct / virusOctCount)));
+                    .add(new XYChart.Data<>("October",
+                            (virusOct / virusOctCount)));
             }
             if (virusNovCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("November", 0));
+                    .add(new XYChart.Data<>("November", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("November",
-                        (virusNov / virusNovCount)));
+                    .add(new XYChart.Data<>("November",
+                            (virusNov / virusNovCount)));
             }
             if (virusDecCount == 0) {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("December", 0));
+                    .add(new XYChart.Data<>("December", 0));
             } else {
                 series.getData()
-                    .add(new XYChart.Data<String, Number>("December",
-                        (virusDec / virusDecCount)));
+                    .add(new XYChart.Data<>("December",
+                            (virusDec / virusDecCount)));
             }
             lineChart.getData().add(series);
             Scene scene = new Scene(lineChart, 800, 600);

@@ -9,18 +9,7 @@ import com.sun.rowset.CachedRowSetImpl;
  * @author Dong Son Trinh
  *
  */
-/**
- * @author Dong Son Trinh
- *
- */
-/**
- * @author Dong Son Trinh
- *
- */
-/**
- * @author Dong Son Trinh
- *
- */
+
 public class DBUtilizer {
     private static final String jdbcDriver = "org.sqlite.JDBC";
     private static final String dbName = "jdbc:sqlite:reports.db";

@@ -56,12 +56,6 @@ public class MainFXApp extends Application {
 	}
 	
 	/**
-	 * Getter of reference to main window stage
-	 * @return reference to main stage
-	 */
-	public Stage getMainScreen() { return mainScreen; }
-	
-	/**
 	 * Initial layout
 	 * @param mainScreen mainstage
 	 */

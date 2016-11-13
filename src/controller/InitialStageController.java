@@ -11,11 +11,10 @@ public class InitialStageController {
     /**
      * reference to mainApp
      */
-    @SuppressWarnings("unused")
     private MainFXApp mainApp;
     /**
      * Setup the main application link so we can call methods there
-     * @param main reference to the FXApp instance
+     * @param mainApp reference to the FXApp instance
      */
     public void setMainApp(MainFXApp mainApp) {
         this.mainApp = mainApp;

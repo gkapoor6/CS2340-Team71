@@ -10,7 +10,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportPurityViewController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+    <AnchorPane VBox.vgrow="ALWAYS" />
       <TableView fx:id="reportTable" editable="true">
          <columns>
             <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="86.66667175292969" text="Name" />

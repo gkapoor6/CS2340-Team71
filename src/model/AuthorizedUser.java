@@ -6,15 +6,15 @@ package model;
  * @author Dong Son Trinh
  */
 public abstract class AuthorizedUser {
-    private String name;
+    private final String username;
     private String password;
     private Profile profile;
     /**
-     * Returns name
-     * @return name
+     * Returns username
+     * @return username
      */
     public String getName() {
-        return name;
+        return username;
     }
     /**
      * Returns the password
@@ -57,12 +57,12 @@ public abstract class AuthorizedUser {
      * @param profile profile of user
      */
     public AuthorizedUser(String username, String password, Profile profile) {
-        this.name = username;
+        this.username = username;
         this.password = password;
         this.profile = profile;
     }
     @Override
     public String toString() {
-        return name + " " + password;
+        return username + " " + password;
     }
 }

@@ -72,8 +72,6 @@ public class ReportWaterPurityController implements Initializable,
     private int locationNum = 0;
     private String locationSearch = "";
     private StringProperty address = new SimpleStringProperty();
-    private ObservableList<String> VirusPPMList;
-    private ObservableList<String> ContaminantPPMList;
     private ObservableList<String> ConditionList;
 
     /**
