@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <SplitPane dividerPositions="0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.60"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportDataController">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportWaterSourceController">
     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0"
           prefWidth="700.0">
         <Label layoutX="170.0" layoutY="99.0" text="Water Condition:">

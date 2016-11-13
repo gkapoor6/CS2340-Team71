@@ -25,7 +25,7 @@ import model.WaterPurityReport;
  * @author Geetika Kapoor
  *
  */
-public class ReportPurityViewController implements Initializable,
+public class ShowPurityReportsController implements Initializable,
         MapComponentInitializedListener {
 
     /**
@@ -97,7 +97,7 @@ public class ReportPurityViewController implements Initializable,
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         reportTable.setItems(DBInterfacer.
-                getWaterPurityReportList());
+                getPurityReportList());
 
 
         ReportIDColumn.setCellValueFactory(cellData -> cellData.getValue().

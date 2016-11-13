@@ -29,7 +29,7 @@ public class DBInterfacer {
      * @param name name of user
      * @return an observable list of water source reports submitted by user
      */
-    public static ObservableList<WaterSourceReport> getReportList(String name) {
+    public static ObservableList<WaterSourceReport> getSourceReportList(String name) {
         ObservableList<WaterSourceReport> list =
                 FXCollections.observableArrayList();
         ResultSet rs = null;
@@ -68,7 +68,7 @@ public class DBInterfacer {
      * @return an observable list of water purity reports submitted by user
      */
     public static ObservableList<WaterPurityReport>
-            getWaterPurityReportList() {
+            getPurityReportList() {
         ObservableList<WaterPurityReport> list =
                 FXCollections.observableArrayList();
         ResultSet rs = null;
@@ -162,7 +162,7 @@ public class DBInterfacer {
      * @param latitude latitude of location
      * @param longtitude longitude of location
      */
-    public static boolean insertReport(String name, String waterType,
+    public static boolean insertSourceReport(String name, String waterType,
                                     String waterCondition,
                                     double latitude, double longtitude) {
         ResultSet rs = null;

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <SplitPane dividerPositions="0.3" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.60"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportViewController">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowSourceReportsController">
     <TableView fx:id="reportTable" editable="true">
       <columns>
           <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID"/>

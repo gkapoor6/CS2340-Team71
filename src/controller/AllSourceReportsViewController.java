@@ -24,7 +24,7 @@ import netscape.javascript.JSObject;
  * @author Dong Son Trinh
  *
  */
-public class AllReportViewController
+public class AllSourceReportsViewController
     implements Initializable, MapComponentInitializedListener {
     /**
      * reference to mainApp
@@ -83,7 +83,7 @@ public class AllReportViewController
             .zoom(9);
         map = mapView.createMap(mapOptions);
         window = new InfoWindow();
-        for (WaterSourceReport w: DBInterfacer.getReportList(
+        for (WaterSourceReport w: DBInterfacer.getSourceReportList(
                 user.getProfile().getNameProperty().get())) {
             MarkerOptions markerOptions = new MarkerOptions();
             LatLong location = new LatLong(w.getLatitudeProperty().get(),

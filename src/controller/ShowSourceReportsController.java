@@ -22,11 +22,11 @@ import model.DBInterfacer;
 import model.WaterSourceReport;
 
 /**
- * Controller for view of all reports submitted by a user
+ * Controller for view of all source reports submitted by a user
  * @author Dong Son Trinh
  *
  */
-public class ReportViewController
+public class ShowSourceReportsController
         implements Initializable, MapComponentInitializedListener {
 
     /**
@@ -75,7 +75,7 @@ public class ReportViewController
      */
     public void setMain(MainFXApp mainApp) {
         this.mainApp = mainApp;
-        reportTable.setItems(DBInterfacer.getReportList(
+        reportTable.setItems(DBInterfacer.getSourceReportList(
                 user.getProfile().getNameProperty().get()));
 
     }

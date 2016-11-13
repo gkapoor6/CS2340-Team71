@@ -52,21 +52,21 @@ public class ApplicationScreenController {
      */
     @FXML
     public void handleActualReportsPressed() {
-        mainApp.showReports(user);
+        mainApp.showSubmittedSourceReports(user);
     }
     /**
      * Submit a water source report
      */
     @FXML
     public void handleReportDataPressed() {
-        mainApp.showReportData(user);
+        mainApp.showReportSource(user);
     }
     /**
      * Show all reports purely on a map without a table
      */
     @FXML
     public void handleViewAllReports() {
-        mainApp.showAllReports(user);
+        mainApp.showAllSourceReports(user);
     }
     /**
      * Show all reports purely on a map without a table
@@ -74,7 +74,7 @@ public class ApplicationScreenController {
     @FXML
     public void handlePurityReports() {
         if (user instanceof Manager) {
-            mainApp.showPurityReports(user);
+            mainApp.showSubmittedPurityReports(user);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Access Restriction");

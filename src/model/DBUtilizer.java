@@ -12,7 +12,7 @@ import com.sun.rowset.CachedRowSetImpl;
 
 public class DBUtilizer {
     private static final String jdbcDriver = "org.sqlite.JDBC";
-    private static final String dbName = "jdbc:sqlite:reports.db";
+    private static final String dbName = "jdbc:sqlite:ProjectDatabase.db";
     private static Connection conn = null;
     /**
      * Create Water Source Report Table
@@ -123,7 +123,7 @@ public class DBUtilizer {
     /**
      * Connects to the database
      */
-    public static void dbConnect() {
+    private static void dbConnect() {
         try {
             Class.forName(jdbcDriver);
             conn = DriverManager.getConnection(dbName);
@@ -138,7 +138,7 @@ public class DBUtilizer {
     /**
      * Disconnects from the database
      */
-    public static void dbDisconnect() {
+    private static void dbDisconnect() {
         try {
             if (conn != null && !conn.isClosed()) {
                 conn.close();

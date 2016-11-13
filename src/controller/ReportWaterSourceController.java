@@ -35,7 +35,7 @@ import netscape.javascript.JSObject;
  * @author Dong Son Trinh
  *
  */
-public class ReportDataController
+public class ReportWaterSourceController
     implements Initializable, MapComponentInitializedListener {
     /**
      * reference to mainApp
@@ -194,7 +194,7 @@ public class ReportDataController
             alert.setContentText("Please update your Profile name");
             alert.showAndWait();
         } else {
-            DBInterfacer.insertReport(
+            DBInterfacer.insertSourceReport(
                     user.getProfile().getNameProperty().get(),
                     WaterTypeCombox.getValue(), WaterConditionCombox.getValue(),
                     location.getLatitude(), location.getLongitude());

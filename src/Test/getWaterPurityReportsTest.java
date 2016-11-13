@@ -15,7 +15,7 @@ import model.DBInterfacer;
 import model.WaterPurityReport;
 
 /**
- * Test class for {@link model.DBInterfacer#getWaterPurityReportList()}.
+ * Test class for {@link model.DBInterfacer#getPurityReportList()}.
  * @author Md Irtiza Hafiz
  * @version 1.0
  */
@@ -52,7 +52,7 @@ public class getWaterPurityReportsTest {
     
     /**
      * Set up the data before testing
-     * @throws SQLException
+     * @throws SQLException throw exception (very rarely)
      */
     @Before
     public void setUp() throws SQLException {
@@ -74,7 +74,7 @@ public class getWaterPurityReportsTest {
      */
     @Test
     public void testSize() {
-        testList = DBInterfacer.getWaterPurityReportList();
+        testList = DBInterfacer.getPurityReportList();
         WaterPurityReport p = new WaterPurityReport(0, null, 0, 0, null, null, 0, 0);
         p.getNameProperty().set(ONE_NAME);
         p.getVirusPPMProperty().set(INITIAL_CAPACITY);
@@ -87,7 +87,7 @@ public class getWaterPurityReportsTest {
                 p.getLatitudeProperty().get(), p.getLongitudeProperty().get());
         setupObsList.add(p);
         
-        testList = DBInterfacer.getWaterPurityReportList();
+        testList = DBInterfacer.getPurityReportList();
         assertEquals("Wrong size after adding", testList.size(), setupObsList.size());
     }
     
@@ -96,7 +96,7 @@ public class getWaterPurityReportsTest {
      */
     @Test
     public void testInitReports() {
-        testList = DBInterfacer.getWaterPurityReportList();
+        testList = DBInterfacer.getPurityReportList();
         WaterPurityReport init;
         WaterPurityReport dbInit;
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
@@ -119,7 +119,7 @@ public class getWaterPurityReportsTest {
         p.getVirusPPMProperty().set(INITIAL_CAPACITY);
         p.getOverallConditionProperty().set(String.format("Condition%d", INITIAL_CAPACITY));
         
-        testList = DBInterfacer.getWaterPurityReportList();
+        testList = DBInterfacer.getPurityReportList();
         assertEquals("A report that should not exist is detected", testList.indexOf(p), -1);
         
         DBInterfacer.insertPurityReport(p.getNameProperty().get(), p.getVirusPPMProperty().get(),
@@ -127,7 +127,7 @@ public class getWaterPurityReportsTest {
                 p.getLatitudeProperty().get(), p.getLongitudeProperty().get());
         setupObsList.add(p);
         
-        testList = DBInterfacer.getWaterPurityReportList();
+        testList = DBInterfacer.getPurityReportList();
         
         compare2Reports(testList.get(INITIAL_CAPACITY), p);
     }

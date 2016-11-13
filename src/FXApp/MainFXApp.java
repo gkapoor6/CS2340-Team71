@@ -24,26 +24,26 @@ import com.lynden.gmapsfx.GoogleMapView;
 
 /**
  * Main application class
- * Handles all scene switching to reuse main stage 
+ * Handles all scene switching to reuse main stage
  *
  */
 public class MainFXApp extends Application {
-	
+
 	/**
 	 * java logger for this class
 	 */
 	private static final Logger LOGGER = Logger.getLogger("MainFXApp");
-	
+
 	/**
 	 * main container for the app window
 	 */
 	private Stage mainScreen;
-	
+
 	/**
 	 * layout for the initial layout
 	 */
 	private BorderPane layout;
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		mainScreen = primaryStage;
@@ -52,9 +52,9 @@ public class MainFXApp extends Application {
 		DBInterfacer.createPurityTable();
 		initLayout(mainScreen);
 		showWelcomeScreen();
-		
+
 	}
-	
+
 	/**
 	 * Initial layout
 	 * @param mainScreen mainstage
@@ -65,10 +65,10 @@ public class MainFXApp extends Application {
 			loader.setLocation(MainFXApp.class.getResource(
 					"../View/InitialStage.fxml"));
 			layout = loader.load();
-			
+
 			InitialStageController controller = loader.getController();
 			controller.setMainApp(this);
-			
+
 			Scene scene = new Scene(layout);
 			mainScreen.setScene(scene);
 			mainScreen.show();
@@ -78,7 +78,7 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Initialize welcome screen
 	 */
@@ -88,9 +88,9 @@ public class MainFXApp extends Application {
 			loader.setLocation(MainFXApp.class.getResource(
 					"../View/WelcomeScreen.fxml"));
 			VBox welcomeScreen = loader.load();
-			
+
 			layout.setCenter(welcomeScreen);
-			
+
 			WelcomeScreenController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
@@ -98,14 +98,14 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * For use to return to main window
 	 */
 	public void showMainScreen() {
 		showWelcomeScreen();
 	}
-	
+
 	/**
 	 * Switches to login view
 	 */
@@ -114,11 +114,11 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource(
 					"../View/LoginScreen.fxml"));
-			
+
 			Pane loginScreen = loader.load();
-			
+
 			layout.setCenter(loginScreen);
-			
+
 			LoginScreenController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
@@ -127,7 +127,7 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Switches to registration view
 	 */
@@ -136,11 +136,11 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource(
 					"../View/RegistrationScreen.fxml"));
-			
+
 			AnchorPane registrationScreen = loader.load();
-			
+
 			layout.setCenter(registrationScreen);
-			
+
 			RegistrationScreenController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
@@ -149,7 +149,7 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	/**
 	 * Proceeds to the application view once logged in successfully
@@ -160,12 +160,12 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource(
 					"../View/ApplicationScreen.fxml"));
-			
+
 			BorderPane applicationScreen = loader.load();
 
 			layout.setCenter(applicationScreen);
 			layout.setBottom(null);
-			
+
 			ApplicationScreenController controller = loader.getController();
 			controller.setUser(user);
 			controller.setMainApp(this);
@@ -175,7 +175,7 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Goes from application screen to edit profile screen
 	 * @param user user whose profile will be edited
@@ -185,11 +185,11 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource(
 					"../View/ProfileScreen.fxml"));
-			
+
 			AnchorPane profileScreen = loader.load();
-			
+
 			layout.setCenter(profileScreen);
-			
+
 			ProfileScreenController controller = loader.getController();
 			controller.setUser(user);
 			controller.setMainApp(this);
@@ -199,22 +199,22 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Goes from application screen to view of all submitted reports by the user
 	 * @param user user whose reports are submitted in the next screen
 	 */
-	public void showReports(AuthorizedUser user) {
+	public void showSubmittedSourceReports(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.getResource(
-					"../View/ReportView.fxml"));
-			
+					"../View/ShowSourceReports.fxml"));
+
 			SplitPane reportView = loader.load();
-			
+
 			layout.setCenter(reportView);
-			
-			ReportViewController controller = loader.getController();			
+
+			ShowSourceReportsController controller = loader.getController();
 			controller.setUser(user);
 			controller.setMain(this);
 		} catch (IOException e) {
@@ -223,22 +223,22 @@ public class MainFXApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Goes from application screen to a reporting data to a water source report screen
 	 * @param user user who is submitting the report
 	 */
-	public void showReportData(AuthorizedUser user) {
+	public void showReportSource(AuthorizedUser user) {
 		try {
             // Load course overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainFXApp.class.getResource(
-            		"../View/ReportData.fxml"));
+            		"../View/ReportWaterSource.fxml"));
             SplitPane reportScreen = loader.load();
 
             layout.setCenter(reportScreen);
 
-            ReportDataController controller = loader.getController();
+            ReportWaterSourceController controller = loader.getController();
             controller.setUser(user);
             controller.setMainApp(this);
 
@@ -279,24 +279,24 @@ public class MainFXApp extends Application {
         }
 
     }
-	
+
 	/**
-	 * Go to screen with all reports submitted by a user marker on a map 
+	 * Go to screen with all reports submitted by a user marker on a map
 	 * @param user the user
 	 */
-	public void showAllReports(AuthorizedUser user) {
+	public void showAllSourceReports(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.
-                    getResource("../View/AllReportView.fxml"));
+                    getResource("../View/AllSourceReportsView.fxml"));
 			GoogleMapView mapScreen = loader.load();
-			
+
 			layout.setCenter(mapScreen);
-			
-			AllReportViewController controller = loader.getController();
+
+			AllSourceReportsViewController controller = loader.getController();
 			controller.setUser(user);
 			controller.setMain(this);
-			
+
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE,
 					"Failed to find the fxml file for viewing all reports on a map");
@@ -308,16 +308,16 @@ public class MainFXApp extends Application {
 	 * Go to screen with purity reports submitted
 	 * @param user the user
 	 */
-	public void showPurityReports(AuthorizedUser user) {
+	public void showSubmittedPurityReports(AuthorizedUser user) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.
-                    getResource("../View/ReportPurityView.fxml"));
+                    getResource("../View/ShowPurityReports.fxml"));
 			VBox mapScreen = loader.load();
 
 			layout.setCenter(mapScreen);
 
-			ReportPurityViewController controller = loader.getController();
+			ShowPurityReportsController controller = loader.getController();
 			controller.setUser(user);
 			controller.setMain(this);
 
@@ -352,7 +352,7 @@ public class MainFXApp extends Application {
 		}
 	}
 
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

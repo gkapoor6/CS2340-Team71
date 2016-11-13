@@ -200,7 +200,7 @@ public class ViewWaterQualityHistoryGraph
             alert.showAndWait();
         } else {
             ObservableList<WaterPurityReport> waterPurityReportList =
-                    DBInterfacer.getWaterPurityReportList();
+                    DBInterfacer.getPurityReportList();
             //String month;
             double virusJan = 0.0, virusFeb = 0.0,
                     virusMar = 0.0, virusApr = 0.0,
