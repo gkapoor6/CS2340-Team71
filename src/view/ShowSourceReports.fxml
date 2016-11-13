@@ -7,23 +7,20 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.60"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowSourceReportsController">
+<SplitPane dividerPositions="0.3" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowSourceReportsController">
     <TableView fx:id="reportTable" editable="true">
       <columns>
-          <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID"/>
-          <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="115.33334350585938"
-                       text="Name"/>
-          <TableColumn fx:id="WaterTypeColumn" prefWidth="111.33331298828125" text="WaterType"/>
-          <TableColumn fx:id="WaterConditionColumn" prefWidth="209.0" text="WaterCondition"/>
-          <TableColumn fx:id="DateTimeColumn" prefWidth="154.0" text="DateTime"/>
+          <TableColumn fx:id="ReportIDColumn" prefWidth="107.66665649414062" text="ReportID" />
+          <TableColumn fx:id="NameColumn" maxWidth="120.0" minWidth="70.0" prefWidth="115.33334350585938" text="Name" />
+          <TableColumn fx:id="WaterTypeColumn" prefWidth="111.33331298828125" text="WaterType" />
+          <TableColumn fx:id="WaterConditionColumn" prefWidth="209.0" text="WaterCondition" />
+          <TableColumn fx:id="DateTimeColumn" prefWidth="154.0" text="DateTime" />
       </columns>
     </TableView>
     <GoogleMapView fx:id="mapView">
-        <Button layoutX="520.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleBackToApplication"
-                text="Back to Application">
+        <Button layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleBackToApplication" text="Back to Application">
             <font>
-                <Font name="Lucida Bright Demibold" size="15.0"/>
+                <Font name="Lucida Bright Demibold" size="15.0" />
             </font>
         </Button>
     </GoogleMapView>

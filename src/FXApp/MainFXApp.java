@@ -263,7 +263,7 @@ public class MainFXApp extends Application {
             loader.setLocation(MainFXApp.class.
                     getResource(
                     		"../View/ReportWaterPurity.fxml"));
-            VBox reportScreen = loader.load();
+            SplitPane reportScreen = loader.load();
 
             layout.setCenter(reportScreen);
 
@@ -313,7 +313,7 @@ public class MainFXApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainFXApp.class.
                     getResource("../View/ShowPurityReports.fxml"));
-			VBox mapScreen = loader.load();
+			SplitPane mapScreen = loader.load();
 
 			layout.setCenter(mapScreen);
 

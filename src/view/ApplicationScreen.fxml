@@ -9,60 +9,55 @@
 <BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApplicationScreenController">
    <bottom>
        <AnchorPane BorderPane.alignment="CENTER">
-           <Button layoutX="275.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleLogoutPressed"
-                   text="Logout">
+           <Button layoutX="303.0" layoutY="529.0" mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Label layoutX="69.0" layoutY="161.0" text="Welcome to the Water Reporting System!">
+           <Label layoutX="69.0" text="Welcome to the Water Reporting System!">
               <font>
-                  <Font name="Sitka Text Bold Italic" size="25.0"/>
+                  <Font name="Sitka Text Bold Italic" size="25.0" />
               </font>
            </Label>
-           <Button layoutX="263.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleEditProfilePressed"
-                   text="Edit Profile">
+           <Button layoutX="289.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleEditProfilePressed" text="Edit Profile">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Button layoutX="251.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleActualReportsPressed"
-                   text="Source Reports">
+           <Button layoutX="279.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleActualReportsPressed" text="Source Reports">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Button layoutX="233.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleReportDataPressed"
-                   text="Report Water Source">
+           <Button layoutX="257.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleReportDataPressed" text="Report Water Source">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Button layoutX="220.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleViewAllReports"
-                   text="View All Reports on Map">
+           <Button layoutX="254.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleViewAllReports" text="View All Reports on Map">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Label layoutX="177.0" layoutY="201.0" text="Please select one of the following options">
+           <Label layoutX="201.0" layoutY="52.0" text="Please select one of the following options">
               <font>
-                  <Font name="System Bold" size="15.0"/>
+                  <Font name="System Bold" size="15.0" />
               </font>
            </Label>
-           <Button layoutX="253.0" layoutY="416.0" mnemonicParsing="false" onAction="#handlePurityReports"
-                   text="Purity Reports">
+           <Button layoutX="283.0" layoutY="284.0" mnemonicParsing="false" onAction="#handlePurityReports" text="Purity Reports">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Button layoutX="237.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleReportPurity"
-                   text="Report Water Purity">
+           <Button layoutX="267.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleReportPurity" text="Report Water Purity">
               <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
               </font>
            </Button>
-           <Button layoutX="202.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleWaterQualityHistoryGraph"
-                   text="View Water Quality History Graph"/>
+           <Button layoutX="223.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleWaterQualityHistoryGraph" text="View Water Quality History Graph">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
        </AnchorPane>
    </bottom>
 </BorderPane>

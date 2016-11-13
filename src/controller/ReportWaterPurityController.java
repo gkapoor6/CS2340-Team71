@@ -201,15 +201,22 @@ public class ReportWaterPurityController implements Initializable,
             alert.setContentText("Please Update Your Profile Name");
             alert.showAndWait();
         } else {
-            DBInterfacer.insertPurityReport(user.getProfile().
-                    getNameProperty().get(),
-                    Double.parseDouble(VirusPPMField.getText()),
-                    Double.parseDouble(ContaminantPPMField.getText()),
-                    ConditionComboBox.getValue(),
-                    location.getLatitude(),
-                    location.getLongitude());
-            location = null;
-            mainApp.showApplication(user);
+            try {
+                DBInterfacer.insertPurityReport(user.getProfile().
+                        getNameProperty().get(),
+                        Double.parseDouble(VirusPPMField.getText()),
+                        Double.parseDouble(ContaminantPPMField.getText()),
+                        ConditionComboBox.getValue(),
+                        location.getLatitude(),
+                        location.getLongitude());
+                location = null;
+                mainApp.showApplication(user);
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Invalid number");
+                alert.setContentText("Please input numbers into PPM fields");
+                alert.showAndWait();
+            }
         }
     }
 
