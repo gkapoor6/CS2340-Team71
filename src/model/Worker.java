@@ -4,6 +4,12 @@ package model;
  * @author Dong Son Trinh
  */
 public class Worker extends User {
+    /*
+     * Empty constructor
+     */
+    public Worker() {
+        super();
+    }
     /**
      * Contructor for a Worker authorized user
      * @param username username

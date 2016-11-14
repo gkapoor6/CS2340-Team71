@@ -5,6 +5,12 @@ package model;
  * @author Dong Son Trinh
  */
 public class User extends AuthorizedUser {
+    /*
+     * Empty constructor
+     */
+    public User() {
+        super();
+    }
     /**
      * Contructor for a User authorized user
      * @param username username

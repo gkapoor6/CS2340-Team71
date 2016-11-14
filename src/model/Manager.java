@@ -5,6 +5,12 @@ package model;
  * @author Dong Son Trinh
  */
 public class Manager extends Worker {
+    /*
+     * Empty constructor
+     */
+    public Manager() {
+        super();
+    }
     /**
      * Contructor for a Manager authorized user
      * @param username username

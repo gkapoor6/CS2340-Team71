@@ -6,14 +6,33 @@ package model;
  * @author Dong Son Trinh
  */
 public abstract class AuthorizedUser {
-    private final String username;
+    private String username;
     private String password;
     private Profile profile;
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    /**
+     * @param profile the profile to set
+     */
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
     /**
      * Returns username
      * @return username
      */
-    public String getName() {
+    public String getUsername() {
         return this.username;
     }
     /**
@@ -29,6 +48,12 @@ public abstract class AuthorizedUser {
      */
     public Profile getProfile() {
         return this.profile;
+    }
+    /*
+     * Empty constructor
+     */
+    public AuthorizedUser() {
+
     }
     /**
      * Constructor for an Authorized User

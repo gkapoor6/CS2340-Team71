@@ -255,21 +255,21 @@ public class DBInterfacer {
     /**
      * Update profile of a user
      * @param name user's names
-     * @param title user's title
      * @param email user's email
+     * @param title user's title
      * @param address user's address
      * @param username username of user who profile is updated
      */
-    public static boolean updateProfile(String name, String title,
-            String email, String address, String username) {
+    public static boolean updateProfile(String name, String email,
+            String title, String address, String username) {
         try {
             String updateprofile = String.format(
                     Locale.US, "UPDATE Users set Name = '%s',"
-                            + " Title = '%s',"
                             + " Email = '%s',"
+                            + " Title = '%s',"
                             + " Address = '%s'"
                             + " WHERE Username = '%s'",
-                            name, title, email, address, username);
+                            name, email, title, address, username);
             DBUtilizer.dbExecuteUpdate(updateprofile);
             return true;
         } catch (SQLException e) {
@@ -292,17 +292,19 @@ public class DBInterfacer {
                     Locale.US, "SELECT * FROM Users WHERE Username = '%s'"
                             + " and Password = '%s'", username, password);
             rs = DBUtilizer.dbExecuteQuery(getuser);
-            String type = null;
-            String name = null;
-            String title = null;
-            String email = null;
-            String address = null;
+            String type;
+            String name;
+            String title;
+            String email;
+            String address;
             if (rs.next()) {
                 type = rs.getString("Type");
                 name = rs.getString("Name");
                 title = rs.getString("Title");
                 email = rs.getString("Email");
                 address = rs.getString("Address");
+            } else {
+                return user;
             }
             if (type != null) {
                 user = (AuthorizedUser) Class.
@@ -310,7 +312,7 @@ public class DBInterfacer {
                         .getConstructor(String.class, String.class,
                                 String.class,
                         String.class, String.class, String.class).newInstance(
-                        username, password, name, title, email, address);
+                        username, password, name, email, title, address);
             }
         } catch (SQLException e) {
             e.printStackTrace();

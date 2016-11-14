@@ -81,7 +81,7 @@ public class ProfileScreenController {
             profile.setHome(addressField.getText());
             DBInterfacer.updateProfile(nameField.getText(),
                     titleComboBox.getValue(), emailField.getText(),
-                    addressField.getText(), user.getName());
+                    addressField.getText(), user.getUsername());
             mainApp.showApplication(user);
         }
     }
