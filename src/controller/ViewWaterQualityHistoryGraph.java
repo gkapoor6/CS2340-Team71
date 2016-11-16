@@ -66,7 +66,7 @@ public class ViewWaterQualityHistoryGraph
     private Marker marker;
     private int locationNum = 0;
     private String locationSearch = "";
-    private StringProperty address = new SimpleStringProperty();
+    private final StringProperty address = new SimpleStringProperty();
     /**
      * Setup the main application link so we can call methods there
      * @param main reference back to main class

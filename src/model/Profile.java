@@ -8,10 +8,10 @@ public class Profile {
     /**
      * all instance data in StringProperty to connect to the view
      */
-    private StringProperty _name = new SimpleStringProperty();
-    private StringProperty _email = new SimpleStringProperty();
-    private StringProperty _title = new SimpleStringProperty();
-    private StringProperty _home = new SimpleStringProperty();
+    private final StringProperty _name = new SimpleStringProperty();
+    private final StringProperty _email = new SimpleStringProperty();
+    private final StringProperty _title = new SimpleStringProperty();
+    private final StringProperty _home = new SimpleStringProperty();
     /**
      * Constructor
      * @param name name

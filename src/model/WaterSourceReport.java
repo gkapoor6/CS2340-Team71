@@ -14,13 +14,13 @@ public class WaterSourceReport {
     /**
      * all instance data in StringProperty to connect to the view
      */
-    private IntegerProperty _reportID = new SimpleIntegerProperty();
-    private StringProperty _name = new SimpleStringProperty();
-    private StringProperty _waterType = new SimpleStringProperty();
-    private StringProperty _waterCondition = new SimpleStringProperty();
-    private DoubleProperty _latitude = new SimpleDoubleProperty();
-    private DoubleProperty _longitude = new SimpleDoubleProperty();
-    private StringProperty _dateTime = new SimpleStringProperty();
+    private final IntegerProperty _reportID = new SimpleIntegerProperty();
+    private final StringProperty _name = new SimpleStringProperty();
+    private final StringProperty _waterType = new SimpleStringProperty();
+    private final StringProperty _waterCondition = new SimpleStringProperty();
+    private final DoubleProperty _latitude = new SimpleDoubleProperty();
+    private final DoubleProperty _longitude = new SimpleDoubleProperty();
+    private final StringProperty _dateTime = new SimpleStringProperty();
     /**
      * Constructor for the water source report
      * @param reportID ID of the report

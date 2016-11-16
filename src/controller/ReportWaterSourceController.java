@@ -62,7 +62,7 @@ public class ReportWaterSourceController
     private Marker marker;
     private int locationNum = 0;
     private String locationSearch = "";
-    private StringProperty address = new SimpleStringProperty();
+    private final StringProperty address = new SimpleStringProperty();
     private ObservableList<String> WaterTypeList;
     private ObservableList<String> WaterConditionList;
     /**

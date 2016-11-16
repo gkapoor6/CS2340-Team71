@@ -112,12 +112,12 @@ public class DBInterfacer {
      * @param latitude latitude of location
      * @param longitude longitude of location
      */
-    public static boolean insertPurityReport(String name,
-                                    double virusPPM,
-                                    double contaminantPPM,
-                                    String overallCondition,
-                                    double latitude,
-                                    double longitude) {
+    public static void insertPurityReport(String name,
+                                          double virusPPM,
+                                          double contaminantPPM,
+                                          String overallCondition,
+                                          double latitude,
+                                          double longitude) {
         ResultSet rs = null;
         try {
             rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from "
@@ -142,7 +142,6 @@ public class DBInterfacer {
         } catch (SQLException e) {
             System.out.println("Failed to insert report");
             e.printStackTrace();
-            return false;
         } finally {
             if (rs != null) {
                 try {
@@ -152,7 +151,6 @@ public class DBInterfacer {
                 }
             }
         }
-        return true;
     }
     /**
      * Add a purity report to the database
@@ -239,17 +237,15 @@ public class DBInterfacer {
      * Delete a user
      * @param username user's username
      */
-    public static boolean deleteUser(String username) {
+    public static void deleteUser(String username) {
         try {
             String deleteuser = String.format(
                     Locale.US, "DELETE FROM Users WHERE "
                             + "Username = '%s'", username);
             DBUtilizer.dbExecuteUpdate(deleteuser);
-            return true;
         } catch (SQLException e) {
             System.out.println("Failed to delete the user");
             e.printStackTrace();
-            return false;
         }
     }
     /**

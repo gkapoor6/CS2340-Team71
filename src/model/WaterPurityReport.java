@@ -10,14 +10,14 @@ import javafx.beans.property.StringProperty;
  * @author Geetika Kapoor
  */
 public class WaterPurityReport {
-    private IntegerProperty _reportID = new SimpleIntegerProperty();
-    private StringProperty _name = new SimpleStringProperty();
-    private DoubleProperty _virusPPM = new SimpleDoubleProperty();
-    private DoubleProperty _contaminantPPM = new SimpleDoubleProperty();
-    private StringProperty _overallCondition = new SimpleStringProperty();
-    private DoubleProperty _latitude = new SimpleDoubleProperty();
-    private DoubleProperty _longitude = new SimpleDoubleProperty();
-    private StringProperty _dateTime = new SimpleStringProperty();
+    private final IntegerProperty _reportID = new SimpleIntegerProperty();
+    private final StringProperty _name = new SimpleStringProperty();
+    private final DoubleProperty _virusPPM = new SimpleDoubleProperty();
+    private final DoubleProperty _contaminantPPM = new SimpleDoubleProperty();
+    private final StringProperty _overallCondition = new SimpleStringProperty();
+    private final DoubleProperty _latitude = new SimpleDoubleProperty();
+    private final DoubleProperty _longitude = new SimpleDoubleProperty();
+    private final StringProperty _dateTime = new SimpleStringProperty();
 
 
     /**
