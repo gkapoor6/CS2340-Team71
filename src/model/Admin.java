@@ -5,8 +5,9 @@ package model;
  * @author Dong Son Trinh
  */
 public class Admin extends AuthorizedUser {
-    /*
-     * Empty constructor
+
+    /**
+     * empty constructor
      */
     public Admin() {
         super();
@@ -29,7 +30,7 @@ public class Admin extends AuthorizedUser {
      * @param address address
      */
     public Admin(String username, String password, String name, String title,
-            String email, String address) {
+                 String email, String address) {
         super(username, password, name, title, email, address);
     }
     /**

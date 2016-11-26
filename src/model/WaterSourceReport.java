@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableDoubleValue;
+
 /**
  * Class representing a water source report
  * @author Dong Son Trinh
@@ -42,41 +44,76 @@ public class WaterSourceReport {
         this._latitude.set(latitude);
         this._longitude.set(longitude);
     }
+
     /**
      * Default constructor
      */
     public WaterSourceReport() {
     }
+
     /**
-     * Getters for all the properties
+     * Getter for report ID
+     * @return report ID
      */
     public IntegerProperty getReportIDProperty() {
         return this._reportID;
     }
+
+    /**
+     * Getter for name
+     * @return name
+     */
     public StringProperty getNameProperty() {
         return this._name;
     }
+
+    /**
+     * Getter for water type
+     * @return water type
+     */
     public StringProperty getWaterTypeProperty() {
         return this._waterType;
     }
+
+    /**
+     * Getter for water condition
+     * @return water condition
+     */
     public StringProperty getWaterConditionProperty() {
         return this._waterCondition;
     }
-    public DoubleProperty getLatitudeProperty() {
+
+    /**
+     * Getter for latitude
+     * @return latitude
+     */
+    public ObservableDoubleValue getLatitudeProperty() {
         return this._latitude;
     }
-    public DoubleProperty getLongitudeProperty() {
+
+    /**
+     * Getter for longitude
+     * @return longitude
+     */
+    public ObservableDoubleValue getLongitudeProperty() {
         return this._longitude;
     }
+
+    /**
+     * Getter for date and time
+     * @return date and time
+     */
     public StringProperty getDateTimeProperty() {
         return this._dateTime;
     }
     @Override
     public String toString() {
         return "WaterSourceReport [reportID=" + this._reportID.get()
-                + ", name=" + this._name.get() + ", waterType=" + this._waterType.get()
+                + ", name=" + this._name.get() + ", waterType="
+                + this._waterType.get()
                 + ", waterCondition=" + this._waterCondition.get()
                 + ", latitude=" + this._latitude.get() + ", longitude="
-                + this._longitude.get() + ", dateTime=" + this._dateTime.get() + "]";
+                + this._longitude.get() + ", dateTime="
+                + this._dateTime.get() + "]";
     }
 }

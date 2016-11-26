@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import com.lynden.gmapsfx.GoogleMapView;
@@ -38,6 +39,21 @@ public class ReportWaterPurityController implements Initializable,
         MapComponentInitializedListener {
 
     private MainFXApp mainApp;
+
+    /**
+     *Creating a constant for the latitude to initialize in
+     */
+    private static final double INITIAL_LATITUDE = 33.7756178;
+
+    /**
+     * Creating a constant for the longitude to initialize in
+     */
+    private static final double INITIAL_LONGITUDE = -84.3984737;
+
+    /**
+     * Constant for zoom
+     */
+    private static final int ZOOM = 12;
     /**
      * FXML file widgets
      */
@@ -72,7 +88,7 @@ public class ReportWaterPurityController implements Initializable,
     private int locationNum = 0;
     private String locationSearch = "";
     private final StringProperty address = new SimpleStringProperty();
-    private ObservableList<String> ConditionList;
+
 
     /**
      * Set up the main application link so we can call methods there
@@ -97,11 +113,12 @@ public class ReportWaterPurityController implements Initializable,
         mapView.addMapInializedListener(this);
         address.bind(addressField.textProperty());
         // Water Condition
-        ArrayList<String> condition = new ArrayList<>();
+        Collection<String> condition = new ArrayList<>();
         condition.add("Safe");
         condition.add("Treatable");
         condition.add("Unsafe");
-        ConditionList = FXCollections.observableArrayList(condition);
+        ObservableList<String> ConditionList
+                = FXCollections.observableArrayList(condition);
         ConditionComboBox.setItems(ConditionList);
     }
     /**
@@ -116,7 +133,7 @@ public class ReportWaterPurityController implements Initializable,
 
         //Set the initial properties of the map.
         MapOptions mapOptions = new MapOptions();
-        mapOptions.center(new LatLong(33.7756178, -84.3984737))
+        mapOptions.center(new LatLong(INITIAL_LATITUDE, INITIAL_LONGITUDE))
                 .mapType(MapTypeIdEnum.ROADMAP)
                 .overviewMapControl(false)
                 .panControl(false)
@@ -124,23 +141,23 @@ public class ReportWaterPurityController implements Initializable,
                 .scaleControl(false)
                 .streetViewControl(false)
                 .zoomControl(false)
-                .zoom(12);
+                .zoom(ZOOM);
 
         map = mapView.createMap(mapOptions);
         marker = new Marker(new MarkerOptions().
-                    position(new LatLong(33.7756178, -84.3984737))
+                    position(new LatLong(INITIAL_LATITUDE, INITIAL_LONGITUDE))
                     .visible(false));
         map.addMarker(marker);
 
         map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
-                location = new LatLong((JSObject) obj.getMember("latLng"));
-                addressField.setText(location.toString());
-                marker.setOptions(new MarkerOptions().position(location)
-                    .visible(true));
-                int currentZoom = map.getZoom();
-                map.setZoom(currentZoom - 1);
-                map.setZoom(currentZoom);
-            });
+            location = new LatLong((JSObject) obj.getMember("latLng"));
+            addressField.setText(location.toString());
+            marker.setOptions(new MarkerOptions().position(location)
+                .visible(true));
+            int currentZoom = map.getZoom();
+            map.setZoom(currentZoom - 1);
+            map.setZoom(currentZoom);
+        });
     }
     /**
      * Goes to a location on the map using the text printed
@@ -152,31 +169,31 @@ public class ReportWaterPurityController implements Initializable,
     public void addressTextFieldAction() {
         geocodingService.geocode(address.get(), (GeocodingResult[] results,
                                                  GeocoderStatus status) -> {
-                if (!address.get().equals(locationSearch)) {
-                    locationNum = 0;
-                    locationSearch = address.get();
-                }
+            if (!address.get().equals(locationSearch)) {
+                locationNum = 0;
+                locationSearch = address.get();
+            }
 
-                if (status == GeocoderStatus.ZERO_RESULTS) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR,
-                            "No matching address found");
-                    alert.show();
-                    return;
-                } else if (results.length > 1) {
-                    location = new LatLong(results[locationNum].getGeometry()
-                            .getLocation().getLatitude(), results[locationNum]
-                            .getGeometry().getLocation().getLongitude());
-                    locationNum = (locationNum + 1) % results.length;
-                } else {
-                    location = new LatLong(results[0].getGeometry()
-                            .getLocation().getLatitude(), results[0]
-                            .getGeometry().getLocation().getLongitude());
-                }
-                marker.setOptions(new MarkerOptions().position(location)
-                        .visible(true));
-                map.setCenter(location);
+            if (status == GeocoderStatus.ZERO_RESULTS) {
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "No matching address found");
+                alert.show();
+                return;
+            } else if (results.length > 1) {
+                location = new LatLong(results[locationNum].getGeometry()
+                        .getLocation().getLatitude(), results[locationNum]
+                        .getGeometry().getLocation().getLongitude());
+                locationNum = (locationNum + 1) % results.length;
+            } else {
+                location = new LatLong(results[0].getGeometry()
+                        .getLocation().getLatitude(), results[0]
+                        .getGeometry().getLocation().getLongitude());
+            }
+            marker.setOptions(new MarkerOptions().position(location)
+                    .visible(true));
+            map.setCenter(location);
 
-            });
+        });
     }
 
     /**
@@ -185,9 +202,9 @@ public class ReportWaterPurityController implements Initializable,
      */
     @FXML
     private void handleSubmitPressed() {
-        if (location == null || ConditionComboBox.getValue() == null
-                || VirusPPMField.getText() == null
-                || ContaminantPPMField.getText() == null) {
+        if ((location == null) || (ConditionComboBox.getValue() == null)
+                || (VirusPPMField.getText() == null)
+                || (ContaminantPPMField.getText() == null)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Not Enough Information Input");

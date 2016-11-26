@@ -1,9 +1,6 @@
 package controller;
-import java.util.ArrayList;
 
 import FXApp.MainFXApp;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -11,6 +8,11 @@ import javafx.scene.control.TextField;
 import model.AuthorizedUser;
 import model.Profile;
 import model.DBInterfacer;
+import java.util.ArrayList;
+import javafx.collections.ObservableList;
+
+import java.util.Collection;
+import javafx.collections.FXCollections;
 /**
  * Controller for profile edit window
  * @author Hairong Ke
@@ -35,20 +37,24 @@ public class ProfileScreenController {
      * instance data needed for updating the profile
      */
     private AuthorizedUser user;
-    private ObservableList<String> list;
+
     private Profile profile;
+
     /**
-     * called automatically after load
+     ** called automatically after load
      */
     @FXML
-    private void initialize() {
-        ArrayList<String> arrayList = new ArrayList<>();
+   private void initialize() {
+        Collection<String> arrayList = new ArrayList<>();
         arrayList.add("Mr.");
         arrayList.add("Mrs.");
         arrayList.add("Ms.");
-        list = FXCollections.observableArrayList(arrayList);
+
+        ObservableList<String> list
+                = FXCollections.observableArrayList(arrayList);
         titleComboBox.setItems(list);
     }
+
     /**
      * Setup the main application link so we can call methods there
      * @param main reference to the FXApp instance
@@ -98,20 +104,20 @@ public class ProfileScreenController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
-        if (nameField.getText() == null
-                || nameField.getText().length() == 0) {
+        if ((nameField.getText() == null)
+                || (nameField.getText().isEmpty())) {
             errorMessage += "Please enter a valid name.\n";
         }
-        if (emailField.getText() == null
-                || emailField.getText().length() == 0) {
+        if ((emailField.getText() == null)
+                || (emailField.getText().isEmpty())) {
             errorMessage += "Please enter a valid name.\n";
         }
-        if (addressField.getText() == null
-                || addressField.getText().length() == 0) {
+        if ((addressField.getText() == null)
+                || (addressField.getText().isEmpty())) {
             errorMessage += "Please enter a valid address.\n";
         }
         // no error message means success / good input
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             // Show the error message if bad data

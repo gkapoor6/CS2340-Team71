@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableDoubleValue;
+
 /**
  * Water Purity Report Class
  * @author Geetika Kapoor
@@ -44,27 +46,67 @@ public class WaterPurityReport {
         this._latitude.set(latitude);
         this._longitude.set(longitude);
     }
+
+    /**
+     * Getter for report ID
+     * @return report ID
+     */
     public IntegerProperty getReportIDProperty() {
         return this._reportID;
     }
+
+    /**
+     * Getter for name
+     * @return name
+     */
     public StringProperty getNameProperty() {
         return this._name;
     }
+
+    /**
+     * Getter for virus ppm
+     * @return virus ppm
+     */
     public DoubleProperty getVirusPPMProperty() {
         return this._virusPPM;
     }
+
+    /**
+     * Getter for contaminant ppm
+     * @return contaminant ppm
+     */
     public DoubleProperty getContaminantPPMProperty() {
         return this._contaminantPPM;
     }
+
+    /**
+     * Getter for overall condition
+     * @return overall condition
+     */
     public StringProperty getOverallConditionProperty() {
         return this._overallCondition;
     }
-    public DoubleProperty getLatitudeProperty() {
+
+    /**
+     * Getter for latitude
+     * @return latitude
+     */
+    public ObservableDoubleValue getLatitudeProperty() {
         return this._latitude;
     }
-    public DoubleProperty getLongitudeProperty() {
+
+    /**
+     * Getter for longitude
+     * @return longitude
+     */
+    public ObservableDoubleValue getLongitudeProperty() {
         return this._longitude;
     }
+
+    /**
+     * Getter for date and time
+     * @return date and time
+     */
     public StringProperty getDateTimeProperty() {
         return this._dateTime;
     }

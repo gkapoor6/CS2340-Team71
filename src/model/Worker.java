@@ -4,8 +4,9 @@ package model;
  * @author Dong Son Trinh
  */
 public class Worker extends User {
-    /*
-     * Empty constructor
+
+    /**
+     * empty constructor
      */
     public Worker() {
         super();
@@ -27,7 +28,7 @@ public class Worker extends User {
      * @param address address of worker
      */
     public Worker(String username, String password, String name,
-            String title, String email, String address) {
+                  String title, String email, String address) {
         super(username, password, name, title, email, address);
     }
     /**

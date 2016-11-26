@@ -5,8 +5,9 @@ package model;
  * @author Dong Son Trinh
  */
 public class Manager extends Worker {
-    /*
-     * Empty constructor
+
+    /**
+     * empty constructor
      */
     public Manager() {
         super();
@@ -28,7 +29,7 @@ public class Manager extends Worker {
      * @param address address of manager
      */
     public Manager(String username, String password, String name, String title,
-            String email, String address) {
+                   String email, String address) {
         super(username, password, name, title, email, address);
     }
     /**

@@ -15,12 +15,23 @@ import javafx.collections.ObservableList;
  *
  */
 public class DBInterfacer {
+    /**
+     * A method to create source report table
+     */
     public static void createSourceReportTable() {
         DBUtilizer.dbCreateSourceReports();
     }
+
+    /**
+     * create user table
+     */
     public static void createUserTable() {
         DBUtilizer.dbCreateUsers();
     }
+
+    /**
+     * create purity table
+     */
     public static void createPurityTable() {
         DBUtilizer.dbCreatePurityReports();
     }
@@ -29,7 +40,8 @@ public class DBInterfacer {
      * @param name name of user
      * @return an observable list of water source reports submitted by user
      */
-    public static ObservableList<WaterSourceReport> getSourceReportList(String name) {
+    public static ObservableList<WaterSourceReport>
+        getSourceReportList(String name) {
         ObservableList<WaterSourceReport> list =
                 FXCollections.observableArrayList();
         ResultSet rs = null;
@@ -113,11 +125,11 @@ public class DBInterfacer {
      * @param longitude longitude of location
      */
     public static void insertPurityReport(String name,
-                                          double virusPPM,
-                                          double contaminantPPM,
-                                          String overallCondition,
-                                          double latitude,
-                                          double longitude) {
+                                    double virusPPM,
+                                    double contaminantPPM,
+                                    String overallCondition,
+                                    double latitude,
+                                    double longitude) {
         ResultSet rs = null;
         try {
             rs = DBUtilizer.dbExecuteQuery("SELECT MAX(ReportID) from "
@@ -142,6 +154,7 @@ public class DBInterfacer {
         } catch (SQLException e) {
             System.out.println("Failed to insert report");
             e.printStackTrace();
+            //return false;
         } finally {
             if (rs != null) {
                 try {
@@ -151,6 +164,7 @@ public class DBInterfacer {
                 }
             }
         }
+        //return true;
     }
     /**
      * Add a purity report to the database
@@ -160,7 +174,7 @@ public class DBInterfacer {
      * @param latitude latitude of location
      * @param longtitude longitude of location
      */
-    public static boolean insertSourceReport(String name, String waterType,
+    public static void insertSourceReport(String name, String waterType,
                                     String waterCondition,
                                     double latitude, double longtitude) {
         ResultSet rs = null;
@@ -184,7 +198,7 @@ public class DBInterfacer {
         } catch (SQLException e) {
             System.out.println("failed to insert report");
             e.printStackTrace();
-            return false;
+            //return false;
         } finally {
             if (rs != null) {
                 try {
@@ -194,7 +208,7 @@ public class DBInterfacer {
                 }
             }
         }
-        return true;
+        //return true;
     }
     /**
      * Insert a user
@@ -236,16 +250,19 @@ public class DBInterfacer {
     /**
      * Delete a user
      * @param username user's username
+     * @return boolean
      */
-    public static void deleteUser(String username) {
+    public static boolean deleteUser(String username) {
         try {
             String deleteuser = String.format(
                     Locale.US, "DELETE FROM Users WHERE "
                             + "Username = '%s'", username);
             DBUtilizer.dbExecuteUpdate(deleteuser);
+            return true;
         } catch (SQLException e) {
             System.out.println("Failed to delete the user");
             e.printStackTrace();
+            return false;
         }
     }
     /**
@@ -256,7 +273,7 @@ public class DBInterfacer {
      * @param address user's address
      * @param username username of user who profile is updated
      */
-    public static boolean updateProfile(String name, String email,
+    public static void updateProfile(String name, String email,
             String title, String address, String username) {
         try {
             String updateprofile = String.format(
@@ -267,11 +284,11 @@ public class DBInterfacer {
                             + " WHERE Username = '%s'",
                             name, email, title, address, username);
             DBUtilizer.dbExecuteUpdate(updateprofile);
-            return true;
+            //return true;
         } catch (SQLException e) {
             System.out.println("Failed to update profile");
             e.printStackTrace();
-            return false;
+            //return false;
         }
     }
     /**
@@ -300,7 +317,7 @@ public class DBInterfacer {
                 email = rs.getString("Email");
                 address = rs.getString("Address");
             } else {
-                return user;
+                return null;
             }
             if (type != null) {
                 user = (AuthorizedUser) Class.
@@ -310,21 +327,10 @@ public class DBInterfacer {
                         String.class, String.class, String.class).newInstance(
                         username, password, name, email, title, address);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | SecurityException | InstantiationException
+                | IllegalArgumentException | ClassNotFoundException
+                | IllegalAccessException | NoSuchMethodException
+                | InvocationTargetException e) {
             e.printStackTrace();
         } finally {
             if (rs != null) {

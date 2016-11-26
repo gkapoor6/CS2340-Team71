@@ -10,7 +10,7 @@ import com.sun.rowset.CachedRowSetImpl;
  *
  */
 
-public class DBUtilizer {
+class DBUtilizer {
     private static final String jdbcDriver = "org.sqlite.JDBC";
     private static final String dbName = "jdbc:sqlite:ProjectDatabase.db";
     private static Connection conn = null;
@@ -27,6 +27,7 @@ public class DBUtilizer {
             e.printStackTrace();
         }
         try {
+            assert stmt != null;
             stmt.execute("CREATE TABLE WaterSourceReportTable"
                     + "(ReportID INT PRIMARY KEY NOT NULL,"
                     + " Name TEXT NOT NULL,"
@@ -62,6 +63,7 @@ public class DBUtilizer {
             e.printStackTrace();
         }
         try {
+            assert stmt != null;
             stmt.execute("CREATE TABLE Users"
                     + "(Username TEXT NOT NULL,"
                     + " Password TEXT NOT NULL,"
@@ -97,6 +99,7 @@ public class DBUtilizer {
             e.printStackTrace();
         }
         try {
+            assert stmt != null;
             stmt.execute("CREATE TABLE WaterPurityReportTable"
                     + "(ReportID INT PRIMARY KEY NOT NULL,"
                     + " Name TEXT NOT NULL,"
@@ -140,7 +143,7 @@ public class DBUtilizer {
      */
     private static void dbDisconnect() {
         try {
-            if (conn != null && !conn.isClosed()) {
+            if ((conn != null) && (!conn.isClosed())) {
                 conn.close();
             }
         } catch (SQLException e) {

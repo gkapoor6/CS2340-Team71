@@ -33,6 +33,21 @@ public class ShowPurityReportsController implements Initializable,
      */
     private MainFXApp mainApp;
 
+    /**
+     *Creating a constant for the latitude to initialize in
+     */
+    private static final double INITIAL_LATITUDE = 33.7756178;
+
+    /**
+     * Creating a constant for the longitude to initialize in
+     */
+    private static final double INITIAL_LONGITUDE = -84.3984737;
+
+    /**
+     * Constant for zoom
+     */
+    private static final int ZOOM = 12;
+
 
     /**
      * references to widgets in FXML files
@@ -113,8 +128,9 @@ public class ShowPurityReportsController implements Initializable,
         DateTimeColumn.setCellValueFactory(cellData -> cellData.getValue().
                 getDateTimeProperty());
 
-        reportTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldvalue, newvalue) ->
+        reportTable.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldvalue, newvalue) ->
                     showReportLocation(newvalue));
 
 
@@ -130,8 +146,10 @@ public class ShowPurityReportsController implements Initializable,
     public void mapInitialized() {
 
         //Set the initial properties of the map.
+
+
         MapOptions mapOptions = new MapOptions();
-        mapOptions.center(new LatLong(33.7756178, -84.3984737))
+        mapOptions.center(new LatLong(INITIAL_LATITUDE, INITIAL_LONGITUDE))
                 .mapType(MapTypeIdEnum.ROADMAP)
                 .overviewMapControl(false)
                 .panControl(false)
@@ -139,11 +157,11 @@ public class ShowPurityReportsController implements Initializable,
                 .scaleControl(false)
                 .streetViewControl(false)
                 .zoomControl(false)
-                .zoom(12);
+                .zoom(ZOOM);
 
         map = mapView.createMap(mapOptions);
         marker = new Marker(new MarkerOptions().position(
-                new LatLong(33.7756178, -84.3984737))
+                new LatLong(INITIAL_LATITUDE, INITIAL_LONGITUDE))
                 .visible(false));
         map.addMarker(marker);
 

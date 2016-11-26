@@ -30,6 +30,17 @@ public class AllSourceReportsViewController
      * reference to mainApp
      */
     private MainFXApp mainApp;
+
+    /**
+     *Creating a constant for the latitude to initialize in
+     */
+    private static final double INITIAL_LATITUDE = 33.7756178;
+
+    /**
+     * Creating a constant for the longitude to initialize in
+     */
+    private static final double INITIAL_LONGITUDE = -84.3984737;
+
     /**
      * references to widgets in FXML files
      */
@@ -70,9 +81,10 @@ public class AllSourceReportsViewController
      */
     @Override
     public void mapInitialized() {
+
         //Set the initial properties of the map.
         MapOptions mapOptions = new MapOptions();
-        mapOptions.center(new LatLong(33.7756178, -84.3984737))
+        mapOptions.center(new LatLong(INITIAL_LATITUDE, INITIAL_LONGITUDE))
             .mapType(MapTypeIdEnum.TERRAIN)
             .overviewMapControl(false)
             .panControl(false)
@@ -94,7 +106,7 @@ public class AllSourceReportsViewController
                             + w.getDateTimeProperty().get()));
             map.addUIEventHandler(marker,
                     UIEventType.click,
-                    (JSObject obj) -> {
+                (JSObject obj) -> {
                     InfoWindowOptions windowOptions = new
                             InfoWindowOptions().content(w.toString());
                     window.setOptions(windowOptions);

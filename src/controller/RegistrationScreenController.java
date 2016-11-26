@@ -1,14 +1,16 @@
 package controller;
-import java.util.ArrayList;
 
 import FXApp.MainFXApp;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.DBInterfacer;
+
+import java.util.Collection;
+import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 /**
  * Registration screen controller
  *
@@ -29,12 +31,13 @@ public class RegistrationScreenController {
     private TextField confirmPasswordField;
     @FXML
     private ComboBox<String> accountType;
+
     /**
-     * called automatically after load
+     * initialize method called by javafx
      */
     @FXML
-    private void initialize() {
-        ArrayList<String> arrayList = new ArrayList<>();
+   private void initialize() {
+        Collection<String> arrayList = new ArrayList<>();
         arrayList.add("User");
         arrayList.add("Worker");
         arrayList.add("Manager");
@@ -43,6 +46,7 @@ public class RegistrationScreenController {
                 FXCollections.observableArrayList(arrayList);
         accountType.setItems(list);
     }
+
     /**
      * Setup the main application link so we can call methods there
      * @param main reference to main application
@@ -66,8 +70,8 @@ public class RegistrationScreenController {
         String pass = passwordField.getText();
         String confirm = confirmPasswordField.getText();
         String type = accountType.getValue();
-        if (userName == null || pass == null
-                || confirm == null || type == null) {
+        if ((userName == null) || (pass == null)
+                || (confirm == null) || (type == null)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Not enough information");
             alert.setContentText("Please complete all required information");

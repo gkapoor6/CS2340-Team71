@@ -73,6 +73,7 @@ public class ApplicationScreenController {
      */
     @FXML
     public void handlePurityReports() {
+        //noinspection InstanceofConcreteClass
         if (user instanceof Manager) {
             mainApp.showSubmittedPurityReports(user);
         } else {
@@ -88,6 +89,7 @@ public class ApplicationScreenController {
      */
     @FXML
     public void handleReportPurity() {
+        //noinspection InstanceofConcreteClass
         if (user instanceof Worker) {
             mainApp.showReportPurity(user);
         } else {
@@ -103,6 +105,7 @@ public class ApplicationScreenController {
      */
     @FXML
     public void handleWaterQualityHistoryGraph() {
+        //noinspection InstanceofConcreteClass
         if (user instanceof Manager) {
             mainApp.showWaterQualityHistoryGraph(user);
         } else {

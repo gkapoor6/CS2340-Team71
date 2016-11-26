@@ -8,10 +8,10 @@ import javafx.scene.control.Alert;
  *
  */
 public class InitialStageController {
-    /**
-     * reference to mainApp
-     */
+
+
     private MainFXApp mainApp;
+
     /**
      * Setup the main application link so we can call methods there
      * @param mainApp reference to the FXApp instance
@@ -19,6 +19,7 @@ public class InitialStageController {
     public void setMainApp(MainFXApp mainApp) {
         this.mainApp = mainApp;
     }
+
     /**
      * Close menu item event handler
      */

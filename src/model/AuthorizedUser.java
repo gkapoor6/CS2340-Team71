@@ -5,6 +5,7 @@ package model;
  * Worker and Admin
  * @author Dong Son Trinh
  */
+@SuppressWarnings("ClassWithTooManyDependents")
 public abstract class AuthorizedUser {
     private String username;
     private String password;
@@ -16,12 +17,15 @@ public abstract class AuthorizedUser {
     public void setUsername(String username) {
         this.username = username;
     }
+
     /**
-     * @param password the password to set
+     * password setter
+     * @param password password to set
      */
     public void setPassword(String password) {
         this.password = password;
     }
+
     /**
      * @param profile the profile to set
      */
@@ -49,10 +53,11 @@ public abstract class AuthorizedUser {
     public Profile getProfile() {
         return this.profile;
     }
-    /*
-     * Empty constructor
+
+    /**
+     * empty constructor
      */
-    public AuthorizedUser() {
+    AuthorizedUser() {
 
     }
     /**
@@ -60,7 +65,7 @@ public abstract class AuthorizedUser {
      * @param username username
      * @param password password
      */
-    public AuthorizedUser(String username, String password) {
+    AuthorizedUser(String username, String password) {
         this(username, password, null, null, null, null);
     }
     /**
@@ -71,8 +76,8 @@ public abstract class AuthorizedUser {
      * @param email email of user
      * @param address address of user
      */
-    public AuthorizedUser(String username, String password, String name,
-            String title, String email, String address) {
+    AuthorizedUser(String username, String password, String name,
+                   String title, String email, String address) {
         this(username, password,
                 new Profile(name, title, email, address));
     }
@@ -81,7 +86,7 @@ public abstract class AuthorizedUser {
      * @param password password of user
      * @param profile profile of user
      */
-    public AuthorizedUser(String username, String password, Profile profile) {
+    AuthorizedUser(String username, String password, Profile profile) {
         this.username = username;
         this.password = password;
         this.profile = profile;
