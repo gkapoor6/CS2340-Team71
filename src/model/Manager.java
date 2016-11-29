@@ -27,10 +27,12 @@ public class Manager extends Worker {
      * @param title title of manager
      * @param email email of manager
      * @param address address of manager
+     * @param accountLocked accountLocked
+     * @param userBanned userBanned
      */
     public Manager(String username, String password, String name, String title,
-                   String email, String address) {
-        super(username, password, name, title, email, address);
+                   String email, String address, int accountLocked, int userBanned) {
+        super(username, password, name, title, email, address, accountLocked, userBanned);
     }
     /**
      * @param username username of manager

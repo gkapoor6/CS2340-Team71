@@ -26,10 +26,12 @@ public class Worker extends User {
      * @param title title of worker
      * @param email email of worker
      * @param address address of worker
+     * @param accountLocked accountLocked
+     * @param userBanned userBanned
      */
     public Worker(String username, String password, String name,
-                  String title, String email, String address) {
-        super(username, password, name, title, email, address);
+                  String title, String email, String address, int accountLocked, int userBanned) {
+        super(username, password, name, title, email, address, accountLocked, userBanned);
     }
     /**
      * @param username username of worker

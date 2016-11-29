@@ -51,7 +51,7 @@ class DBUtilizer {
         }
     }
     /**
-     * Create Users Table
+     * Create UsersTable Table
      */
     public static void dbCreateUsers() {
         Statement stmt = null;
@@ -62,16 +62,20 @@ class DBUtilizer {
             System.out.println("database error");
             e.printStackTrace();
         }
+
         try {
             assert stmt != null;
-            stmt.execute("CREATE TABLE Users"
+            //stmt.execute("DROP TABLE UsersTable");
+            stmt.execute("CREATE TABLE UsersTable"
                     + "(Username TEXT NOT NULL,"
                     + " Password TEXT NOT NULL,"
                     + " Type TEXT NOT NULL,"
                     + " Name TEXT,"
                     + " Title TEXT,"
                     + " Email TEXT,"
-                    + " Address TEXT"
+                    + " Address TEXT,"
+                    + " AccountBlocked INTEGER NOT NULL,"
+                    + " BanUser INTEGER NOT NULL"
                     + " )");
         } catch (SQLException e) {
             System.out.println("All good. User base already exists");
@@ -86,6 +90,8 @@ class DBUtilizer {
             dbDisconnect();
         }
     }
+
+
     /**
      * Create Water Purity Report Table
      */
@@ -189,6 +195,7 @@ class DBUtilizer {
             dbDisconnect();
         }
         return crs;
+        //return rst;
     }
     /**
      * Update the database

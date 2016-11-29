@@ -3,27 +3,13 @@ package FXApp;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import controller.AllSourceReportsViewController;
-import controller.ViewWaterQualityHistoryGraph;
-import controller.ApplicationScreenController;
-import controller.InitialStageController;
-import controller.LoginScreenController;
-import controller.ProfileScreenController;
-import controller.RegistrationScreenController;
-import controller.ReportWaterPurityController;
-import controller.ReportWaterSourceController;
-import controller.ShowPurityReportsController;
-import controller.ShowSourceReportsController;
-import controller.WelcomeScreenController;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.AuthorizedUser;
 import model.DBInterfacer;
@@ -64,6 +50,7 @@ public class MainFXApp extends Application {
         DBInterfacer.createPurityTable();
         initLayout(mainScreen);
         showWelcomeScreen();
+        model.MyLogger.setup(LOGGER);
 
     }
 
@@ -365,6 +352,107 @@ public class MainFXApp extends Application {
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Failed to "
                     + "find the fxml file for waterQualityHistoryGraphScreen");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Go to delete user screen
+     * @param user the user
+     */
+    public void showDeleteAccount(AuthorizedUser user) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApp.class.
+                    getResource("../View/DeleteAccount.fxml"));
+            GridPane waterQualityHistoryGraphScreen = loader.load();
+
+            layout.setCenter(waterQualityHistoryGraphScreen);
+
+            DeleteAccountScreenController controller = loader.getController();
+            controller.setUser(user);
+            controller.setMainApp(this);
+
+
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Failed to "
+                    + "find the fxml file for deleteUser");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Go to ban user account
+     * @param user the user
+     */
+    public void showBanUser(AuthorizedUser user) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApp.class.
+                    getResource("../View/BanUser.fxml"));
+            GridPane waterQualityHistoryGraphScreen = loader.load();
+
+            layout.setCenter(waterQualityHistoryGraphScreen);
+
+            BanUserScreenController controller = loader.getController();
+            controller.setUser(user);
+            controller.setMainApp(this);
+
+
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Failed to "
+                    + "find the fxml file for BanUser.fxml");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Go to show ban account
+     * @param user the user
+     */
+    public void showUnblockAccount(AuthorizedUser user) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApp.class.
+                    getResource("../View/UnblockAccount.fxml"));
+            GridPane waterQualityHistoryGraphScreen = loader.load();
+
+            layout.setCenter(waterQualityHistoryGraphScreen);
+
+            UnblockAccountScreenController controller = loader.getController();
+            controller.setUser(user);
+            controller.setMainApp(this);
+
+
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Failed to "
+                    + "find the fxml file to unblock account.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Go to view security account
+     * @param user the user
+     */
+    public void showViewSecurityAccount(AuthorizedUser user) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApp.class.
+                    getResource("../View/ViewSecurityLog.fxml"));
+            AnchorPane viewSecurityLogScreen = loader.load();
+
+            layout.setCenter(viewSecurityLogScreen);
+
+            ViewSecurityLogController controller = loader.getController();
+            controller.setUser(user);
+            controller.setMainApp(this);
+
+
+
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Failed to "
+                    + "find the fxml file to view security log.");
             e.printStackTrace();
         }
     }

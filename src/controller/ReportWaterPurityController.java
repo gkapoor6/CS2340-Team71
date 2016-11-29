@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -29,6 +30,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.AuthorizedUser;
 import model.DBInterfacer;
+import model.MyLogger;
 import netscape.javascript.JSObject;
 import FXApp.MainFXApp;
 /**
@@ -37,6 +39,9 @@ import FXApp.MainFXApp;
  */
 public class ReportWaterPurityController implements Initializable,
         MapComponentInitializedListener {
+
+    private static Logger LOGGER =
+            Logger.getLogger(LoginScreenController.class.getName());
 
     private MainFXApp mainApp;
 
@@ -96,7 +101,9 @@ public class ReportWaterPurityController implements Initializable,
      * @param mainApp reference to the FXApp instance
      */
     public void setMainApp(MainFXApp mainApp) {
+
         this.mainApp = mainApp;
+        model.MyLogger.setup(LOGGER);
     }
 
     /**
@@ -227,6 +234,7 @@ public class ReportWaterPurityController implements Initializable,
                         location.getLatitude(),
                         location.getLongitude());
                 location = null;
+                LOGGER.info(user.getUsername() + " has submitted a water purity report.");
                 mainApp.showApplication(user);
             } catch (NumberFormatException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

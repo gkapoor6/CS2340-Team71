@@ -9,13 +9,20 @@ import model.DBInterfacer;
 
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import model.MyLogger;
+
 /**
  * Registration screen controller
  *
  */
 public class RegistrationScreenController {
+
+    private static Logger LOGGER =
+            Logger.getLogger(RegistrationScreenController.class.getName());
     /**
      * reference to main application
      */
@@ -52,7 +59,9 @@ public class RegistrationScreenController {
      * @param main reference to main application
      */
     public void setMainApp(MainFXApp main) {
+
         mainApp = main;
+        model.MyLogger.setup(LOGGER);
     }
     /**
      * Event handler for cancel button
@@ -78,14 +87,15 @@ public class RegistrationScreenController {
             alert.showAndWait();
         } else {
             if (pass.equals(confirm)) {
-                if (!DBInterfacer.insertUser(userName, pass, type)) {
+                if (DBInterfacer.insertUser(userName, pass, type)) {
+                    LOGGER.info(userName + " has registered as a " + type + ".");
+                    mainApp.showMainScreen();
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Could not create User");
                     alert.setContentText("A user with this username"
                             + " already exists");
                     alert.showAndWait();
-                } else {
-                    mainApp.showMainScreen();
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

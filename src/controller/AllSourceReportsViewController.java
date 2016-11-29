@@ -1,6 +1,8 @@
 package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
+
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
@@ -17,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.AuthorizedUser;
 import model.DBInterfacer;
+import model.MyLogger;
 import model.WaterSourceReport;
 import netscape.javascript.JSObject;
 /**
@@ -26,6 +29,14 @@ import netscape.javascript.JSObject;
  */
 public class AllSourceReportsViewController
     implements Initializable, MapComponentInitializedListener {
+
+    private static Logger LOGGER = Logger.getLogger(AllSourceReportsViewController.class.getName());
+
+    //private static Logger LOGGER;
+    /*public void setLOGGER(Logger LOGGER) {
+        this.LOGGER = LOGGER;
+    }*/
+
     /**
      * reference to mainApp
      */
@@ -58,6 +69,8 @@ public class AllSourceReportsViewController
      */
     public void setMain(MainFXApp mainApp) {
         this.mainApp = mainApp;
+        model.MyLogger.setup(LOGGER);
+        LOGGER.info(user.getUsername() + " has viewed all the reports submitted by him/her.");
     }
     /**
      * Setup a certain user's interface of application

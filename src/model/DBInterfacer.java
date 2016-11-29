@@ -222,12 +222,12 @@ public class DBInterfacer {
         ResultSet rs = null;
         try {
             rs = DBUtilizer.dbExecuteQuery(String.format(Locale.US,
-                    "SELECT * from Users WHERE Username = '%s'", username));
+                    "SELECT * from UsersTable WHERE Username = '%s'", username));
             if (!rs.next()) {
-                String insertuser = String.format(Locale.US, "INSERT INTO Users"
-                        + " (Username, Password, Type)"
-                        + " VALUES ('%s', '%s', '%s')",
-                        username, password, usertype);
+                String insertuser = String.format(Locale.US, "INSERT INTO UsersTable"
+                        + " (Username, Password, Type, AccountBlocked, BanUser)"
+                        + " VALUES ('%s', '%s', '%s', '%d', '%d')",
+                        username, password, usertype, 0, 0);
                 DBUtilizer.dbExecuteUpdate(insertuser);
                 return true;
             } else {
@@ -247,6 +247,27 @@ public class DBInterfacer {
             }
         }
     }
+
+    /**
+     * update the user's account blocked information
+     * @param user the user
+     */
+    public static void updateUser(AuthorizedUser user) {
+        try {
+            String updateUser = String.format(
+                    Locale.US, "UPDATE UsersTable set AccountBlocked = '%d',"
+                            + " BanUser = %d"
+                            + " WHERE Username = '%s'",
+                    user.getAccountLockedInteger(), user.getUserBannedInteger(),
+                    user.getUsername());
+            DBUtilizer.dbExecuteUpdate(updateUser);
+            //return true;
+        } catch (SQLException e) {
+            System.out.println("Failed to update profile");
+            e.printStackTrace();
+            //return false;
+        }
+    }
     /**
      * Delete a user
      * @param username user's username
@@ -255,7 +276,7 @@ public class DBInterfacer {
     public static boolean deleteUser(String username) {
         try {
             String deleteuser = String.format(
-                    Locale.US, "DELETE FROM Users WHERE "
+                    Locale.US, "DELETE FROM UsersTable WHERE "
                             + "Username = '%s'", username);
             DBUtilizer.dbExecuteUpdate(deleteuser);
             return true;
@@ -277,7 +298,7 @@ public class DBInterfacer {
             String title, String address, String username) {
         try {
             String updateprofile = String.format(
-                    Locale.US, "UPDATE Users set Name = '%s',"
+                    Locale.US, "UPDATE UsersTable set Name = '%s',"
                             + " Email = '%s',"
                             + " Title = '%s',"
                             + " Address = '%s'"
@@ -294,28 +315,32 @@ public class DBInterfacer {
     /**
      * Get a user from database
      * @param username user's username
-     * @param password user's password
      * @return user
      */
-    public static AuthorizedUser getUser(String username, String password) {
+    public static AuthorizedUser getUser(String username) {
         AuthorizedUser user = null;
         ResultSet rs = null;
         try {
             String getuser = String.format(
-                    Locale.US, "SELECT * FROM Users WHERE Username = '%s'"
-                            + " and Password = '%s'", username, password);
+                    Locale.US, "SELECT * FROM UsersTable WHERE Username = '%s'", username);
             rs = DBUtilizer.dbExecuteQuery(getuser);
             String type;
             String name;
             String title;
             String email;
             String address;
+            int accountLocked;
+            int userBanned;
+            String password;
             if (rs.next()) {
                 type = rs.getString("Type");
                 name = rs.getString("Name");
                 title = rs.getString("Title");
                 email = rs.getString("Email");
                 address = rs.getString("Address");
+                password = rs.getString("Password");
+                accountLocked = rs.getInt("AccountBlocked");
+                userBanned = rs.getInt("BanUser");
             } else {
                 return null;
             }
@@ -324,8 +349,8 @@ public class DBInterfacer {
                         forName(String.format("model.%s", type))
                         .getConstructor(String.class, String.class,
                                 String.class,
-                        String.class, String.class, String.class).newInstance(
-                        username, password, name, email, title, address);
+                        String.class, String.class, String.class, int.class, int.class).newInstance(
+                        username, password, name, email, title, address, accountLocked, userBanned);
             }
         } catch (SQLException | SecurityException | InstantiationException
                 | IllegalArgumentException | ClassNotFoundException
@@ -343,6 +368,8 @@ public class DBInterfacer {
         }
         return user;
     }
+
+
     /**
      * Gets current time in GMT-4 Timezone or EST
      * @return current time as a String
@@ -354,4 +381,6 @@ public class DBInterfacer {
             + zonedt.format(DateTimeFormatter.ISO_LOCAL_TIME)
         .split("[.]")[0];
     }
+
+
 }

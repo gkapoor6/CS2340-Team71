@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -35,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.AuthorizedUser;
 import model.DBInterfacer;
+import model.MyLogger;
 import model.WaterPurityReport;
 import netscape.javascript.JSObject;
 
@@ -43,6 +45,9 @@ import netscape.javascript.JSObject;
  */
 public class ViewWaterQualityHistoryGraph
         implements Initializable, MapComponentInitializedListener {
+
+    private static Logger LOGGER =
+            Logger.getLogger(ViewWaterQualityHistoryGraph.class.getName());
     /**
      * reference to mainApp
      */
@@ -89,7 +94,9 @@ public class ViewWaterQualityHistoryGraph
      * @param main reference back to main class
      */
     public void setMainApp(MainFXApp main) {
+
         mainApp = main;
+        model.MyLogger.setup(LOGGER);
     }
     /**
      * Set up a certain user's interface of application
@@ -231,6 +238,9 @@ public class ViewWaterQualityHistoryGraph
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            LOGGER.info(user.getUsername() + " has viewed the water quality history graph in "
+                    + type + " for the year " + year + " in latitude "
+                    + location.getLatitude() + " and longitude " + location.getLongitude() + ".");
         }
     }
 

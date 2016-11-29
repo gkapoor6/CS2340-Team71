@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.AuthorizedUser;
 import model.DBInterfacer;
+import model.MyLogger;
 import model.WaterSourceReport;
 
 /**
@@ -28,6 +30,9 @@ import model.WaterSourceReport;
  */
 public class ShowSourceReportsController
         implements Initializable, MapComponentInitializedListener {
+
+    private static Logger LOGGER =
+            Logger.getLogger(ShowSourceReportsController.class.getName());
 
     /**
      * reference to mainApp
@@ -92,6 +97,8 @@ public class ShowSourceReportsController
         this.mainApp = mainApp;
         reportTable.setItems(DBInterfacer.getSourceReportList(
                 user.getProfile().getNameProperty().get()));
+        model.MyLogger.setup(LOGGER);
+        LOGGER.info(user.getUsername() + " has viewed water source reports.");
 
     }
 
@@ -112,6 +119,8 @@ public class ShowSourceReportsController
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
         ReportIDColumn.setCellValueFactory(cellData ->
             cellData.getValue().getReportIDProperty().asObject());
         NameColumn.setCellValueFactory(cellData ->

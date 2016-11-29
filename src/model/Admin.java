@@ -28,10 +28,12 @@ public class Admin extends AuthorizedUser {
      * @param title title
      * @param email email
      * @param address address
+     * @param accountLocked accountLocked
+     * @param userBanned userBanned
      */
     public Admin(String username, String password, String name, String title,
-                 String email, String address) {
-        super(username, password, name, title, email, address);
+                 String email, String address, int accountLocked, int userBanned) {
+        super(username, password, name, title, email, address, accountLocked, userBanned);
     }
     /**
      * Constructor for Admin class

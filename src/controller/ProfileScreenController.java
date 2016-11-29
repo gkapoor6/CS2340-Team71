@@ -6,18 +6,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.AuthorizedUser;
+import model.MyLogger;
 import model.Profile;
 import model.DBInterfacer;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 
 import java.util.Collection;
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 /**
  * Controller for profile edit window
  * @author Hairong Ke
  */
 public class ProfileScreenController {
+
+
+    private static Logger LOGGER =
+            Logger.getLogger(ProfileScreenController.class.getName());
+
     /**
      * reference to mainApp
      */
@@ -60,7 +68,9 @@ public class ProfileScreenController {
      * @param main reference to the FXApp instance
      */
     public void setMainApp(MainFXApp main) {
+
         mainApp = main;
+        model.MyLogger.setup(LOGGER);
     }
     /**
      * Setup a certain user's interface of application
@@ -86,8 +96,9 @@ public class ProfileScreenController {
             profile.setEmail(emailField.getText());
             profile.setHome(addressField.getText());
             DBInterfacer.updateProfile(nameField.getText(),
-                    titleComboBox.getValue(), emailField.getText(),
+                     emailField.getText(), titleComboBox.getValue(),
                     addressField.getText(), user.getUsername());
+            LOGGER.info(user.getUsername() + " has updated his profile.");
             mainApp.showApplication(user);
         }
     }
@@ -96,6 +107,7 @@ public class ProfileScreenController {
      */
     @FXML
     private void handleCancelPressed() {
+        LOGGER.info(user.getUsername() + " has cancelled from profile screen.");
         mainApp.showApplication(user);
     }
     /**

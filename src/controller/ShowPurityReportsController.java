@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.AuthorizedUser;
 import model.DBInterfacer;
+import model.MyLogger;
 import model.WaterPurityReport;
 /**
  * Controller for view all purity reports
@@ -27,6 +29,9 @@ import model.WaterPurityReport;
  */
 public class ShowPurityReportsController implements Initializable,
         MapComponentInitializedListener {
+
+    private static Logger LOGGER =
+            Logger.getLogger(ShowPurityReportsController.class.getName());
 
     /**
      * reference to mainApp
@@ -92,6 +97,8 @@ public class ShowPurityReportsController implements Initializable,
      */
     public void setMain(MainFXApp mainApp) {
         this.mainApp = mainApp;
+        model.MyLogger.setup(LOGGER);
+        LOGGER.info(user.getUsername() + " has viewed Water Purity Reports.");
     }
 
     /**

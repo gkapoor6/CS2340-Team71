@@ -27,10 +27,12 @@ public class User extends AuthorizedUser {
      * @param title title of user
      * @param email email of user
      * @param address address of user
+     * @param accountLocked accountLocked
+     * @param userBanned userBanned
      */
     public User(String username, String password, String name,
-                String title, String email, String address) {
-        super(username, password, name, title, email, address);
+                String title, String email, String address, int accountLocked, int userBanned) {
+        super(username, password, name, title, email, address, accountLocked, userBanned);
     }
     /**
      * @param username username of user

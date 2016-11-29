@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -30,6 +31,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.AuthorizedUser;
 import model.DBInterfacer;
+import model.MyLogger;
 import netscape.javascript.JSObject;
 /**
  * Controller for view of water source report submission
@@ -38,6 +40,9 @@ import netscape.javascript.JSObject;
  */
 public class ReportWaterSourceController
     implements Initializable, MapComponentInitializedListener {
+
+    private static Logger LOGGER =
+            Logger.getLogger(ReportWaterSourceController.class.getName());
     /**
      * reference to mainApp
      */
@@ -87,7 +92,9 @@ public class ReportWaterSourceController
      * @param mainApp reference to the FXApp instance
      */
     public void setMainApp(MainFXApp mainApp) {
+
         this.mainApp = mainApp;
+        model.MyLogger.setup(LOGGER);
     }
     /**
      * Setup a certain user's interface of application
@@ -221,7 +228,9 @@ public class ReportWaterSourceController
                     WaterTypeCombox.getValue(), WaterConditionCombox.getValue(),
                     location.getLatitude(), location.getLongitude());
             location = null;
+            LOGGER.info(user.getUsername() + " has submitted a water source report.");
             mainApp.showApplication(user);
+
         }
     }
     /**
