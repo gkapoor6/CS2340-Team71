@@ -41,7 +41,7 @@ public class MyLogger  {
             logger.setLevel(Level.INFO);
             //if file doesnt already exist, create a new file
             if (fileTxt == null) {
-                fileTxt = new FileHandler("/Users/swatimardia/Dropbox/CS2340-Team71/SecurityLog.log", true);
+                fileTxt = new FileHandler("../CS2340-Team71/SecurityLog.log", true);
             }
 
             // create a TXT formatter
